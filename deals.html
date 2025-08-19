@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hot Deals - ShopEasy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                 <link rel="stylesheet" href="footer-styles.css">
+<script src="add-to-cart.js"></script>
+    <style>
+        .deals-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .deals-header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .deals-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .flash-sale-banner {
+            background: linear-gradient(45deg, #ff4757, #ff6b6b);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(255,71,87,0.3);
+        }
+        
+        .countdown-timer {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .timer-display {
+            font-size: 2rem;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .deal-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .deal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+        
+        .deal-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4757;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 10;
+        }
+        
+        .deal-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .deal-card:hover .deal-image {
+            transform: scale(1.05);
+        }
+        
+        .deal-content {
+            padding: 25px;
+        }
+        
+        .deal-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .deal-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .deal-prices {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.1rem;
+        }
+        
+        .deal-price {
+            color: #ff4757;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .deal-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .deal-button:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            transform: translateY(-2px);
+        }
+        
+        .category-deals {
+            margin-top: 60px;
+        }
+        
+        .category-header {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            flex: 1;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                
+                
+                
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="products.html" class="nav-link">Products</a>
+                    <a href="categories.html" class="nav-link">Categories</a>
+                    <a href="deals.html" class="nav-link active">Deals</a>
+                </nav>
+                
+              <div class="nav-icons">
+                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                    </a>
+                    <a href="cart.html" class="icon-link"></a>
+                   <a href="vsv-login.html" class="icon-link" id="userIcon">
+                        <span class="user-status">sign out</span>
+</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="deals-container">
+        <div class="deals-header">
+            <h1>🔥 Hot Deals & Flash Sales 🔥</h1>
+            <p>Save up to 70% on your favorite products!</p>
+        </div>
+
+        <div class="flash-sale-banner">
+            <h2>⚡ FLASH SALE - 24 HOURS ONLY! ⚡</h2>
+            <p>Don't miss out on these incredible deals</p>
+            <div class="countdown-timer">
+                <h3>Sale Ends In:</h3>
+                <div class="timer-display" id="countdown">23:59:59</div>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">70%</div>
+                <div class="stat-label">Max Discount</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Products on Sale</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24h</div>
+                <div class="stat-label">Flash Sale Duration</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">Free</div>
+                <div class="stat-label">Shipping</div>
+            </div>
+        </div>
+
+        <div class="deals-grid">
+            <!-- Fashion Deal -->
+            <div class="deal-card">
+                <div class="deal-badge">-50%</div>
+                <img src="https://images.unsplash.com/photo-1560243563-062bfc001d68?w=400" alt="Fashion Collection" class="deal-image">
+                <div class="deal-content">
+                    <h3 class="deal-title">Summer Fashion Collection</h3>
+                    <p class="deal-description">Premium summer outfits including dresses, shirts, and accessories. Limited time offer!</p>
+                    <div class="deal-prices">
+                        <span class="original-price">₹3,999</span>
+                        <span class="deal-price">₹1,999</span>
+                    </div>
+                    <button class="deal-button" onclick="window.location.href='fashion-category.html'">Shop Fashion</button>
+                </div>
+            </div>
+
+            <!-- Electronics Deal -->
+            <div class="deal-card">
+                <div class="deal-badge">-40%</div>
+                <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400" alt="Electronics Sale" class="deal-image">
+                <div class="deal-content">
+                    <h3 class="deal-title">Latest Electronics</h3>
+                    <p class="deal-description">Top-brand electronics including smartphones, laptops, and accessories with massive discounts.</p>
+                    <div class="deal-prices">
+                        <span class="original-price">₹49,999</span>
+                        <span class="deal-price">₹29,999</span>
+                    </div>
+                    <button class="deal-button" onclick="window.location.href='electronics.html'">Shop Electronics</button>
+                </div>
+            </div>
+
+            <!-- Home Decor Deal -->
+            <div class="deal-card">
+                <div class="deal-badge">-60%</div>
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400" alt="Home Decor" class="deal-image">
+                <div class="deal-content">
+                    <h3 class="deal-title">Home Decor Sale</h3>
+                    <p class="deal-description">Transform your space with our premium home decor collection including furniture, lighting, and accessories.</p>
+                    <div class="deal-prices">
+                        <span class="original-price">₹9,999</span>
+                        <span class="deal-price">₹3,999</span>
+                    </div>
+                    <button class="deal-button" onclick="window.location.href='home-decor.html'">Shop Home Decor</button>
+                </div>
+            </div>
+
+            <!-- Beauty Deal -->
+            <div class="deal-card">
+                <div class="deal-badge">-35%</div>
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754654946/download_13_q7czvx.jpg" alt="Beauty Products" class="deal-image">
+                <div class="deal-content">
+                    <h3 class="deal-title">Beauty & Personal Care</h3>
+                    <p class="deal-description">Premium beauty products, skincare, and personal care items at discounted prices.</p>
+                    <div class="deal-prices">
+                        <span class="original-price">₹2,999</span>
+                        <span class="deal-price">₹1,949</span>
+                    </div>
+                    <button class="deal-button" onclick="window.location.href='beauty-new.html'">Shop Beauty</button>
+                </div>
+            </div>
+
+            <!-- Footwear Deal -->
+            <div class="deal-card">
+                <div class="deal-badge">-45%</div>
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400" alt="Footwear Collection" class="deal-image">
+                <div class="deal-content">
+                    <h3 class="deal-title">Footwear Collection</h3>
+                    <p class="deal-description">Stylish and comfortable footwear for all occasions including sports, casual, and formal wear.</p>
+                    <div class="deal-prices">
+                        <span class="original-price">₹6,999</span>
+                        <span class="deal-price">₹3,849</span>
+                    </div>
+                    <button class="deal-button" onclick="window.location.href='footwear.html'">Shop Footwear</button>
+                </div>
+            </div>
+
+            <!-- Kids & Toys Deal -->
+            <div class="deal-card">
+                <div class="deal-badge">-55%</div>
+                <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=400" alt="Kids & Toys" class="deal-image">
+                <div class="deal-content">
+                    <h3 class="deal-title">Kids & Toys Sale</h3>
+                    <p class="deal-description">Fun and educational toys for kids of all ages, including games, puzzles, and learning toys.</p>
+                    <div class="deal-prices">
+                        <span class="original-price">₹3,999</span>
+                        <span class="deal-price">₹1,799</span>
+                    </div>
+                    <button class="deal-button" onclick="window.location.href='kids-toys.html'">Shop Kids & Toys</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-deals">
+            <h2 class="category-header">Shop All Category Deals</h2>
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400" alt="Books" class="deal-image">
+                    <div class="deal-content">
+                        <h3 class="deal-title">Books - 30% OFF</h3>
+                        <p class="deal-description">All genres including fiction, non-fiction, and educational books.</p>
+                        <button class="deal-button" onclick="window.location.href='books.html'">Browse Books</button>
+                    </div>
+                </div>
+
+                <div class="deal-card">
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400" alt="Groceries" class="deal-image">
+                    <div class="deal-content">
+                        <h3 class="deal-title">Groceries - 25% OFF</h3>
+                        <p class="deal-description">Fresh produce, packaged goods, and daily essentials.</p>
+                        <button class="deal-button" onclick="window.location.href='groceries.html'">Shop Groceries</button>
+                    </div>
+                </div>
+
+                <div class="deal-card">
+                    <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754654629/download_11_beb5h8.jpg" alt="Accessories" class="deal-image">
+                    <div class="deal-content">
+                        <h3 class="deal-title">Accessories - 40% OFF</h3>
+                        <p class="deal-description">Fashion accessories, tech accessories, and lifestyle products.</p>
+                        <button class="deal-button" onclick="window.location.href='accessories.html'">View Accessories</button>
+                    </div>
+                </div>
+
+                <div class="deal-card">
+                    <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754654477/download_10_exwey0.jpg" alt="Health" class="deal-image">
+                    <div class="deal-content">
+                        <h3 class="deal-title">Health & Personal Care - 35% OFF</h3>
+                        <p class="deal-description">Healthcare products, personal hygiene, and wellness items.</p>
+                        <button class="deal-button" onclick="window.location.href='health-personal-care.html'">Shop Health</button>
+                    </div>
+                </div>
+
+                <div class="deal-card">
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300" alt="Luggage" class="deal-image">
+                    <div class="deal-content">
+                        <h3 class="deal-title">Luggage Faves - 30% OFF</h3>
+                        <p class="deal-description">Travel bags, suitcases, and travel accessories for your next adventure.</p>
+                        <button class="deal-button" onclick="window.location.href='luggage-faves.html'">Shop Luggage</button>
+                    </div>
+                </div>
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VSVShopEasy</h3>
+                    <p>Your trusted online shopping destination</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="deals.html">Hot Deals</a></li>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Shop by Category</h4>
+                    <ul>
+                        <li><a href="fashion-category.html">Fashion</a></li>
+                        <li><a href="electronics.html">Electronics</a></li>
+                        <li><a href="home-decor.html">Home Decor</a></li>
+                        <li><a href="beauty-new.html">Beauty</a></li>
+                        <li><a href="footwear.html">Footwear</a></li>
+                        <li><a href="kids-toys.html">Kids & Toys</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-envelope"></i> vsv@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> vizag, andra, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEasy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown timer
+        function updateCountdown() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+            
+            const diff = tomorrow - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Add to cart functionality
+        document.querySelectorAll('.deal-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!e.target.onclick) {
+                    const originalText = this.textContent;
+                    this.textContent = 'Added to Cart!';
+                    this.style.background = '#28a745';
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.style.background = '';
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

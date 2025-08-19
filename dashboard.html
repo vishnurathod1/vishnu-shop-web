@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VSV Easy Shop — Admin Dashboard</title>
+  <!-- Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfQ+VrA0G7C1u3Vv6I8pcnFybZ0Yl1bQ8C4F4jK5n8r9i8T3lPZB4Ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: #11182a;
+      --muted: #9aa4b2;
+      --text: #e6e9ef;
+      --brand: #6c8cff;
+      --brand-2: #15c39a;
+      --accent: #f59f00;
+      --danger: #ff6b6b;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+    }
+    /* Light theme */
+    :root.light{
+      --bg:#f6f7fb; --card:#ffffff; --muted:#6b7280; --text:#0f172a; --brand:#4f46e5; --brand-2:#059669; --accent:#d97706; --danger:#dc2626; --shadow:0 8px 20px rgba(2,6,23,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto; background:var(--bg); color:var(--text); display:flex;
+    }
+
+    /* Layout */
+    .sidebar{
+      width:280px; background:linear-gradient(180deg, #0e172a 0%, #0b1220 100%);
+      border-right:1px solid rgba(255,255,255,.06); padding:20px; position:sticky; top:0; height:100vh; overflow:auto;
+    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; font-size:15px; letter-spacing:.2px;}
+    .brand .logo{display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:var(--shadow)}
+
+    .nav{margin-top:24px}
+    .nav h4{font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); margin:14px 12px}
+    .nav a{
+      display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; text-decoration:none; color:var(--text);
+      transition:.2s background;
+    }
+    .nav a:hover{background:rgba(255,255,255,.06)}
+    .nav a.active{background:linear-gradient(90deg, rgba(108,140,255,.18), transparent); border:1px solid rgba(108,140,255,.35)}
+    .nav .badge{margin-left:auto; font-size:12px; color:#fff; background:var(--danger); padding:2px 8px; border-radius:999px}
+
+    .main{
+      flex:1; display:flex; flex-direction:column; min-width:0;
+    }
+    .topbar{
+      position:sticky; top:0; z-index:10; background:rgba(17,24,42,.75); backdrop-filter: blur(10px); border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex; align-items:center; gap:12px; padding:14px 20px;
+    }
+    :root.light .topbar{background:rgba(255,255,255,.8)}
+
+    .search{
+      display:flex; align-items:center; gap:10px; background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:999px; padding:10px 14px; flex:1;
+    }
+    .search input{background:transparent; border:none; outline:none; color:var(--text); width:100%}
+
+    .top-actions{display:flex; align-items:center; gap:10px}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:var(--card); color:var(--text); cursor:pointer}
+    .btn:hover{filter:brightness(1.05)}
+    .avatar{width:36px; height:36px; border-radius:999px; background:linear-gradient(135deg,#22d3ee,#6366f1); display:grid; place-items:center; font-weight:700}
+
+    .content{padding:20px; display:grid; gap:18px}
+
+    /* KPI cards */
+    .grid{display:grid; gap:18px}
+    .grid.kpi{grid-template-columns: repeat(4, minmax(220px, 1fr))}
+    @media (max-width:1100px){.grid.kpi{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.grid.kpi{grid-template-columns:1fr}}
+
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px}
+    .card h3{margin:0 0 6px; font-size:15px; color:var(--muted); font-weight:600}
+    .card .value{font-size:28px; font-weight:700}
+    .trend{display:flex; align-items:center; gap:8px; font-size:13px}
+    .trend.up{color:var(--brand-2)}
+    .trend.down{color:var(--danger)}
+
+    /* Two-column: charts and lists */
+    .grid.twocol{grid-template-columns: 1.3fr .7fr}
+    @media (max-width:1200px){.grid.twocol{grid-template-columns:1fr}}
+
+    .chart-wrap{padding:10px 10px 0}
+
+    /* Tables */
+    table{width:100%; border-collapse:collapse; font-size:14px}
+    th, td{padding:12px 10px; border-bottom:1px solid rgba(255,255,255,.06)}
+    th{text-align:left; color:var(--muted); font-weight:600; font-size:12px; letter-spacing:.04em; text-transform:uppercase}
+    tr:hover td{background:rgba(255,255,255,.03)}
+    .status{padding:4px 10px; border-radius:999px; font-size:12px;}
+    .st-pending{background:rgba(245,159,0,.15); color:var(--accent)}
+    .st-shipped{background:rgba(21,195,154,.15); color:var(--brand-2)}
+    .st-delivered{background:rgba(108,140,255,.15); color:var(--brand)}
+    .st-refund{background:rgba(255,107,107,.15); color:var(--danger)}
+
+    /* Footer */
+    .footer{padding:20px; color:var(--muted); font-size:13px}
+
+    /* Toggle + collapse */
+    .toggle{display:none}
+    @media (max-width:960px){
+      .sidebar{position:fixed; left:0; top:0; transform:translateX(-100%); transition:.2s transform; z-index:30}
+      .sidebar.open{transform:translateX(0)}
+      .toggle{display:inline-flex}
+      body.nav-open::after{content:""; position:fixed; inset:0; backdrop-filter:blur(2px); background:rgba(0,0,0,.35);}
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="logo"><i class="fa-solid fa-bag-shopping"></i></div>
+     <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+
+    </div>
+
+    <nav class="nav">
+      <h4>Menu</h4>
+      <a href="dashboard.html" class="active"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+      <a href="orders.html"><i class="fa-solid fa-clipboard-list"></i>Orders <span class="badge">8</span></a>
+      <a href="products.html"><i class="fa-solid fa-box"></i>Products</a>
+      <a href="customersindashboard-updated.html"><i class="fa-solid fa-users"></i>Customers</a>
+      <a href="inventory-updated.html"><i class="fa-solid faq1q5 q1654q 3-warehouse"></i>Inventory</a>
+      <a href="promotions.html"><i class="fa-solid fa-percent"></i>Promotions</a>
+      <a href="reports.html"><i class="fa-solid fa-chart-pie"></i>Reports</a>
+      <h4>Settings</h4>
+      <a href="store-settings.html"><i class="fa-solid fa-gear"></i>Store Settings</a>
+      <a href="vsv-login.html"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <!-- Topbar -->
+    <div class="topbar">
+      <button class="btn toggle" id="navToggle"><i class="fa-solid fa-bars"></i></button>
+      <div class="search">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input placeholder="Search orders, products, customers…" />
+      </div>
+      <div class="top-actions">
+        <button class="btn" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="btn"><i class="fa-regular fa-bell"></i></button>
+        <div class="avatar">VL</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- KPIs -->
+      <section class="grid kpi">
+        <article class="card">
+          <h3>Revenue (Today)</h3>
+          <div class="value">₹84,250</div>
+          <div class="trend up"><i class="fa-solid fa-arrow-up"></i> +12.8% vs yesterday</div>
+        </article>
+        <article class="card">
+          <h3>Orders</h3>
+          <div class="value">126</div>
+          <div class="trend up"><i class="fa-solid fa-arrow-up"></i> +6.2% this week</div>
+        </article>
+        <article class="card">
+          <h3>Customers</h3>
+          <div class="value">2,418</div>
+          <div class="trend down"><i class="fa-solid fa-arrow-down"></i> −1.1% churn</div>
+        </article>
+        <article class="card">
+          <h3>Conversion</h3>
+          <div class="value">3.7%</div>
+          <div class="trend up"><i class="fa-solid fa-arrow-up"></i> +0.4 pp</div>
+        </article>
+      </section>
+
+      <!-- Charts & Lists -->
+      <section class="grid twocol">
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;">
+            <h3>Sales Overview (Last 12 Weeks)</h3>
+            <div>
+              <button class="btn" onclick="setRange('w')">W</button>
+              <button class="btn" onclick="setRange('m')">M</button>
+              <button class="btn" onclick="setRange('q')">Q</button>
+            </div>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="salesChart" height="110"></canvas>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Category Share (This Month)</h3>
+          <div class="chart-wrap">
+            <canvas id="categoryChart" height="110"></canvas>
+          </div>
+        </article>
+      </section>
+
+      <!-- Tables -->
+      <section class="grid" style="grid-template-columns:1fr;">
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <h3>Recent Orders</h3>
+           <a href="orders.html" <button class="btn">View All</button> </a>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Date</th>
+                  <th>Customer</th>
+                  <th>Items</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#VS-10293</td>
+                  <td>Aug 12, 2025</td>
+                  <td>Rohit Kumar</td>
+                  <td>3</td>
+                  <td>₹3,899</td>
+                  <td><span class="status st-shipped">Shipped</span></td>
+                </tr>
+                <tr>
+                  <td>#VS-10292</td>
+                  <td>Aug 12, 2025</td>
+                  <td>Neha Sharma</td>
+                  <td>1</td>
+                  <td>₹1,299</td>
+                  <td><span class="status st-delivered">Delivered</span></td>
+                </tr>
+                <tr>
+                  <td>#VS-10291</td>
+                  <td>Aug 11, 2025</td>
+                  <td>Imran Shaikh</td>
+                  <td>2</td>
+                  <td>₹2,099</td>
+                  <td><span class="status st-pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>#VS-10290</td>
+                  <td>Aug 11, 2025</td>
+                  <td>Pooja Patel</td>
+                  <td>5</td>
+                  <td>₹6,250</td>
+                  <td><span class="status st-refund">Refund</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <h3>Low Stock Alerts</h3>
+          <a href="low-stock-alerts-updated.html"  <button class="btn">Manage</button></a>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>SKU</th>
+                <th>In Stock</th>
+                <th>Reorder Level</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Running Shoes - Blue</td>
+                <td>SHO-492-BL</td>
+                <td>7</td>
+                <td>15</td>
+                <td><button class="btn">Reorder</button></td>
+              </tr>
+              <tr>
+                <td>Wireless Earbuds</td>
+                <td>ELC-189-WH</td>
+                <td>12</td>
+                <td>20</td>
+                <td><button class="btn">Reorder</button></td>
+              </tr>
+              <tr>
+                <td>Kids Backpack</td>
+                <td>BAG-315-KD</td>
+                <td>4</td>
+                <td>10</td>
+                <td><button class="btn">Reorder</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
+
+      <div class="footer">© 2025 VSV Easy Shop • Admin Dashboard</div>
+    </div>
+  </main>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'light'){ root.classList.add('light'); }
+
+    themeToggle.addEventListener('click', () => {
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Sidebar toggle (mobile)
+    const navToggle = document.getElementById('navToggle');
+    const sidebar = document.getElementById('sidebar');
+    navToggle?.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      document.body.classList.toggle('nav-open');
+    });
+
+    // Charts
+    const salesCtx = document.getElementById('salesChart');
+    const categoryCtx = document.getElementById('categoryChart');
+
+    // Dynamic colors from CSS variables
+    const styles = getComputedStyle(document.documentElement);
+    const cBrand = styles.getPropertyValue('--brand').trim();
+    const cBrand2 = styles.getPropertyValue('--brand-2').trim();
+    const cAccent = styles.getPropertyValue('--accent').trim();
+
+    const weeks = Array.from({length: 12}, (_,i)=>`W${i+1}`);
+    let salesData = [42, 48, 44, 55, 58, 62, 60, 73, 69, 77, 82, 91];
+
+    const salesChart = new Chart(salesCtx, {
+      type: 'line',
+      data: {
+        labels: weeks,
+        datasets: [{
+          label: 'Revenue (₹K)',
+          data: salesData,
+          borderColor: cBrand,
+          backgroundColor: cBrand + '22',
+          fill: true,
+          tension: .35,
+          borderWidth: 2
+        },{
+          label: 'Orders',
+          data: [18,20,19,23,24,28,26,32,30,34,36,39],
+          borderColor: cBrand2,
+          backgroundColor: cBrand2 + '22',
+          fill: true,
+          tension: .35,
+          borderWidth: 2,
+          yAxisID: 'y1'
+        }]
+      },
+      options: {
+        responsive:true,
+        maintainAspectRatio:false,
+        scales: {
+          y: { beginAtZero:false, grid:{color:'rgba(255,255,255,.08)'} },
+          y1: { position:'right', grid:{display:false} },
+          x: { grid:{display:false} }
+        },
+        plugins: { legend: { labels:{ color: styles.getPropertyValue('--text').trim() } } }
+      }
+    });
+
+    const categoryChart = new Chart(categoryCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Fashion', 'Electronics', 'Home', 'Sports', 'Kids'],
+        datasets: [{
+          data: [32, 27, 18, 14, 9],
+          backgroundColor: [cBrand, cBrand2, cAccent, '#ef4444', '#22c55e']
+        }]
+      },
+      options: {
+        plugins:{ legend:{ position:'bottom', labels:{ color: styles.getPropertyValue('--text').trim() } } }
+      }
+    });
+
+    // Range buttons simulate different datasets
+    function setRange(mode){
+      if(mode==='w'){ salesChart.data.labels = weeks; salesChart.data.datasets[0].data = [42, 48, 44, 55, 58, 62, 60, 73, 69, 77, 82, 91]; }
+      if(mode==='m'){ salesChart.data.labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; salesChart.data.datasets[0].data = [220,240,235,290,310,325,318,360,342,390,410,455]; }
+      if(mode==='q'){ salesChart.data.labels = ['Q1','Q2','Q3','Q4']; salesChart.data.datasets[0].data = [695, 925, 1015, 1180]; }
+      salesChart.update();
+    }
+    
+  </script>
+</body>
+</html>

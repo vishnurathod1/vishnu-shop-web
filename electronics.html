@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Electronics - ShopEasy</title>
+     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+                 <link rel="stylesheet" href="footer-styles.css">
+<script src="add-to-cart.js"></script>
+<style>
+        .electronics-hero {
+            background: linear-gradient(rgba(94, 88, 88, 0.7), rgba(24, 22, 22, 0.7)),
+                url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754806729/download_17_kbo4x9.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .electronics-hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+        .category-section {
+            margin: 60px 0;
+            padding: 0 20px;
+        }
+        .category-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #FF6B35;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #FF6B35, #FF8E53);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .product-image {
+            width: 90%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #FF6B35;
+            margin-bottom: 8px;
+        }
+        .product-description {
+            color: #7F8C8D;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .product-price {
+            margin-bottom: 15px;
+        }
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FF6B35;
+        }
+        .original-price {
+            font-size: 1.1rem;
+            color: #95A5A6;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        .product-rating {
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+        .product-rating span {
+            color: #7F8C8D;
+            margin-left: 5px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .add-to-cart-btn, .buy-now-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .add-to-cart-btn {
+            background: linear-gradient(45deg, #FF6B35, #FF8E53);
+            color: white;
+        }
+        .buy-now-btn {
+            background: linear-gradient(45deg, #FF4500, #DC143C);
+            color: white;
+        }
+        .add-to-cart-btn:hover, .buy-now-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #FF6B35;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="fashion-category.html" class="nav-link">Fashion</a>
+                    <a href="books.html" class="nav-link">Books</a>
+                    <a href="home-decor.html" class="nav-link">Home Decor</a>
+                    <a href="electronics.html" class="nav-link active">Electronics</a>
+                </nav>
+                       <div class="nav-icons">
+                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="cart.html" class="icon-link"></a>
+                   <a href="vsv-login.html" class="icon-link" id="userIcon">
+                        <span class="user-status">sign out</span>
+</a>
+                </div>
+            </div>
+        </div>
+    </header>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- Electronics Hero Section -->
+    <section class="electronics-hero">
+        <h1>Explore Our Latest Electronics 2025</h1>
+        
+    </section>
+
+    <!-- Categories Section -->
+    <section class="category-section" id="smartphones">
+        <h2 class="category-title">Smartphones</h2>
+        <div class="products-grid">
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754748052/iPhone_15_Pro_gtp4sb.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">iPhone 15 Pro</h3>
+                    <h2>iphone 15 pro, Ram256GB</h2>
+                     
+                    <p class="product-description">The latest Apple flagship smartphone</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,19,900</span>
+                        <span class="original-price">₹1,29,900</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(150)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754748203/Samsung_Galaxy_S24_jrvujl.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Samsung Galaxy S24</h3>
+                    <p class="product-description">Powerful Android smartphone with great camera</p>
+                    <h2>Samsung Galaxy S24 5G, 8GB Ram, 256GB</h2>
+                    <div class="product-price">
+                        <span class="current-price">₹89,999</span>
+                        <span class="original-price">₹99,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(120)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754750093/Google_Pixel_8_sgpqgy.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Google Pixel 8</h3>
+                    <h2>New Google Pixel 8 5G ram/rom12/128GB Obsidian | Sahivalue</h2>
+                    <p class="product-description">Pure Android experience with excellent camera</p>
+                    <div class="product-price">
+                        <span class="current-price">₹69,999</span>
+                        <span class="original-price">₹79,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(100)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754750372/OnePlus_12_cuvpb7.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">OnePlus 12</h3>
+                    <h2>Ram/Rom12/256GB</h2>
+                    <p class="product-description">Fast and smooth performance with great display</p>
+                    <div class="product-price">
+                        <span class="current-price">₹59,999</span>
+                        <span class="original-price">₹69,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(90)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754752667/Xiaomi_14_guuzyv.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Xiaomi 14</h3>
+                    <h2>Ram/Rom12/256GB</h2>
+                    <p class="product-description">Affordable smartphone with premium features</p>
+                    <div class="product-price">
+                        <span class="current-price">₹49,999</span>
+                        <span class="original-price">₹59,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(80)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" id="laptops">
+        <h2 class="category-title">Laptops</h2>
+        <div class="products-grid">
+            <div class="product-card">
+<img src=  "https://res.cloudinary.com/ddxbevmiz/image/upload/v1754753000/MacBook_Pro_16_flmp2s.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">MacBook Pro 16"</h3>
+                    <h2>Ram/Rom 16/256</h2>
+                    <p class="product-description">Powerful laptop with M2 chip</p>
+                    <div class="product-price">
+                        <span class="current-price">₹2,39,900</span>
+                        <span class="original-price">₹2,49,900</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(200)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754753238/Dell_XPS_15_gpexq8.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Dell XPS 15</h3>
+                    <h2>Ram/Rom 8/256</h2>
+                    <p class="product-description">High-performance Windows laptop</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,79,999</span>
+                        <span class="original-price">₹1,89,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(150)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754753332/HP_Spectre_x360_fsxr36.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">HP Spectre x360</h3>
+                    <h2> Ram/Rom 16/512</h2>
+                    <p class="product-description">Convertible laptop with touchscreen</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,49,999</span>
+                        <span class="original-price">₹1,59,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(130)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754753469/Lenovo_ThinkPad_X1_prtfzx.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Lenovo ThinkPad X1</h3>
+                    <h2> Ram/Rom  8/512</h2>
+                    <p class="product-description">Business laptop with robust build</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,29,999</span>
+                        <span class="original-price">₹1,39,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(110)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754753566/ASUS_ROG_Strix_hvhfhk.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">ASUS ROG Strix</h3>
+                    <h2> Ram/Rom  8/512</h2>
+                    <p class="product-description">Gaming laptop with high refresh rate</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,59,999</span>
+                        <span class="original-price">₹1,69,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(140)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" id="cameras">
+        <h2 class="category-title">Cameras</h2>
+        <div class="products-grid">
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754753786/Canon_EOS_R6_fazxdl.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Canon EOS R6</h3>
+                    <p class="product-description">Professional mirrorless camera</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,99,999</span>
+                        <span class="original-price">₹2,09,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(180)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754753900/Sony_A7_IV_zqjtuq.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Sony A7 IV</h3>
+                    <p class="product-description">Full-frame mirrorless camera</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,79,999</span>
+                        <span class="original-price">₹1,89,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(160)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754011/Nikon_Z6_II_vswm01.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Nikon Z6 II</h3>
+                    <p class="product-description">Versatile mirrorless camera</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,59,999</span>
+                        <span class="original-price">₹1,69,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(140)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754082/Fujifilm_X-T5_vf1xkd.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fujifilm X-T5</h3>
+                    <p class="product-description">Compact mirrorless camera</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,29,999</span>
+                        <span class="original-price">₹1,39,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(110)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754187/GoPro_Hero_12_lzc96q.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">GoPro Hero 12</h3>
+                    <p class="product-description">Action camera for adventure enthusiasts</p>
+                    <div class="product-price">
+                        <span class="current-price">₹49,999</span>
+                        <span class="original-price">₹59,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(90)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" id="accessories">
+        <h2 class="category-title">Accessories</h2>
+        <div class="products-grid">
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754277/AirPods_Pro_3_el4lqb.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">AirPods Pro 3</h3>
+                    <p class="product-description">Wireless noise-cancelling earbuds</p>
+                    <div class="product-price">
+                        <span class="current-price">₹24,999</span>
+                        <span class="original-price">₹29,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(180)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754395/Samsung_Galaxy_Watch_6_cxehks.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Samsung Galaxy Watch 6</h3>
+                    <p class="product-description">Smartwatch with health tracking</p>
+                    <div class="product-price">
+                        <span class="current-price">₹29,999</span>
+                        <span class="original-price">₹34,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(150)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754474/Sony_WH-1000XM5_r6rwgs.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Sony WH-1000XM5</h3>
+                    <p class="product-description">Wireless noise-cancelling headphones</p>
+                    <div class="product-price">
+                        <span class="current-price">₹29,999</span>
+                        <span class="original-price">₹34,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(140)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754601/Anker_PowerCore_nwszl8.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Anker PowerCore</h3>
+                    <p class="product-description">Portable charger with fast charging</p>
+                    <div class="product-price">
+                        <span class="current-price">₹3,999</span>
+                        <span class="original-price">₹4,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(120)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754693/Logitech_MX_Master_1_jkwvdq.webp" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Logitech MX Master 3</h3>
+                    <p class="product-description">Advanced wireless mouse</p>
+                    <div class="product-price">
+                        <span class="current-price">₹9,999</span>
+                        <span class="original-price">₹11,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(160)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopEasy</h3>
+                    <p>Your trusted online shopping destination for electronics</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="shipping-info.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="fashion-category.html">Fashion</a></li>
+                        <li><a href="books.html">Books</a></li>
+                        <li><a href="home-decor.html">Home Decor</a></li>
+                        <li><a href="electronics.html">Electronics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-envelope"></i> vsv@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Vizag, Andhra, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEasy Electronics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+
+                this.textContent = 'Added!';
+                this.style.background = '#FF6B35';
+
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = 'linear-gradient(45deg, #FF6B35, #FF8E53)';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

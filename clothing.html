@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clothing Collection - ShopEasy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+               <link rel="stylesheet" href="footer-styles.css">
+
+  <script src="add-to-cart.js"></script>
+ <style>
+        .clothing-hero {
+            background: linear-gradient(rgba(255, 87, 34, 0.8), rgba(233, 30, 99, 0.8)),
+                url("https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754806314/download_16_ngla6e.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+          
+
+        .clothing-hero h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+        .category-section {
+            padding: 60px 0;
+            margin: 40px 0;
+        }
+        .category-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .category-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .category-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 1.3rem;
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .product-description {
+            color: #666;
+            margin: 0 0 15px 0;
+            font-size: 0.9rem;
+        }
+        .product-price {
+            margin: 15px 0;
+        }
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e91e63;
+        }
+        .original-price {
+            font-size: 1.1rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        .product-rating {
+            margin: 10px 0;
+            color: #ffc107;
+        }
+        .product-rating span {
+            color: #666;
+            margin-left: 5px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .add-to-cart-btn, .buy-now-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .add-to-cart-btn {
+            background: #ff9800;
+            color: white;
+        }
+        .add-to-cart-btn:hover {
+            background: #f57c00;
+        }
+        .buy-now-btn {
+            background: #4caf50;
+            color: white;
+        }
+        .buy-now-btn:hover {
+            background: #388e3c;
+        }
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e91e63;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .product-card {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+     <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="fashion-category.html" class="nav-link">Fashion</a>
+                    <a href="books.html" class="nav-link">Books</a>
+                    <a href="home-decor.html" class="nav-link">Home Decor</a>
+                    <a href="electronics.html" class="nav-link active">Electronics</a>
+                </nav>
+    <div class="nav-icons">
+                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                    </a>
+                    <a href="cart.html" class="icon-link"></a>
+                   <a href="vsv-login.html" class="icon-link" id="userIcon">
+                        <span class="user-status">sign out</span>
+</a>
+                </div>
+            </div> 
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="clothing-hero">
+        <h1>Welcome to Complete Clothing Collection 2025</h1>
+    </section>
+
+    <!-- Category 1: Shirts -->
+    <section class="category-section">
+        <div class="category-header">
+            <h2 class="category-title">Premium Shirts</h2>
+            <p class="category-subtitle">Discover our collection of premium shirts for every occasion</p>
+         </div>
+         <div class="products-grid">
+            <div class="product-card" data-product-id="shirt-1" data-price="1299" data-product-name="Classic White Shirt" data-category="shirts">
+                <div class="product-badge">New</div>
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754726868/259MS_PWhite_wwjvrw.webp" alt="Classic White Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Classic White Shirt</h3>
+                    <p class="product-description">Premium cotton formal shirt with modern fit</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,299</span>
+                        <span class="original-price">₹1,899</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(234)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('shirt-1', 'Classic White Shirt', 1299)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('shirt-1', 'Classic White Shirt', 1299)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-product-id="shirt-2" data-price="999" data-product-name="Blue Striped Shirt" data-category="shirts">
+                <div class="product-badge">Sale</div>
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754727056/Blue_Striped_Shirt_vfcol3.webp" alt="Blue Striped Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Blue Striped Shirt</h3>
+                    <p class="product-description">Comfortable cotton shirt with elegant stripes</p>
+                    <div class="product-price">
+                        <span class="current-price">₹999</span>
+                        <span class="original-price">₹1,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(156)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('shirt-2', 'Blue Striped Shirt', 999)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('shirt-2', 'Blue Striped Shirt', 999)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-product-id="shirt-3" data-price="1599" data-product-name="Formal Black Shirt" data-category="shirts">
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754727451/black_fboayv.webp" alt="Formal Black Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Formal Black Shirt</h3>
+                    <p class="product-description">Elegant black shirt perfect for formal occasions</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,599</span>
+                        <span class="original-price">₹2,199</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(89)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('shirt-3', 'Formal Black Shirt', 1599)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('shirt-3', 'Formal Black Shirt', 1599)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-product-id="shirt-4" data-price="1199" data-product-name="Checkered Casual Shirt" data-category="shirts">
+                <div class="product-badge">Hot</div>
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754727657/Checkered_Casual_Shirt_q249uz.webp" alt="Checkered Casual Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Checkered Casual Shirt</h3>
+                    <p class="product-description">Stylish checkered pattern for casual wear</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,199</span>
+                        <span class="original-price">₹1,699</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(312)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('shirt-4', 'Checkered Casual Shirt', 1199)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('shirt-4', 'Checkered Casual Shirt', 1199)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-product-id="shirt-5" data-price="899" data-product-name="Linen Summer Shirt" data-category="shirts">
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754728171/Linen_Summer_Shirt_oyfygb.webp" alt="Linen Summer Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Linen Summer Shirt</h3>
+                    <p class="product-description">Breathable linen shirt perfect for summer</p>
+                    <div class="product-price">
+                        <span class="current-price">₹899</span>
+                        <span class="original-price">₹1,299</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(67)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('shirt-5', 'Linen Summer Shirt', 899)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('shirt-5', 'Linen Summer Shirt', 899)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category 2: T-Shirts -->
+    <section class="category-section">
+        <div class="category-header">
+            <h2 class="category-title">Trendy T-Shirts</h2>
+            <p class="category-subtitle">Comfortable and stylish t-shirts for everyday wear</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card" data-product-id="tshirt-1" data-price="599" data-product-name="Graphic Print T-Shirt" data-category="tshirts">
+                <div class="product-badge">New</div>
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754728404/Graphic_Print_T-Shirt_sqgnmp.webp" alt="Graphic Print T-Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Graphic Print T-Shirt</h3>
+                    <p class="product-description">Cool graphic print on soft cotton fabric</p>
+                    <div class="product-price">
+                        <span class="current-price">₹599</span>
+                        <span class="original-price">₹899</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(178)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('tshirt-1', 'Graphic Print T-Shirt', 599)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('tshirt-1', 'Graphic Print T-Shirt', 599)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-product-id="tshirt-2" data-price="499" data-product-name="Solid Color T-Shirt" data-category="tshirts">
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754728569/Solid_Color_T-Shirt_vlqafn.webp" alt="Solid Color T-Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Solid Color T-Shirt</h3>
+                    <p class="product-description">Basic solid color tee in premium cotton</p>
+                    <div class="product-price">
+                        <span class="current-price">₹499</span>
+                        <span class="original-price">₹699</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(234)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('tshirt-2', 'Solid Color T-Shirt', 499)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('tshirt-2', 'Solid Color T-Shirt', 499)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-product-id="tshirt-3" data-price="699" data-product-name="Polo T-Shirt" data-category="tshirts">
+                <div class="product-badge">Sale</div>
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754728730/Polo_T-Shirt_i9iuml.webp" alt="Polo T-Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Polo T-Shirt</h3>
+                    <p class="product-description">Classic polo collar t-shirt in premium cotton</p>
+                    <div class="product-price">
+                        <span class="current-price">₹699</span>
+                        <span class="original-price">₹999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('tshirt-3', 'Polo T-Shirt', 699)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('tshirt-3', 'Polo T-Shirt', 699)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-product-id="tshirt-4" data-price="799" data-product-name="V-Neck T-Shirt" data-category="tshirts">
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754728876/V-Neck_T-Shirt_xl0v9k.webp" alt="V-Neck T-Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">V-Neck T-Shirt</h3>
+                    <p class="product-description">Stylish V-neck design in comfortable fabric</p>
+                    <div class="product-price">
+                        <span class="current-price">₹799</span>
+                        <span class="original-price">₹1,099</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(89)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('tshirt-4', 'V-Neck T-Shirt', 799)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('tshirt-4', 'V-Neck T-Shirt', 799)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-product-id="tshirt-5" data-price="549" data-product-name="Round Neck T-Shirt" data-category="tshirts">
+                <div class="product-badge">Hot</div>
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754728995/Round_Neck_T-Shirt_gav2ys.webp" alt="Round Neck T-Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Round Neck T-Shirt</h3>
+                    <p class="product-description">Essential round neck tee in soft cotton</p>
+                    <div class="product-price">
+                        <span class="current-price">₹549</span>
+                        <span class="original-price">₹799</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('tshirt-5', 'Round Neck T-Shirt', 549)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('tshirt-5', 'Round Neck T-Shirt', 549)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category 3: Jeans -->
+    <section class="category-section">
+        <div class="category-header">
+            <h2 class="category-title">Designer Jeans</h2>
+            <p class="category-subtitle">Premium denim jeans in various fits and styles</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card" data-product-id="jeans-1" data-price="1999" data-product-name="Slim Fit Jeans" data-category="jeans">
+                <div class="product-badge">New</div>
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754729172/Slim_Fit_Jeans_vpbxoj.webp" alt="Slim Fit Jeans" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Slim Fit Jeans</h3>
+                    <p class="product-description">Modern slim fit jeans in stretch denim</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,999</span>
+                        <span class="original-price">₹2,799</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(198)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('jeans-1', 'Slim Fit Jeans', 1999)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('jeans-1', 'Slim Fit Jeans', 1999)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-product-id="jeans-2" data-price="1799" data-product-name="Regular Fit Jeans" data-category="jeans">
+                <div class="product-badge">Sale</div>
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754729480/Regular_Fit_Jeans_jd0mhx.webp" alt="Regular Fit Jeans" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Regular Fit Jeans</h3>
+                    <p class="product-description">Classic regular fit jeans for everyday wear</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,799</span>
+                        <span class="original-price">₹2,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(156)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('jeans-2', 'Regular Fit Jeans', 1799)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('jeans-2', 'Regular Fit Jeans', 1799)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-product-id="jeans-3" data-price="2299" data-product-name="Skinny Jeans" data-category="jeans">
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754729688/Skinny_Jeans_qnwczx.webp" alt="Skinny Jeans" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Skinny Jeans</h3>
+                    <p class="product-description">Trendy skinny fit jeans in premium denim</p>
+                    <div class="product-price">
+                        <span class="current-price">₹2,299</span>
+                        <span class="original-price">₹2,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(87)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('jeans-3', 'Skinny Jeans', 2299)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('jeans-3', 'Skinny Jeans', 2299)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-product-id="jeans-4" data-price="1599" data-product-name="Distressed Jeans" data-category="jeans">
+                <div class="product-badge">Hot</div>
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754729847/Distressed_Jeans_zpjtgk.webp" alt="Distressed Jeans" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Distressed Jeans</h3>
+                    <p class="product-description">Stylish distressed jeans with modern rips</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,599</span>
+                        <span class="original-price">₹2,199</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(234)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('jeans-4', 'Distressed Jeans', 1599)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('jeans-4', 'Distressed Jeans', 1599)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category" data-product-id="jeans-5" data-price="1899" data-product-name="Straight Fit Jeans" data-category="jeans">
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754730050/Straight_Fit_Jeans_g3fmam.webp" alt="Straight Fit Jeans" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Straight Fit Jeans</h3>
+                    <p class="product-description">Classic straight fit jeans in dark wash</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,899</span>
+                        <span class="original-price">₹2,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(123)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('jeans-5', 'Straight Fit Jeans', 1899)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('jeans-5', 'Straight Fit Jeans', 1899)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category 4: Dresses -->
+    <section class="category1">
+        <div class="category-header">
+            <h2 class="category-title">Elegant Dresses</h2>
+            <p class="category-subtitle">Beautiful dresses for every occasion and style</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card" data-product-id="dress-1" data-price="2499" data-product-name="Maxi Dress" data-category="dresses">
+                <div class="product-badge">New</div>
+                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754730141/Maxi_Dress_h9ajbg.webp" alt="Maxi Dress" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Maxi Dress</h3>
+                    <p class="product-description">Flowing maxi dress in floral print</p>
+                    <div class="product-price">
+                        <span class="current-price">₹2,499</span>
+                        <span class="original-price">₹3,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(156)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart('dress-1', 'Maxi Dress', 2499)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('dress-1', 'Maxi Dress', 2499)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+             <div class="product-card">
+                <img src="c:\Users\LENOVO\Desktop\girls\download (7).jpeg" alt="Classic Saree" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Classic Saree</h3>
+                    <p class="product-description">Comfortable and Classic</p>
+                    <div class="product-price">
+                        <span class="current-price">₹2999</span>
+                        <span class="original-price">₹5999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(98)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-badge">Sale</div>
+                <img src="c:\Users\LENOVO\Desktop\girls\download (8).jpeg" alt="Kurthi Set" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Kurthi Set</h3>
+                    <p class="product-description">Glitter and unique design</p>
+                    <div class="product-price">
+                        <span class="current-price">₹999</span>
+                        <span class="original-price">₹1,299</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(201)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+        </div>
+    </section>
+    
+ <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopEasy</h3>
+                    <p>Your trusted online shopping destination for girls fashion</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                        <a href=""><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="size-guide.html">Size Guide</a></li>
+                        <li><a href="shipping-info.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="customer-service.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-envelope"></i> vsv@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Vizag, Andhra, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEasy Girls Fashion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+
+                this.textContent = 'Added!';
+                this.style.background = '#ff69b4';
+
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = 'linear-gradient(45deg, #ff69b4, #ff1493)';
+                }, 1000);
+            });
+        });
+
+        // Filter functionality for sub-categories
+        document.querySelectorAll('.sub-category-card').forEach(card => {
+            card.addEventListener('click', function () {
+                const category = this.querySelector('h3').textContent.toLowerCase();
+                alert(`Filtering for ${category}...`);
+            });
+        });
+    </script>
+</body>
+</html>
+
+

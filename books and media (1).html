@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Books - ShopEasy</title>
+     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            <link rel="stylesheet" href="footer-styles.css">
+ <script src="add-to-cart.js"></script>
+<style>
+        .books-hero {
+            background: linear-gradient(rgba(135, 206, 250, 0.8), rgba(70, 130, 180, 0.8)),
+                url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .books-hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+        .category-section {
+            margin: 60px 0;
+            padding: 0 20px;
+        }
+        .category-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #4682B4;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #4682B4, #5F9EA0);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1E90FF;
+            margin-bottom: 8px;
+        }
+        .product-description {
+            color: #7F8C8D;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .product-price {
+            margin-bottom: 15px;
+        }
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4169E1;
+        }
+        .original-price {
+            font-size: 1.1rem;
+            color: #95A5A6;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        .product-rating {
+            margin-bottom: 15px;
+            color: #6495ED;
+        }
+        .product-rating span {
+            color: #7F8C8D;
+            margin-left: 5px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .add-to-cart-btn, .buy-now-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .add-to-cart-btn {
+            background: linear-gradient(45deg, #1E90FF, #4169E1);
+            color: white;
+        }
+        .buy-now-btn {
+            background: linear-gradient(45deg, #0000CD, #00008B);
+            color: white;
+        }
+        .add-to-cart-btn:hover, .buy-now-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="clothing.html" class="nav-link">Fashion</a>
+                    <a href="books.html" class="nav-link active">Books</a>
+                    <a href="home-decor.html" class="nav-link">Home Decor</a>
+                </nav>
+                 <div class="nav-icons">
+                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                    </a>
+                    <a href="cart.html" class="icon-link"></a>
+                   <a href="vsv-login.html" class="icon-link" id="userIcon">
+            <button class="cta-button"> Logout</button></a>
+</a>
+                </div>
+            </div>
+        </div>
+    </header>
+                
+            
+
+    <!-- Books Hero Section -->
+    <section class="books-hero">
+        <h1>Welcome to Books Collection 2025</h1>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="category-section" id="fiction">
+        <h2 class="category-title">Fiction</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754668130/You_were_not_born_to_suffer_x6ygup.jpg" alt="Mystery Novel" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">You were not born to suffer</h3>
+                    <p class="product-description">A thrilling novel that keeps you hooked</p>
+                    <div class="product-price">
+                        <span class="current-price">₹299</span>
+                        <span class="original-price">₹399</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(85)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754668545/What_are_you_doing_with_your_life_myl9oz.jpg" alt="Romance Novel" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">What are you doing with your life</h3>
+                    <p class="product-description">A heartwarming story</p>
+                    <div class="product-price">
+                        <span class="current-price">₹249</span>
+                        <span class="original-price">₹349</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(90)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754668671/Think_faster_Think_smarter_ffvnom.jpg" alt="Fantasy Novel" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fantasy Novel</h3>
+                    <p class="product-description">An epic fantasy adventure</p>
+                    <div class="product-price">
+                        <span class="current-price">₹399</span>
+                        <span class="original-price">₹499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(120)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754668761/Power_of_your_subconcious_mind_epeovc.jpg" alt="Thriller Novel" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Thriller Novel</h3>
+                    <p class="product-description">A fast-paced thriller</p>
+                    <div class="product-price">
+                        <span class="current-price">₹349</span>
+                        <span class="original-price">₹449</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(100)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754668829/Mind_management_not_Time_management_mjhv56.jpg" alt="Historical Novel" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Mind management not Time management</h3>
+                    <p class="product-description">A captivating story</p>
+                    <div class="product-price">
+                        <span class="current-price">₹299</span>
+                        <span class="original-price">₹399</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(90)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" id="non-fiction">
+        <h2 class="category-title">Non-Fiction</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754669010/Emotional_Intelligence_p6ffrm.jpg" alt="Biography" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Biography</h3>
+                    <p class="product-description">Inspiring life story</p>
+                    <div class="product-price">
+                        <span class="current-price">₹399</span>
+                        <span class="original-price">₹499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(85)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730232/Do_What_You_Love_Love_What_You_Do_ngchcn.jpg" alt="Self-Help" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Self-Help</h3>
+                    <p class="product-description">Motivational and practical advice</p>
+                    <div class="product-price">
+                        <span class="current-price">₹299</span>
+                        <span class="original-price">₹399</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(90)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730310/12_all-time_favorite_cookbooks_fuhc9w.jpg" alt="Cookbook" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Cookbook</h3>
+                    <p class="product-description">Delicious recipes and cooking tips</p>
+                    <div class="product-price">
+                        <span class="current-price">₹349</span>
+                        <span class="original-price">₹449</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(75)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730421/Travel_Sticker_Book_yny3td.jpg" alt="Travel Guide" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Travel Guide</h3>
+                    <p class="product-description">Explore new destinations</p>
+                    <div class="product-price">
+                        <span class="current-price">₹299</span>
+                        <span class="original-price">₹399</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(80)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730499/12_Best_Books_on_the_History_of_Ancient_India_You_Must_Read_x2hfew.jpg" alt="History Book" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">History Book</h3>
+                    <p class="product-description">Learn about the past</p>
+                    <div class="product-price">
+                        <span class="current-price">₹399</span>
+                        <span class="original-price">₹499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(85)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" id="children-books">
+        <h2 class="category-title">Children's Books</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730568/This_story_of_Cinderella_is_about_kindness_and_courage__I_would_use_this_when_teaching_my_students_about_different_genres__gkdu9a.jpg" alt="Fairy Tales" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fairy Tales</h3>
+                    <p class="product-description">Magical stories for kids</p>
+                    <div class="product-price">
+                        <span class="current-price">₹199</span>
+                        <span class="original-price">₹249</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(70)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730643/87cbd815-ac6f-43f7-83c6-5a7edb6b0dae_aj1nrr.jpg" alt="Picture Books" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Picture Books</h3>
+                    <p class="product-description">Colorful books for young readers</p>
+                    <div class="product-price">
+                        <span class="current-price">₹149</span>
+                        <span class="original-price">₹199</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(65)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730712/Charolette_s_Web_by_E_B_rhmujx.jpg" alt="Educational Books" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Educational Books</h3>
+                    <p class="product-description">Books to help kids learn and grow</p>
+                    <div class="product-price">
+                        <span class="current-price">₹199</span>
+                        <span class="original-price">₹249</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(75)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730831/Welcome_to_Whispering_Woods_where_the_forest_hccfqu.jpg" alt="Story Books" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Story Books</h3>
+                    <p class="product-description">Fun and engaging stories for children</p>
+                    <div class="product-price">
+                        <span class="current-price">₹149</span>
+                        <span class="original-price">₹199</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(60)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730876/50_Pages___Kids_Education_Book_With_Exercises___27_Education_Pages___16_Exercises_-_Etsy_aiinij.jpg" alt="Activity Books" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Activity Books</h3>
+                    <p class="product-description">Interactive books for kids</p>
+                    <div class="product-price">
+                        <span class="current-price">₹199</span>
+                        <span class="original-price">₹249</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(70)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopEasy</h3>
+                    <p>Your trusted online shopping destination for books</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="shipping-info.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="fashion-category.html">Fashion</a></li>
+                        <li><a href="books.html">Books</a></li>
+                        <li><a href="home-decor.html">Home Decor</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-envelope"></i> vsv@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Vizag, Andhra, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEasy Books. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+
+                this.textContent = 'Added!';
+                this.style.background = '#1E90FF';
+
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = 'linear-gradient(45deg, #1E90FF, #4169E1)';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Promotions - VSVShopEasy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="footer-styles.css">
+    <style>
+        /* Dashboard Promotion Styles - Matching Categories Design */
+        :root {
+            --primary-color: #6c8cff;
+            --secondary-color: #15c39a;
+            --accent-color: #f59f00;
+            --bg-dark: #0b1220;
+            --card-bg: #11182a;
+            --text-light: #e6e9ef;
+            --text-muted: #9aa4b2;
+            --shadow: 0 10px 30px rgba(0,0,0,.25);
+            --radius: 16px;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .promotions-page {
+            padding: 40px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .promotions-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 25px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 140, 255, 0.3);
+        }
+
+        .promotions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .promotion-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .promotion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,.4);
+            border-color: var(--primary-color);
+        }
+
+        .promotion-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .promotion-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .promotion-card:hover .promotion-image img {
+            transform: scale(1.1);
+        }
+
+        .promotion-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .promotion-content {
+            padding: 25px;
+        }
+
+        .promotion-title {
+            font-size: 1.4rem;
+            margin: 0 0 10px 0;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .promotion-description {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .promotion-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .promotion-discount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .promotion-validity {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .promotion-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: #5a7bff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 140, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--text-muted);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,.06);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .promotions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .promotions-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="dashboard.html" class="nav-link">Dashboard</a>
+                    <a href="dashboard-promotions.html" class="nav-link active">Promotions</a>
+                    <a href="deals.html" class="nav-link">Deals</a>
+                </nav>
+                <div class="nav-icons">
+                    <a href="customer-account.html" class="icon-link">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Promotions</h1>
+            <p>Exclusive deals and offers for your  management</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="container">
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Active Promotions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">₹45,000</div>
+                <div class="stat-label">Total Savings</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1,250</div>
+                <div class="stat-label">Redemptions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">85%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions Filter -->
+    <section class="container">
+        <div class="promotions-filter">
+            <button class="filter-btn active" data-filter="all">All Promotions</button>
+            <button class="filter-btn" data-filter="discount">Discounts</button>
+            <button class="filter-btn" data-filter="bundle">Bundle Deals</button>
+            <button class="filter-btn" data-filter="seasonal">Seasonal</button>
+            <button class="filter-btn" data-filter="flash">Flash Sales</button>
+        </div>
+
+        <!-- Promotions Grid -->
+        <div class="promotions-grid">
+            <!-- Flash Sale Promotion -->
+            <div class="promotion-card" data-category="flash">
+                <div class="promotion-image">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400" alt="Flash Sale">
+                    <div class="promotion-badge">Flash Sale</div>
+                </div>
+                <div class="promotion-content">
+                    <h3 class="promotion-title">24-Hour Flash Sale</h3>
+                    <p class="promotion-description">Get up to 70% off on selected electronics. Limited time offer, hurry up!</p>
+                    <div class="promotion-meta">
+                        <span class="promotion-discount">70% OFF</span>
+                        <span class="promotion-validity">Ends in 18 hours</span>
+                    </div>
+                    <div class="promotion-actions">
+                        <a href="#" class="btn-primary">Activate Now</a>
+                        <a href="#" class="btn-secondary">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bundle Deal -->
+            <div class="promotion-card" data-category="bundle">
+                <div class="promotion-image">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400" alt="Bundle Deal">
+                    <div class="promotion-badge">Bundle Deal</div>
+                </div>
+                <div class="promotion-content">
+                    <h3 class="promotion-title">Fashion Bundle Offer</h3>
+                    <p class="promotion-description">Buy any 3 fashion items and get the 4th one absolutely free. Mix and match available!</p>
+                    <div class="promotion-meta">
+                        <span class="promotion-discount">Buy 3 Get 1 Free</span>
+                        <span class="promotion-validity">Valid till Dec 31</span>
+                    </div>
+                    <div class="promotion-actions">
+                        <a href="#" class="btn-primary">Create Bundle</a>
+                        <a href="#" class="btn-secondary">Set Rules</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seasonal Promotion -->
+            <div class="promotion-card" data-category="seasonal">
+                <div class="promotion-image">
+                    <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=400" alt="Seasonal Sale">
+                    <div class="promotion-badge">Seasonal</div>
+                </div>
+                <div class="promotion-content">
+                    <h3 class="promotion-title">Winter Collection Sale</h3>
+                    <p class="promotion-description">Up to 50% off on all winter wear. Coats, jackets, sweaters and more at unbeatable prices.</p>
+                    <div class="promotion-meta">
+                        <span class="promotion-discount">50% OFF</span>
+                        <span class="promotion-validity">Nov 15 - Feb 28</span>
+                    </div>
+                    <div class="promotion-actions">
+                        <a href="#" class="btn-primary">Apply to Products</a>
+                        <a href="#" class="btn-secondary">Schedule</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discount Promotion -->
+            <div class="promotion-card" data-category="discount">
+                <div class="promotion-image">
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400" alt="Discount">
+                    <div class="promotion-badge">Discount</div>
+                </div>
+                <div class="promotion-content">
+                    <h3 class="promotion-title">First-Time Buyer Discount</h3>
+                    <p class="promotion-description">Special 25% discount for new customers on their first purchase. Build customer loyalty!</p>
+                    <div class="promotion-meta">
+                        <span class="promotion-discount">25% OFF</span>
+                        <span class="promotion-validity">Ongoing</span>
+                    </div>
+                    <div class="promotion-actions">
+                        <a href="#" class="btn-primary">Enable</a>
+                        <a href="#" class="btn-secondary">Configure</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loyalty Program -->
+            <div class="promotion-card" data-category="discount">
+                <div class="promotion-image">
+                    <img src="https://images.unsplash.com/photo-1556742044-55c740e4a142?w=400" alt="Loyalty Program">
+                    <div class="promotion-badge">Loyalty</div>
+                </div>
+                <div class="promotion-content">
+                    <h3 class="promotion-title">VIP Rewards Program</h3>
+                    <p class="promotion-description">Earn points on every purchase and redeem for exclusive discounts. Tier-based benefits included.</p>
+                    <div class="promotion-meta">
+                        <span class="promotion-discount">Points System</span>
+                        <span class="promotion-validity">Year Round</span>
+                    </div>
+                    <div class="promotion-actions">
+                        <a href="#" class="btn-primary">Setup Program</a>
+                        <a href="#" class="btn-secondary">View Analytics</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clearance Sale -->
+            <div class="promotion-card" data-category="seasonal">
+                <div class="promotion-image">
+                    <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b6?w=400" alt="Clearance">
+                    <div class="promotion-badge">Clearance</div>
+                </div>
+                <div class="promotion-content">
+                    <h3 class="promotion-title">End of Season Clearance</h3>
+                    <p class="promotion-description">Massive clearance on last season items. Up to 80% off to clear inventory space for new arrivals.</p>
+                    <div class="promotion-meta">
+                        <span class="promotion-discount">80% OFF</span>
+                        <span class="promotion-validity">Limited Stock</span>
+                    </div>
+                    <div class="promotion-actions">
+                        <a href="#" class="btn-primary">Apply to Stock</a>
+                        <a href="#" class="btn-secondary">Set Threshold</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 VSV Shop Easy. All rights reserved. | Dashboard Promotions Management</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const promotionCards = document.querySelectorAll('.promotion-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                promotionCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.3s ease-in';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

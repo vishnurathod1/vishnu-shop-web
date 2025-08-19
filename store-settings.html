@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VSV Easy Shop — Store Settings</title>
+  <!-- Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfQ+VrA0G7C1u3Vv6I8pcnFybZ0Yl1bQ8C4F4jK5n8r9i8T3lPZB4Ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: #11182a;
+      --muted: #9aa4b2;
+      --text: #e6e9ef;
+      --brand: #6c8cff;
+      --brand-2: #15c39a;
+      --accent: #f59f00;
+      --danger: #ff6b6b;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+      --border: 1px solid rgba(255,255,255,.06);
+    }
+    /* Light theme */
+    :root.light{
+      --bg:#f6f7fb; --card:#ffffff; --muted:#6b7280; --text:#0f172a; --brand:#4f46e5; --brand-2:#059669; --accent:#d97706; --danger:#dc2626; --success:#059669; --warning:#d97706; --shadow:0 8px 20px rgba(2,6,23,.08); --border:1px solid #e2e8f0;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto; background:var(--bg); color:var(--text); display:flex;
+    }
+
+    /* Layout */
+    .sidebar{
+      width:280px; background:linear-gradient(180deg, #0e172a 0%, #0b1220 100%);
+      border-right:1px solid rgba(255,255,255,.06); padding:20px; position:sticky; top:0; height:100vh; overflow:auto;
+    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; font-size:15px; letter-spacing:.2px;}
+    .brand .logo{display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:var(--shadow)}
+
+    .nav{margin-top:24px}
+    .nav h4{font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); margin:14px 12px}
+    .nav a{
+      display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; text-decoration:none; color:var(--text);
+      transition:.2s background;
+    }
+    .nav a:hover{background:rgba(255,255,255,.06)}
+    .nav a.active{background:linear-gradient(90deg, rgba(108,140,255,.18), transparent); border:1px solid rgba(108,140,255,.35)}
+    .nav .badge{margin-left:auto; font-size:12px; color:#fff; background:var(--danger); padding:2px 8px; border-radius:999px}
+
+    .main{
+      flex:1; display:flex; flex-direction:column; min-width:0;
+    }
+    .topbar{
+      position:sticky; top:0; z-index:10; background:rgba(17,24,42,.75); backdrop-filter: blur(10px); border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex; align-items:center; gap:12px; padding:14px 20px;
+    }
+    :root.light .topbar{background:rgba(255,255,255,.8)}
+
+    .search{
+      display:flex; align-items:center; gap:10px; background:var(--card); border:var(--border); border-radius:999px; padding:10px 14px; flex:1;
+    }
+    .search input{background:transparent; border:none; outline:none; color:var(--text); width:100%}
+
+    .top-actions{display:flex; align-items:center; gap:10px}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:var(--card); color:var(--text); cursor:pointer}
+    .btn:hover{filter:brightness(1.05)}
+    .btn-primary{background:var(--brand); color:white; border-color:var(--brand)}
+    .btn-success{background:var(--success); color:white; border-color:var(--success)}
+    .btn-danger{background:var(--danger); color:white; border-color:var(--danger)}
+    .avatar{width:36px; height:36px; border-radius:999px; background:linear-gradient(135deg,#22d3ee,#6366f1); display:grid; place-items:center; font-weight:700}
+
+    .content{padding:20px; display:flex; flex-direction:column; gap:18px; max-width:1200px; margin:0 auto; width:100%}
+
+    /* Settings Styles */
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .settings-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .settings-tabs {
+      display: flex;
+      gap: 0.5rem;
+      background: var(--card);
+      border: var(--border);
+      border-radius: var(--radius);
+      padding: 4px;
+      margin-bottom: 2rem;
+    }
+
+    .tab-button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      border-radius: calc(var(--radius) - 4px);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .tab-button.active {
+      background: var(--brand);
+      color: white;
+    }
+
+    .tab-button:hover:not(.active) {
+      background: rgba(255,255,255,.06);
+    }
+
+    .settings-section {
+      background: var(--card);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem;
+      border: var(--border);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(108,140,255,.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .toggle-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      background: rgba(255,255,255,.02);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 48px;
+      height: 24px;
+      background: var(--muted);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .toggle-switch.active {
+      background: var(--brand);
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+
+    .toggle-switch.active::after {
+      transform: translateX(24px);
+    }
+
+    .settings-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: var(--border);
+    }
+
+    .help-text {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .section-description {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .settings-tabs {
+        flex-wrap: wrap;
+      }
+      
+      .tab-button {
+        flex: 1;
+        min-width: 120px;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .settings-actions {
+        flex-direction: column;
+      }
+    }
+
+    /* Toggle + collapse */
+    .toggle{display:none}
+    @media (max-width:960px){
+      .sidebar{position:fixed; left:0; top:0; transform:translateX(-100%); transition:.2s transform; z-index:30}
+      .sidebar.open{transform:translateX(0)}
+      .toggle{display:inline-flex}
+      body.nav-open::after{content:""; position:fixed; inset:0; backdrop-filter:blur(2px); background:rgba(0,0,0,.35);}
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="logo"><i class="fa-solid fa-bag-shopping"></i></div>
+      <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+    </div>
+
+    <nav class="nav">
+      <h4>Menu</h4>
+      <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+      <a href="orders.html"><i class="fa-solid fa-clipboard-list"></i>Orders <span class="badge">8</span></a>
+      <a href="products.html"><i class="fa-solid fa-box"></i>Products</a>
+      <a href="customersindashboard.html"><i class="fa-solid fa-users"></i>Customers</a>
+      <a href="inventory-updated.html"><i class="fa-solid fa-warehouse"></i>Inventory</a>
+      <a href="promotions.html"><i class="fa-solid fa-percent"></i>Promotions</a>
+      <a href="reports.html"><i class="fa-solid fa-chart-pie"></i>Reports</a>
+      <h4>Settings</h4>
+      <a href="store-settings.html" class="active"><i class="fa-solid fa-gear"></i>Store Settings</a>
+      <a href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <!-- Topbar -->
+    <div class="topbar">
+      <button class="btn toggle" id="navToggle"><i class="fa-solid fa-bars"></i></button>
+      <div class="search">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input placeholder="Search settings..." />
+      </div>
+      <div class="top-actions">
+        <button class="btn" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="btn"><i class="fa-regular fa-bell"></i></button>
+        <div class="avatar">VL</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="settings-header">
+        <h1 class="settings-title">Store Settings</h1>
+        <button class="btn btn-primary">
+          <i class="fa-solid fa-save"></i>
+          Save Changes
+        </button>
+      </div>
+
+      <!-- Settings Tabs -->
+      <div class="settings-tabs">
+        <button class="tab-button active" data-tab="general">
+          <i class="fa-solid fa-store"></i>
+          General
+        </button>
+        <button class="tab-button" data-tab="business">
+          <i class="fa-solid fa-coins"></i>
+          Business
+        </button>
+        <button class="tab-button" data-tab="payment">
+          <i class="fa-solid fa-credit-card"></i>
+          Payment
+        </button>
+        <button class="tab-button" data-tab="shipping">
+          <i class="fa-solid fa-truck"></i>
+          Shipping
+        </button>
+        <button class="tab-button" data-tab="notifications">
+          <i class="fa-solid fa-bell"></i>
+          Notifications
+        </button>
+        <button class="tab-button" data-tab="seo">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          SEO
+        </button>
+        <button class="tab-button" data-tab="security">
+          <i class="fa-solid fa-shield"></i>
+          Security
+        </button>
+      </div>
+
+      <!-- General Settings -->
+      <div class="settings-section" id="general-tab">
+        <h2 class="section-title">
+          <i class="fa-solid fa-store"></i>
+          Store Information
+        </h2>
+        <p class="section-description">
+          Basic information about your store that customers will see.
+        </p>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="store-name">Store Name</label>
+            <input type="text" id="store-name" value="VSV Easy Shop" />
+            <span class="help-text">This is your store's public name</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="store-tagline">Store Tagline</label>
+            <input type="text" id="store-tagline" value="Your One-Stop Shopping Destination" />
+            <span class="help-text">A short description of your store</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="store-email">Store Email</label>
+            <input type="email" id="store-email" value="support@vsveasyshop.com" />
+            <span class="help-text">Customer support email address</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="store-phone">Store Phone</label>
+            <input type="tel" id="store-phone" value="+91 98765 43210" />
+            <span class="help-text">Customer support phone number</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="store-address">Store Address</label>
+            <textarea id="store-address">123 Shopping Street, Mumbai, Maharashtra 400001, India</textarea>
+            <span class="help-text">Your business address</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="store-timezone">Timezone</label>
+            <select id="store-timezone">
+              <option value="Asia/Kolkata" selected>Asia/Kolkata (IST)</option>
+              <option value="America/New_York">America/New_York (EST)</option>
+              <option value="Europe/London">Europe/London (GMT)</option>
+            </select>
+            <span class="help-text">Your local timezone for orders and reports</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business Settings -->
+      <div class="settings-section" id="business-tab" style="display: none;">
+        <h2 class="section-title">
+          <i class="fa-solid fa-coins"></i>
+          Business Settings
+        </h2>
+        <p class="section-description">
+          Configure your business operations and financial settings.
+        </p>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="currency">Default Currency</label>
+            <select id="currency">
+              <option value="INR" selected>Indian Rupee (₹)</option>
+              <option value="USD">US Dollar ($)</option>
+              <option value="EUR">Euro (€)</option>
+              <option value="GBP">British Pound (£)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="tax-rate">Tax Rate (%)</label>
+            <input type="number" id="tax-rate" value="18" min="0" max="100" />
+            <span class="help-text">GST or other applicable tax rate</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="min-order">Minimum Order Value</label>
+            <input type="number" id="min-order" value="499" min="0" />
+            <span class="help-text">Minimum order value for checkout</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="business-type">Business Type</label>
+            <select id="business-type">
+              <option value="retail" selected>Retail</option>
+              <option value="wholesale">Wholesale</option>
+              <option value="dropshipping">Dropshipping</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Settings -->
+      <div class="settings-section" id="payment-tab" style="display: none;">
+        <h2 class="section-title">
+          <i class="fa-solid fa-credit-card"></i>
+          Payment Configuration
+        </h2>
+        <p class="section-description">
+          Set up payment methods and gateways for your store.
+        </p>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Cash on Delivery</strong>
+            <div class="help-text">Allow customers to pay with cash on delivery</div>
+          </div>
+          <div class="toggle-switch active" data-toggle="cod"></div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>UPI Payments</strong>
+            <div class="help-text">Accept payments via UPI apps like Google Pay, PhonePe</div>
+          </div>
+          <div class="toggle-switch active" data-toggle="upi"></div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Credit/Debit Cards</strong>
+            <div class="help-text">Accept card payments via payment gateway</div>
+          </div>
+          <div class="toggle-switch active" data-toggle="cards"></div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Net Banking</strong>
+            <div class="help-text">Allow direct bank transfers</div>
+          </div>
+          <div class="toggle-switch" data-toggle="netbanking"></div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Wallet Payments</strong>
+            <div class="help-text">Accept payments from digital wallets</div>
+          </div>
+          <div class="toggle-switch" data-toggle="wallet"></div>
+        </div>
+      </div>
+
+      <!-- Shipping Settings -->
+      <div class="settings-section" id="shipping-tab" style="display: none;">
+        <h2 class="section-title">
+          <i class="fa-solid fa-truck"></i>
+          Shipping Configuration
+        </h2>
+        <p class="section-description">
+          Configure shipping zones, rates, and delivery options.
+        </p>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="shipping-origin">Shipping Origin</label>
+            <input type="text" id="shipping-origin" value="Mumbai, Maharashtra" />
+            <span class="help-text">Location where orders are shipped from</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="free-shipping">Free Shipping Threshold</label>
+            <input type="number" id="free-shipping" value="999" min="0" />
+            <span class="help-text">Minimum order value for free shipping</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="standard-rate">Standard Shipping Rate</label>
+            <input type="number" id="standard-rate" value="49" min="0" />
+            <span class="help-text">Flat rate for standard shipping</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="express-rate">Express Shipping Rate</label>
+            <input type="number" id="express-rate" value="99" min="0" />
+            <span class="help-text">Flat rate for express shipping</span>
+          </div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Same-Day Delivery</strong>
+            <div class="help-text">Offer same-day delivery in select cities</div>
+          </div>
+          <div class="toggle-switch active" data-toggle="same-day"></div>
+        </div>
+      </div>
+
+      <!-- Notification Settings -->
+      <div class="settings-section" id="notifications-tab" style="display: none;">
+        <h2 class="section-title">
+          <i class="fa-solid fa-bell"></i>
+          Notification Preferences
+        </h2>
+        <p class="section-description">
+          Configure how and when you receive notifications.
+        </p>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Order Notifications</strong>
+            <div class="help-text">Receive notifications for new orders</div>
+          </div>
+          <div class="toggle-switch active" data-toggle="order-notifications"></div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Low Stock Alerts</strong>
+            <div class="help-text">Get notified when products run low on stock</div>
+          </div>
+          <div class="toggle-switch active" data-toggle="stock-alerts"></div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Customer Messages</strong>
+            <div class="help-text">Receive notifications for customer inquiries</div>
+          </div>
+          <div class="toggle-switch active" data-toggle="customer-messages"></div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Payment Confirmations</strong>
+            <div class="help-text">Get notified when payments are received</div>
+          </div>
+          <div class="toggle-switch active" data-toggle="payment-notifications"></div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Weekly Reports</strong>
+            <div class="help-text">Receive weekly sales and performance reports</div>
+          </div>
+          <div class="toggle-switch" data-toggle="weekly-reports"></div>
+        </div>
+      </div>
+
+      <!-- SEO Settings -->
+      <div class="settings-section" id="seo-tab" style="display: none;">
+        <h2 class="section-title">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          SEO Settings
+        </h2>
+        <p class="section-description">
+          Optimize your store for search engines.
+        </p>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="meta-title">Meta Title</label>
+            <input type="text" id="meta-title" value="VSV Easy Shop - Online Shopping Made Easy" maxlength="60" />
+            <span class="help-text">Title shown in search results (max 60 characters)</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="meta-description">Meta Description</label>
+            <textarea id="meta-description" maxlength="160">Shop online at VSV Easy Shop for the latest fashion, electronics, home decor, and more. Fast delivery, easy returns, and great prices.</textarea>
+            <span class="help-text">Description shown in search results (max 160 characters)</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="keywords">Keywords</label>
+            <input type="text" id="keywords" value="online shopping, fashion, electronics, home decor, India" />
+            <span class="help-text">Comma-separated keywords for SEO</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="google-analytics">Google Analytics ID</label>
+            <input type="text" id="google-analytics" placeholder="G-XXXXXXXXXX" />
+            <span class="help-text">Your Google Analytics tracking ID</span>
+          </div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Enable Sitemap</strong>
+            <div class="help-text">Automatically generate XML sitemap for search engines</div>
+          </div>
+          <div class="toggle-switch active" data-toggle="sitemap"></div>
+        </div>
+      </div>
+
+      <!-- Security Settings -->
+      <div class="settings-section" id="security-tab" style="display: none;">
+        <h2 class="section-title">
+          <i class="fa-solid fa-shield"></i>
+          Security Settings
+        </h2>
+        <p class="section-description">
+          Manage security settings and access controls.
+        </p>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="admin-email">Admin Email</label>
+            <input type="email" id="admin-email" value="admin@vsveasyshop.com" />
+            <span class="help-text">Primary administrator email address</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="current-password">Current Password</label>
+            <input type="password" id="current-password" placeholder="Enter current password" />
+          </div>
+          
+          <div class="form-group">
+            <label for="new-password">New Password</label>
+            <input type="password" id="new-password" placeholder="Enter new password" />
+            <span class="help-text">Use at least 8 characters with numbers and symbols</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="confirm-password">Confirm New Password</label>
+            <input type="password" id="confirm-password" placeholder="Confirm new password" />
+          </div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>Two-Factor Authentication</strong>
+            <div class="help-text">Require 2FA for admin login</div>
+          </div>
+          <div class="toggle-switch" data-toggle="2fa"></div>
+        </div>
+        
+        <div class="toggle-group">
+          <div>
+            <strong>SSL Certificate</strong>
+            <div class="help-text">Force HTTPS for all pages</div>
+          </div>
+          <div class="toggle-switch active" data-toggle="ssl"></div>
+        </div>
+      </div>
+
+      <div class="settings-actions">
+        <button class="btn btn-danger">
+          <i class="fa-solid fa-undo"></i>
+          Reset Changes
+        </button>
+        <button class="btn btn-success">
+          <i class="fa-solid fa-save"></i>
+          Save All Changes
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'light'){ root.classList.add('light'); }
+
+    themeToggle.addEventListener('click', () => {
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Sidebar toggle (mobile)
+    const navToggle = document.getElementById('navToggle');
+    const sidebar = document.getElementById('sidebar');
+    navToggle?.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      document.body.classList.toggle('nav-open');
+    });
+
+    // Tab functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = {
+      'general': document.getElementById('general-tab'),
+      'business': document.getElementById('business-tab'),
+      'payment': document.getElementById('payment-tab'),
+      'shipping': document.getElementById('shipping-tab'),
+      'notifications': document.getElementById('notifications-tab'),
+      'seo': document.getElementById('seo-tab'),
+      'security': document.getElementById('security-tab')
+    };
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabName = button.dataset.tab;
+        
+        // Update active tab button
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Show corresponding tab content
+        Object.values(tabContents).forEach(content => content.style.display = 'none');
+        tabContents[tabName].style.display = 'block';
+      });
+    });
+
+    // Toggle switches
+    const toggleSwitches = document.querySelectorAll('.toggle-switch');
+    toggleSwitches.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
+      });
+    });
+
+    // Form validation and saving
+    document.querySelector('.btn-success').addEventListener('click', () => {
+      // Simulate saving settings
+      alert('Settings saved successfully!');
+    });
+
+    document.querySelector('.btn-danger').addEventListener('click', () => {
+      if (confirm('Are you sure you want to reset all changes?')) {
+        location.reload();
+      }
+    });
+  </script>
+</body>
+</html>

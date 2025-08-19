@@ -1,0 +1,68 @@
+/* customers.css */
+/* Styles for the customer management page */
+.filter-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+    body{font-family:Arial, sans-serif;
+         background:#f5f6fa;
+          margin:0;
+        padding:0;
+        }
+    header{
+        background:#4f46e5;
+         color:#fff;
+         padding:1rem;
+         display:flex;
+         align-items:center;
+         justify-content:space-between;}
+    header h1{margin:0;
+         font-size:1.4rem;}
+    nav a{color:#fff; 
+        margin-left:1rem;
+        text-decoration:none;}
+    main{padding:1.5rem;}
+    table{width:100%;
+         border-collapse:collapse;
+         background:#fff;
+         box-shadow:0 2px 6px rgba(0,0,0,0.1);
+         border-radius:8px; overflow:hidden;
+            }
+    th, td{padding:12px 15px;
+         border-bottom:1px solid #706969;
+        text-align:left;
+        font-size:0.95rem;
+        color:#080404;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background-color: #eaeaf1;
+
+        }
+    th{
+        background:#f9fafb;
+         font-weight:600;
+
+        }
+    tr:hover td{background:#f1f5f9;
+               color:#bd1e1e;
+               border-style: double;
+
+            }
+            th
+                {background:#f1f5f9;
+                color:#080404;
+                font-weight:600;
+                background-color: aqua;
+               }
+    .status{padding:4px 10px;
+           border-radius:12px;
+           font-size:0.85rem;
+        }
+    .st-active{background:#d1fae5;
+         color:#065f46;}
+    .st-inactive{
+                  background:#fee2e2;
+                  color:#991b1b;
+                 }
+  

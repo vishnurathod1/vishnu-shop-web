@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luggage Faves - Premium Travel Collection</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="footer-styles.css">
+ <script src="add-to-cart.js"></script>
+<style>
+        .luggage-hero {
+            background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)),
+                url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .luggage-hero h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+        
+        .luggage-hero p {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+        
+        .category-section {
+            margin: 60px 0;
+            padding: 0 20px;
+        }
+        
+        .category-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2C3E50;
+            margin-bottom: 8px;
+        }
+        
+        .product-description {
+            color: #7F8C8D;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .product-price {
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #E74C3C;
+        }
+        
+        .original-price {
+            font-size: 1.1rem;
+            color: #95A5A6;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        
+        .product-rating {
+            margin-bottom: 15px;
+            color: #F39C12;
+        }
+        
+        .product-rating span {
+            color: #7F8C8D;
+            margin-left: 5px;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .add-to-cart-btn, .buy-now-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .add-to-cart-btn {
+            background: linear-gradient(45deg, #3498DB, #2980B9);
+            color: white;
+        }
+        
+        .buy-now-btn {
+            background: linear-gradient(45deg, #E74C3C, #C0392B);
+            color: white;
+        }
+        
+        .add-to-cart-btn:hover, .buy-now-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .breadcrumb {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            margin-bottom: 30px;
+        }
+        
+        .breadcrumb a {
+            color: #1e3c72;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="fashion-category.html" class="nav-link">Fashion</a>
+                    <a href="luggage-faves.html" class="nav-link active">Luggage</a>
+                </nav>
+                
+                       
+            <div class="nav-icons">
+                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                    </a>
+                    <a href="cart.html" class="icon-link"></a>
+                   <a href="vsv-login.html" class="icon-link" id="userIcon">
+                        <span class="user-status">sign out</span>
+</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Luggage Hero Section -->
+    <section class="luggage-hero">
+        <h1>Welcome to Travel in Style with Luggage Faves 2025</h1>
+    </section>
+
+    <!-- Categories Section -->
+    
+    <!-- Carry-On Luggage -->
+    <section class="category-section" id="carry-on">
+        <h2 class="category-title">Carry-On Luggage</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754732758/Luxury_polycarbonate_suitcase_set__High_Quality_luggage__Colour_Options__lilac_red_teal_green_white_yellow_nude_blue_black_and_grey__TSA_lock_Unbreakable_material_that_can_withstand_baggage_drop___travel_p_lhe4vk.jpg" alt="Premium Carry-On" class="product-image" />
+                <div class="product-badge">Best Seller</div>
+                <div class="product-info">
+                    <h3 class="product-title">Premium Carry-On</h3>
+                    <p class="product-description">Lightweight 20" carry-on with TSA lock</p>
+                    <div class="product-price">
+                        <span class="current-price">₹8,999</span>
+                        <span class="original-price">₹11,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(245)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754732810/download_10_jb0dhj.jpg" alt="Hardside Spinner" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Hardside Spinner</h3>
+                    <p class="product-description">Durable ABS hardside with 360° wheels</p>
+                    <div class="product-price">
+                        <span class="current-price">₹7,499</span>
+                        <span class="original-price">₹9,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754732850/Front_Pocket_Carry-On_Olive_Green___Monos_Luggage_Bags_i5k08a.jpg" alt="Softside Cabin" class="product-image" />
+                <div class="product-badge">New</div>
+                <div class="product-info">
+                    <h3 class="product-title">Softside Cabin</h3>
+                    <p class="product-description">Expandable softside with laptop compartment</p>
+                    <div class="product-price">
+                        <span class="current-price">₹6,299</span>
+                        <span class="original-price">₹8,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(156)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754732886/Best_Luggage_Weight_Scale_v9xus4.jpg" alt="Business Carry-On" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Business Carry-On</h3>
+                    <p class="product-description">Professional carry-on with USB charging port</p>
+                    <div class="product-price">
+                        <span class="current-price">₹9,999</span>
+                        <span class="original-price">₹12,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(203)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754669320/luggage_gadgets_zu9rrq.jpg" alt="Compact Traveler" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Compact Traveler</h3>
+                    <p class="product-description">Ultra-lightweight 18" under-seat bag</p>
+                    <div class="product-price">
+                        <span class="current-price">₹4,999</span>
+                        <span class="original-price">₹6,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(127)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checked Luggage -->
+    <section class="category-section" id="checked-luggage">
+        <h2 class="category-title">Checked Luggage</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754669702/Gucci_luggage_combo_on7cde.jpg" alt="Large Spinner" class="product-image" />
+                <div class="product-badge">Popular</div>
+                <div class="product-info">
+                    <h3 class="product-title">Large Spinner</h3>
+                    <p class="product-description">28" expandable checked luggage with 360° wheels</p>
+                    <div class="product-price">
+                        <span class="current-price">₹12,999</span>
+                        <span class="original-price">₹16,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(312)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754732965/Go_for_the_Rose_Gold__Away_s_Aluminum_Luggage_Available_in_New_Metallic_Shades_l45nd3.jpg" alt="Medium Suitcase" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Medium Suitcase</h3>
+                    <p class="product-description">24" lightweight suitcase with TSA lock</p>
+                    <div class="product-price">
+                        <span class="current-price">₹10,499</span>
+                        <span class="original-price">₹13,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(278)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754669577/Leather_bags_oanogk.jpg" alt="Hardside Set" class="product-image" />
+                <div class="product-badge">Deal</div>
+                <div class="product-info">
+                    <h3 class="product-title">Hardside Set</h3>
+                    <p class="product-description">4-piece hardside luggage set (20", 24", 28",32")</p>
+                    <div class="product-price">
+                        <span class="current-price">₹24,999</span>
+                        <span class="original-price">₹34,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(445)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754733052/Clay_Pink_Medium_Soft_Shell_Suitcases__Checked_Luggage___Away_ez9swe.jpg" alt="Softside Large" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Softside Large</h3>
+                    <p class="product-description">Expandable softside with multiple compartments</p>
+                    <div class="product-price">
+                        <span class="current-price">₹9,999</span>
+                        <span class="original-price">₹12,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(234)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754733142/download_11_jg68gl.jpg" alt="Premium Checked" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Premium Checked</h3>
+                    <p class="product-description">Luxury 26" checked luggage with leather trim</p>
+                    <div class="product-price">
+                        <span class="current-price">₹15,999</span>
+                        <span class="original-price">₹19,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(198)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Backpacks -->
+    <section class="category-section" id="travel-backpacks">
+        <h2 class="category-title">Travel Backpacks</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754669849/Strathberry___Shoulder_Bags___Luxury_Designer_Handbags_kg4i5h.jpg" alt="Travel Backpack" class="product-image" />
+                <div class="product-badge">Top Rated</div>
+                <div class="product-info">
+                    <h3 class="product-title">Travel Backpack</h3>
+                    <p class="product-description">40L travel backpack with laptop compartment</p>
+                    <div class="product-price">
+                        <span class="current-price">₹4,999</span>
+                        <span class="original-price">₹6,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(567)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754669473/Never_Still_Travel_Bags_Accessories_for_Men_Women___RIMOWA_eime4a.jpg" alt="Hiking Backpack" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Hiking Backpack</h3>
+                    <p class="product-description">50L waterproof hiking backpack</p>
+                    <div class="product-price">
+                        <span class="current-price">₹6,499</span>
+                        <span class="original-price">₹8,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(423)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754733220/Sleek_Tech_Backpack_with_USB_Charging_Perfect_for_Modern_Professionals_nv2goq.jpg" alt="Business Backpack" class="product-image" />
+                <div class="product-badge">New</div>
+                <div class="product-info">
+                    <h3 class="product-title">Business Backpack</h3>
+                    <p class="product-description">Professional backpack with USB charging port</p>
+                    <div class="product-price">
+                        <span class="current-price">₹3,999</span>
+                        <span class="original-price">₹5,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(345)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754733297/download_12_m7e91a.jpg" alt="Convertible Backpack" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Convertible Backpack</h3>
+                    <p class="product-description">Convertible backpack with wheels and handle</p>
+                    <div class="product-price">
+                        <span class="current-price">₹7,999</span>
+                        <span class="original-price">₹10,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(289)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754733379/ELLE_Travel_Leisure_Luxe_Backpack_Weekender_Set_-_Black_j9sapv.jpg" alt="Weekender Backpack" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Weekender Backpack</h3>
+                    <p class="product-description">Stylish 30L weekender backpack</p>
+                    <div class="product-price">
+                        <span class="current-price">₹3,499</span>
+                        <span class="original-price">₹4,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Accessories -->
+    <section class="category-section" id="travel-accessories">
+        <h2 class="category-title">Travel Accessories</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754669939/Travelling_bags_nhlyqk.jpg" alt="Packing Cubes" class="product-image" />
+                <div class="product-badge">Essential</div>
+                <div class="product-info">
+                    <h3 class="product-title">Packing Cubes</h3>
+                    <p class="product-description">Set of 6 packing cubes for organization</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,999</span>
+                        <span class="original-price">₹2,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(892)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754733453/1pc_Memory_Foam_U-shaped_Travel_Neck_Pillow_Airplane_Pillow_Neck_Support_Cushion_With_Removable_Washable_Cover_ismwg0.jpg" alt="Travel Pillow" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Travel Pillow</h3>
+                    <p class="product-description">Memory foam neck pillow with washable cover</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,299</span>
+                        <span class="original-price">₹1,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(634)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754670100/Travel_Bag_Sets_Made_By_Leather_ea4cyg.jpg" alt="Luggage Scale" class="product-image" />
+                <div class="product-badge">Must Have</div>
+                <div class="product-info">
+                    <h3 class="product-title">Luggage Scale</h3>
+                    <p class="product-description">Digital leather luggage scale up to 50kg capacity</p>
+                    <div class="product-price">
+                        <span class="current-price">₹899</span>
+                        <span class="original-price">₹1,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(445)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754733520/Toiletry_Bag_With_Hanging_Hook_Large_Hanging_Toiletry_Bag_For_Women_Portabl____tdyw2h.jpg" alt="Toiletry Bag" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Toiletry Bag</h3>
+                    <p class="product-description">Water-resistant hanging toiletry bag</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,499</span>
+                        <span class="original-price">₹2,299</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(523)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754733583/Custom_Luggage_Tag--Monogram_Luggage_Tag_Custom_Name_Travel_Tag_Gift_for_Traveller_Travel_Gifts_Monogram_Tag_Custom_Travel_Accessory_sgdhzc.jpg" alt="Luggage Tags" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Luggage Tags</h3>
+                    <p class="product-description">Set of 4 leather luggage tags with name cards</p>
+                    <div class="product-price">
+                        <span class="current-price">₹699</span>
+                        <span class="original-price">₹1,199</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(378)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopEasy</h3>
+                    <p>Your trusted online shopping destination for beauty products</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="shipping-info.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="fashion-category.html">Fashion</a></li>
+                        <li><a href="girls.html">Girls</a></li>
+                        <li><a href="beauty-new.html">Beauty</a></li>
+                        <li><a href="home-decor.html">Home Decor</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-envelope"></i> beauty@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Vizag, Andhra, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEasy Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+
+                this.textContent = 'Added!';
+                this.style.background = '#ff69b4';
+
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = 'linear-gradient(45deg, #ff69b4, #ff1493)';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
+

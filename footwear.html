@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footwear - Premium Collection 2025</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                 <link rel="stylesheet" href="footer-styles.css">
+<script src="add-to-cart.js"></script>
+<style>
+        .footwear-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754807900/download_19_hg4j45.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .footwear-hero h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+        
+        .footwear-hero p {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+        
+        .category-section {
+            margin: 60px 0;
+            padding: 0 20px;
+        }
+        
+        .category-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2C3E50;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #2C3E50, #3498DB);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2C3E50;
+            margin-bottom: 8px;
+        }
+        
+        .product-description {
+            color: #7F8C8D;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .product-price {
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #E74C3C;
+        }
+        
+        .original-price {
+            font-size: 1.1rem;
+            color: #95A5A6;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        
+        .product-rating {
+            margin-bottom: 15px;
+            color: #F39C12;
+        }
+        
+        .product-rating span {
+            color: #7F8C8D;
+            margin-left: 5px;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .add-to-cart-btn, .buy-now-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .add-to-cart-btn {
+            background: linear-gradient(45deg, #3498DB, #2980B9);
+            color: white;
+        }
+        
+        .buy-now-btn {
+            background: linear-gradient(45deg, #E74C3C, #C0392B);
+            color: white;
+        }
+        
+        .add-to-cart-btn:hover, .buy-now-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .breadcrumb {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            margin-bottom: 30px;
+        }
+        
+        .breadcrumb a {
+            color: #2C3E50;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .filter-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2C3E50;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .filter-group label {
+            font-weight: bold;
+            color: #34495E;
+        }
+        
+        .filter-group select {
+            padding: 8px 12px;
+            border: 1px solid #BDC3C7;
+            border-radius: 5px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="fashion-category.html" class="nav-link">Fashion</a>
+                    <a href="footwear.html" class="nav-link active">Footwear</a>
+                </nav>
+                <div class="nav-icons">
+                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                    </a>
+                    <a href="cart.html" class="icon-link"></a>
+                   <a href="vsv-login.html" class="icon-link" id="userIcon">
+                        <span class="user-status">sign out</span>
+</a>
+                </div>
+            </div>
+        </div>
+    </header>
+            
+    <!-- Footwear Hero Section -->
+    <section class="footwear-hero">
+        <h1>Welcome to Premium Footwear Collection 2025</h1> 
+    </section>
+
+    <!-- Categories Section -->
+    
+    <!-- Sports Shoes Section -->
+    <section class="category-section" id="sports-shoes">
+        <h2 class="category-title"> Shoes</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754673257/Entdecken_Sie_mit_den_Elora-Premium_Orthop%C3%A4dischen_m1uhxq.jpg" alt="Nike Air Max" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Nike Air Max</h3>
+                    <p class="product-description">Leather shoes with air cushioning</p>
+                    <div class="product-price">
+                        <span class="current-price">₹7,999</span>
+                        <span class="original-price">₹9,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(120)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754673402/MIA_-_Zapatillas_Vintaje_de_%C3%89poca_-_Gris___43_fihkog.jpg" alt="Adidas Harden" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Adidas Harden</h3>
+                    <p class="product-description">High-performance shoes</p>
+                    <div class="product-price">
+                        <span class="current-price">₹8,499</span>
+                        <span class="original-price">₹10,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(85)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754728547/5e82de9e-5547-4518-a9c7-bb692a1532dd_exhbvy.jpg" alt="Puma Ignite" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Puma Ignite</h3>
+                    <p class="product-description">Comfortable training shoes for gym workouts</p>
+                    <div class="product-price">
+                        <span class="current-price">₹6,299</span>
+                        <span class="original-price">₹7,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(150)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754728842/Asics_Solution_Speed_FF_tennis_shoes_f3anck.jpg" alt="Asics Gel" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Asics Gel</h3>
+                    <p class="product-description">Professional tennis court shoes</p>
+                    <div class="product-price">
+                        <span class="current-price">₹5,799</span>
+                        <span class="original-price">₹7,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(95)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754728947/Tried_the_Reebok_Nano_X5_and_it_s_built_for_serious_training___%EF%B8%8F_Stab_xig3pe.jpg" alt="Reebok Crossfit" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Reebok Crossfit</h3>
+                    <p class="product-description">Durable crossfit training shoes</p>
+                    <div class="product-price">
+                        <span class="current-price">₹9,999</span>
+                        <span class="original-price">₹12,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(110)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Casual Shoes Section -->
+    <section class="category-section" id="casual-shoes">
+        <h2 class="category-title">Casual Shoes</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754729017/download_1_m5xlub.jpg" alt="Converse Chuck" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Converse Chuck</h3>
+                    <p class="product-description">Classic canvas sneakers for everyday wear</p>
+                    <div class="product-price">
+                        <span class="current-price">₹3,999</span>
+                        <span class="original-price">₹4,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(200)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754729088/Men_s_Black_Patent_Leather_Loafers_with_Tassel_Details_-_Stylish_Formal_Dress_Shoes_for_Office_and_Events_2025_-_64_99_dzblaf.jpg" alt="Sperry Loafers" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Sperry Loafers</h3>
+                    <p class="product-description">Comfortable leather loafers for smart casual</p>
+                    <div class="product-price">
+                        <span class="current-price">₹5,499</span>
+                        <span class="original-price">₹6,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(135)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754729227/Olive_Green_Adidas_Sneakers_with_Corduroy_and_Floral_Lining_yri9dm.jpg" alt="Timberland Boat" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Timberland Boat</h3>
+                    <p class="product-description">Classic boat shoes for summer style</p>
+                    <div class="product-price">
+                        <span class="current-price">₹7,299</span>
+                        <span class="original-price">₹8,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(95)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754729367/download_2_ffds0y.jpg" alt="Tommy Espadrilles" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Tommy Espadrilles</h3>
+                    <p class="product-description">Lightweight canvas espadrilles</p>
+                    <div class="product-price">
+                        <span class="current-price">₹4,299</span>
+                        <span class="original-price">₹5,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(75)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754729432/Access_to_this_page_has_been_denied__rjy1qh.jpg" alt="Minnetonka Moccasins" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Minnetonka Moccasins</h3>
+                    <p class="product-description">Soft suede moccasins for comfort</p>
+                    <div class="product-price">
+                        <span class="current-price">₹6,799</span>
+                        <span class="original-price">₹8,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(120)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formal Shoes Section -->
+    <section class="category-section" id="formal-shoes">
+        <h2 class="category-title">Formal Shoes</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754729504/Handmade_Oxfords_Tie_Shoes___Oxford_Boot_Shoes_for_Women_zk2reg.jpg" alt="Oxford Shoes" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Oxford Shoes</h3>
+                    <p class="product-description">Classic leather oxford shoes for business</p>
+                    <div class="product-price">
+                        <span class="current-price">₹8,999</span>
+                        <span class="original-price">₹11,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(180)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754729579/Handgef%C3%A4rbter_Derby_-_Gray___13_u7jcfs.jpg" alt="Derby Shoes" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Derby Shoes</h3>
+                    <p class="product-description">Elegant derby shoes for formal occasions</p>
+                    <div class="product-price">
+                        <span class="current-price">₹7,499</span>
+                        <span class="original-price">₹9,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754729670/Orcajump_-_Vintage_Full-Grain_Leather_Mary_Jane_Shoes_with_Simple_Thick_Heel_and_Square_Toe_-_Brown_35_xlbfs4.jpg" alt="Monk Strap" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Monk Strap</h3>
+                    <p class="product-description">Stylish double monk strap shoes</p>
+                    <div class="product-price">
+                        <span class="current-price">₹9,999</span>
+                        <span class="original-price">₹12,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(95)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754729766/Women_s_Lychee_Pattern_Flat_Mule_Slip-on_Shoes_With_Square_Toe_jprjof.jpg" alt="Formal Loafers" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Formal Loafers</h3>
+                    <p class="product-description">Premium leather loafers for office wear</p>
+                    <div class="product-price">
+                        <span class="current-price">₹6,299</span>
+                        <span class="original-price">₹8,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(110)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754729860/download_3_wnkam0.jpg" alt="Brogues" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Brogues</h3>
+                    <p class="product-description">Classic wingtip brogues with detailed perforations</p>
+                    <div class="product-price">
+                        <span class="current-price">₹10,999</span>
+                        <span class="original-price">₹13,999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(165)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sandals Section -->
+    <section class="category-section" id="sandals">
+        <h2 class="category-title">Sandals & Slippers</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754729944/Flat_Platform_Lady_Sandals_Female_SA01_https___nowaday_shop_handueke-cross-strap-women-sandal-genuine-leather-summer-shoes-high-quality-flat-platform-lady-sandals-female-plus-size-43__womenshoes_womenfashion_sa_zcfq4l.jpg" alt="Sports Sandals" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Sports Sandals</h3>
+                    <p class="product-description">Comfortable sports sandals for outdoor activities</p>
+                    <div class="product-price">
+                        <span class="current-price">₹2,499</span>
+                        <span class="original-price">₹3,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(125)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754673483/High_Heels_Wedges_rxlyhg.jpg" alt="Leather Sandals" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Leather Wedges</h3>
+                    <p class="product-description">Premium leather high heel wedges for comfort</p>
+                    <div class="product-price">
+                        <span class="current-price">₹3,999</span>
+                        <span class="original-price">₹5,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(95)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754673638/Womens_wedge_heel_otileo.jpg" alt="Flip Flops" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Flip Flops</h3>
+                    <p class="product-description">Comfortable rubber flip flops for daily use</p>
+                    <div class="product-price">
+                        <span class="current-price">₹899</span>
+                        <span class="original-price">₹1,299</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(200)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730049/Fashion_Unisex_Winter_Warm_Velet_Slippers_Non-slip_House_Shoes_Indoor_Floor_Shoes_zo3qxk.jpg" alt="House Slippers" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">House Slippers</h3>
+                    <p class="product-description">Cozy house slippers with memory foam</p>
+                   <div class="product-price">
+                        <span class="current-price">₹599</span>
+                        <span class="original-price">₹1,099</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(200)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+
+                    </div>
+                </section>
+                    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopEasy</h3>
+                    <p>Your trusted online shopping destination for electronics</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="shipping-info.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="fashion-category.html">Fashion</a></li>
+                        <li><a href="books.html">Books</a></li>
+                        <li><a href="home-decor.html">Home Decor</a></li>
+                        <li><a href="electronics.html">Electronics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-envelope"></i> vsv@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Vizag, Andhra, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEasy Electronics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+
+                this.textContent = 'Added!';
+                this.style.background = '#FF6B35';
+
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = 'linear-gradient(45deg, #FF6B35, #FF8E53)';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - Thank You!</title>
+   <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+         <link rel="stylesheet" href="footer-styles.css">
+<script src="add-to-cart.js"></script>
+<style>
+        .confirmation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 50px;
+        }
+
+        .confirmation-title {
+            font-size: 32px;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .confirmation-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .order-details {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .order-number {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .order-summary {
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .summary-row.total {
+            font-weight: 600;
+            font-size: 18px;
+            color: #333;
+            border-top: 2px solid #f0f0f0;
+            border-bottom: none;
+            padding-top: 15px;
+        }
+
+        .customer-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .info-section {
+            margin-bottom: 15px;
+        }
+
+        .info-section h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .continue-shopping {
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .continue-shopping:hover {
+            background: #5a6fd8;
+        }
+
+        .order-items {
+            margin-bottom: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .delivery-info {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .delivery-info p {
+            margin: 5px 0;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                <div class="nav-links">
+                    <a href="products.html">Products</a>
+                    <a href="categories.html">Categories</a>
+                    <a href="deals.html">Deals</a>
+                    <a href="cart.html" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="confirmation-container">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        
+        <h1 class="confirmation-title">Order Confirmed!</h1>
+        <p class="confirmation-subtitle">Thank you for your purchase. Your order has been successfully placed.</p>
+
+        <div class="order-details">
+            <div class="order-number">
+                Order Number: <span id="order-number"></span>
+            </div>
+
+            <div class="customer-info">
+                <div class="info-section">
+                    <h4>Customer Information</h4>
+                    <div id="customer-details"></div>
+                </div>
+
+                <div class="info-section">
+                    <h4>Shipping Address</h4>
+                    <div id="shipping-details"></div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <h4>Order Summary</h4>
+                <div id="order-summary-details"></div>
+            </div>
+
+            <div class="order-items">
+                <h4>Items Ordered</h4>
+                <div id="ordered-items"></div>
+            </div>
+
+            <div class="delivery-info">
+                <p><i class="fas fa-truck"></i> Estimated delivery: 5-7 business days</p>
+                <p><i class="fas fa-envelope"></i> Order confirmation sent to your email</p>
+            </div>
+        </div>
+
+        <a href="products.html" class="continue-shopping">
+            <i class="fas fa-shopping-bag"></i> Continue Shopping
+        </a>
+    </div>
+
+    <script>
+        // Load order confirmation data
+        function loadOrderConfirmation() {
+            const orderData = JSON.parse(localStorage.getItem('orderData') || '{}');
+            
+            if (!orderData.items || orderData.items.length === 0) {
+                window.location.href = 'homepage.html';
+                return;
+            }
+
+            displayOrderDetails(orderData);
+        }
+
+        function displayOrderDetails(data) {
+            // Display order number
+            document.getElementById('order-number').textContent = data.orderId;
+
+            // Display customer information
+            const customerDetails = document.getElementById('customer-details');
+            customerDetails.innerHTML = `
+                <div class="info-row">
+                    <span>Name:</span>
+                    <span>${data.customerInfo.fullName}</span>
+                </div>
+                <div class="info-row">
+                    <span>Email:</span>
+                    <span>${data.customerInfo.email}</span>
+                </div>
+                <div class="info-row">
+                    <span>Phone:</span>
+                    <span>${data.customerInfo.phone}</span>
+                </div>
+            `;
+
+            // Display shipping address
+            const shippingDetails = document.getElementById('shipping-details');
+            shippingDetails.innerHTML = `
+                <div class="info-row">
+                    <span>Address:</span>
+                    <span>${data.customerInfo.address}</span>
+                </div>
+                <div class="info-row">
+                    <span>City:</span>
+                    <span>${data.customerInfo.city}</span>
+                </div>
+                <div class="info-row">
+                    <span>State:</span>
+                    <span>${data.customerInfo.state}</span>
+                </div>
+                <div class="info-row">
+                    <span>Pin Code:</span>
+                    <span>${data.customerInfo.pinCode}</span>
+                </div>
+            `;
+
+            // Display order summary
+            const summaryDetails = document.getElementById('order-summary-details');
+            summaryDetails.innerHTML = `
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span>₹${data.subtotal.toFixed(2)}</span>
+                </div>
+                ${data.discount > 0 ? `
+                    <div class="summary-row">
+                        <span>Discount:</span>
+                        <span>-₹${data.discount.toFixed(2)}</span>
+                    </div>
+                ` : ''}
+                <div class="summary-row">
+                    <span>Tax:</span>
+                    <span>₹${data.tax.toFixed(2)}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span>${data.shipping === 0 ? 'Free' : `₹${data.shipping.toFixed(2)}`}</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span>₹${data.total.toFixed(2)}</span>
+                </div>
+            `;
+
+            // Display ordered items
+            const orderedItems = document.getElementById('ordered-items');
+            orderedItems.innerHTML = data.items.map(item => `
+                <div class="order-item">
+                    <span>${item.name} (x${item.quantity})</span>
+                    <span>₹${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+            `).join('');
+
+            // Clear order data after displaying
+            localStorage.removeItem('orderData');
+        }
+
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', loadOrderConfirmation);
+    </script>
+</body>
+</html>

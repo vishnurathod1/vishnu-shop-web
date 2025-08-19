@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - VSVShopEasy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .search-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .search-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .search-header h1 {
+            color: #FF6B35;
+            margin-bottom: 10px;
+        }
+
+        .search-bar {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 50px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-button {
+            background: linear-gradient(45deg, #FF6B35, #FF8E53);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-button:hover {
+            background: linear-gradient(45deg, #FF4500, #FF6B35);
+        }
+
+        .search-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid #FF6B35;
+            background: white;
+            color: #FF6B35;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #FF6B35;
+            color: white;
+        }
+
+        .search-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #FF6B35;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #FF6B35;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #FF6B35, #FF8E53);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background: linear-gradient(45deg, #FF4500, #FF6B35);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #FF6B35;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .suggestion-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+
+        .suggestion-item:hover {
+            background: #f8f9fa;
+        }
+
+        .search-wrapper {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <div class="search-header">
+            <h1>Search Products</h1>
+            <p>Find exactly what you're looking for</p>
+        </div>
+
+        <div class="search-wrapper">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search for products..." id="searchInput">
+                <button class="search-button" onclick="performSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+
+        <div class="search-filters">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="jewelry">Jewelry</button>
+            <button class="filter-btn" data-category="bags">Bags</button>
+            <button class="filter-btn" data-category="watches">Watches</button>
+            <button class="filter-btn" data-category="accessories">Accessories</button>
+        </div>
+
+        <div id="searchResults" class="search-results">
+            <!-- Search results will be populated here -->
+        </div>
+    </div>
+
+    <script>
+        // Product database
+        const products = [
+            {
+                id: 1,
+                title: "Anklets for wedding",
+                price: 2999,
+                originalPrice: 4999,
+                category: "jewelry",
+                image: "https://res.cloudinary.com/dh4qek1ty/image/upload/v1754663604/Anklets_for_wedding_ghmmuj.jpg",
+                description: "Pendant anklets for wedding"
+            },
+            {
+                id: 2,
+                title: "Bridal Bangles",
+                price: 1499,
+                originalPrice: 2499,
+                category: "jewelry",
+                image: "https://res.cloudinary.com/dh4qek1ty/image/upload/v1754588983/Bridal_bangles_cqlzmk.jpg",
+                description: "Bridal Bangles"
+            },
+            {
+                id: 3,
+                title: "Jhumkas",
+                price: 15689,
+                originalPrice: 2899,
+                category: "jewelry",
+                image: "https://res.cloudinary.com/dh4qek1ty/image/upload/v1754589673/Earrings_with_jhumki_dg3jhi.jpg",
+                description: "Earrings with Jhumki"
+            },
+            {
+                id: 4,
+                title: "Designer Leather Handbag",
+                price: 5999,
+                originalPrice: 8999,
+                category: "bags",
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300",
+                description: "Premium leather handbag with gold hardware"
+            },
+            {
+                id: 5,
+                title: "Apple Watch Series 9",
+                price: 39999,
+                originalPrice: 44999,
+                category: "watches",
+                image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300",
+                description: "Advanced smartwatch with health monitoring"
+            },
+            {
+                id: 6,
+                title: "RFID Leather Wallet",
+                price: 1299,
+                originalPrice: 1999,
+                category: "accessories",
+                image: "https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754810228/download_20_j8buhh.jpg",
+                description: "Genuine leather wallet with RFID protection"
+            }
+        ];
+
+        let currentFilter = 'all';
+        let searchTerm = '';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(products);
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            const searchInput = document.getElementById('searchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+
+            // Search input event
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                if (query.length > 0) {
+                    showSuggestions(query);
+                } else {
+                    hideSuggestions();
+                }
+            });
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.category;
+                    performSearch();
+                });
+            });
+
+            // Click outside to hide suggestions
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.search-wrapper')) {
+                    hideSuggestions();
+                }
+            });
+        }
+
+        function showSuggestions(query) {
+            const suggestions = products
+                .filter(product => product.title.toLowerCase().includes(query))
+                .slice(0, 5)
+                .map(product => product.title);
+
+            const suggestionsContainer = document.getElementById('searchSuggestions');
+            suggestionsContainer.innerHTML = '';
+
+            if (suggestions.length > 0) {
+                suggestions.forEach(suggestion => {
+                    const div = document.createElement('div');
+                    div.className = 'suggestion-item';
+                    div.textContent = suggestion;
+                    div.addEventListener('click', function() {
+                        document.getElementById('searchInput').value = suggestion;
+                        performSearch();
+                        hideSuggestions();
+                    });
+                    suggestionsContainer.appendChild(div);
+                });
+                suggestionsContainer.style.display = 'block';
+            } else {
+                hideSuggestions();
+            }
+        }
+
+        function hideSuggestions() {
+            document.getElementById('searchSuggestions').style.display = 'none';
+        }
+
+        function performSearch() {
+            searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredProducts = filterProducts();
+            displayProducts(filteredProducts);
+        }
+
+        function filterProducts() {
+            return products.filter(product => {
+                const matchesSearch = searchTerm === '' || 
+                    product.title.toLowerCase().includes(searchTerm) ||
+                    product.description.toLowerCase().includes(searchTerm);
+                
+                const matchesFilter = currentFilter === 'all' || product.category === currentFilter;
+                
+                return matchesSearch && matchesFilter;
+            });
+        }
+
+        function displayProducts(productsToDisplay) {
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = '';
+
+            if (productsToDisplay.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
+                        <h3>No products found</h3>
+                        <p>Try adjusting your search terms or filters</p>
+                    </div>
+                `;
+                return;
+            }
+
+            productsToDisplay.forEach(product => {
+                const productCard = createProductCard(product);
+                resultsContainer.appendChild(productCard);
+            });
+        }
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.title}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">${product.title}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-price">
+                        <span class="current-price">₹${product.price.toLocaleString()}</span>
+                        ${product.originalPrice ? `<span class="original-price">₹${product.originalPrice.toLocaleString()}</span>` : ''}
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            `;
+            return card;
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                // Add to cart functionality
+                alert(`${product.title} added to cart!`);
+                
+                // Update cart count
+                const cartCount = document.querySelector('.cart-count');
+                if (cartCount) {
+                    cartCount.textContent = parseInt(cartCount.textContent) + 1;
+                }
+            }
+        }
+
+        // Search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+</body>
+</html>

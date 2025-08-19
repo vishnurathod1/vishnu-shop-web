@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returns & Refunds - Your E-Commerce Store</title>
+<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">     <link rel="stylesheet" href="vsv-styles.css">
+    <link rel="stylesheet" href="animated-bg.css">
+        <link rel="stylesheet" href="footer-styles.css">
+  <script src="add-to-cart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="homepage.html" class="nav-logo">Your Store</a>
+            <ul class="nav-menu">
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="fashion-category.html">Fashion</a></li>
+                <li><a href="beauty.html">Beauty</a></li>
+                <li><a href="home-decor.html">Home Decor</a></li>
+                <li><a href="girls.html">Girls</a></li>
+                <li><a href="customer-service.html">Customer Service</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Returns Header -->
+    <header class="page-header">
+        <h1>Returns & Refunds</h1>
+        <p>Easy returns for your peace of mind</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="returns-container">
+        <section class="returns-policy">
+            <h2>Our Return Policy</h2>
+            <div class="policy-grid">
+                <div class="policy-card">
+                    <h3>30-Day Return Window</h3>
+                    <p>You have 30 days from the date of delivery to return items for a full refund.</p>
+                </div>
+                <div class="policy-card">
+                    <h3>Free Returns</h3>
+                    <p>We provide free return shipping on all eligible items within the return window.</p>
+                </div>
+                <div class="policy-card">
+                    <h3>Original Condition</h3>
+                    <p>Items must be returned unworn, unwashed, and with original tags attached.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="return-process">
+            <h2>How to Return</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h3>Start Return</h3>
+                    <p>Click the "Start Return" button below or visit your order history</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h3>Print Label</h3>
+                    <p>Print your prepaid return label from your email</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h3>Package & Ship</h3>
+                    <p>Pack items securely and drop off at any shipping location</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <h3>Get Refund</h3>
+                    <p>Receive your refund within 5-7 business days after we process your return</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="return-exclusions">
+            <h2>Non-Returnable Items</h2>
+            <ul>
+                <li>Final sale items</li>
+                <li>Personal care products (opened)</li>
+                <li>Intimate apparel</li>
+                <li>Gift cards</li>
+                <li>Items marked as non-returnable</li>
+            </ul>
+        </section>
+
+        <section class="return-actions">
+            <h2>Ready to Return?</h2>
+            <div class="action-buttons">
+                <button class="btn-primary" onclick="startReturn()">Start Return</button>
+                <button class="btn-secondary" onclick="checkReturnStatus()">Check Return Status</button>
+            </div>
+        </section>
+
+        <section class="contact-support">
+            <h2>Need Help?</h2>
+            <p>Contact our customer service team for assistance with returns</p>
+            <a href="customer-service.html" class="btn-secondary">Contact Support</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="homepage.html">Home</a>
+            <a href="customer-service.html">Customer Service</a>
+            <a href="returns.html">Returns</a>
+            <a href="shipping-info.html">Shipping Info</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-and-conditions.html">Terms & Conditions</a>
+        </div>
+    </footer>
+
+    <script>
+        function startReturn() {
+            alert('Return process started! Please check your email for return instructions.');
+            // In real implementation, this would redirect to return portal
+        }
+
+        function checkReturnStatus() {
+            alert('Please check your email for return status updates or contact customer service.');
+            // In real implementation, this would open return tracking
+        }
+    </script>
+</body>
+</html>

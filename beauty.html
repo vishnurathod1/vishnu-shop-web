@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beauty Products - ShopEasy</title>
+     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="add-to-cart.js"></script>
+   <link rel="stylesheet" href="footer-styles.css">
+
+    <style>
+        .beauty-hero {
+            background: linear-gradient(rgba(255, 182, 193, 0.8), rgba(255, 105, 180, 0.8)),
+                url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754573748/download_9_kgmxct.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .beauty-hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+        .category-section {
+            margin: 60px 0;
+            padding: 0 20px;
+        }
+        .category-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #FF69B4;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #FF69B4, #FF1493);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #C71585;
+            margin-bottom: 8px;
+        }
+        .product-description {
+            color: #7F8C8D;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .product-price {
+            margin-bottom: 15px;
+        }
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #E91E63;
+        }
+        .original-price {
+            font-size: 1.1rem;
+            color: #95A5A6;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        .product-rating {
+            margin-bottom: 15px;
+            color: #F06292;
+        }
+        .product-rating span {
+            color: #7F8C8D;
+            margin-left: 5px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .add-to-cart-btn, .buy-now-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .add-to-cart-btn {
+            background: linear-gradient(45deg, #FF69B4, #FF1493);
+            color: white;
+        }
+        .buy-now-btn {
+            background: linear-gradient(45deg, #C71585, #8B008B);
+            color: white;
+        }
+        .add-to-cart-btn:hover, .buy-now-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="clothing.html" class="nav-link">Fashion</a>
+                    <a href="beauty-new.html" class="nav-link active">Beauty</a>
+                    <a href="home-decor.html" class="nav-link">Home Decor</a>
+                </nav>
+                <div class="nav-icons">
+                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                    </a>
+                    <a href="cart.html" class="icon-link"></a>
+                   <a href="vsv-login.html" class="icon-link" id="userIcon">
+            <button class="cta-button"> Logout</button></a>
+</a>
+                </div>
+            </div>
+        </div>
+
+                  
+           
+    </header>
+
+    <!-- Beauty Hero Section -->
+    <section class="beauty-hero">
+        <h1>Welcome to Beauty Collection 2025</h1>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="category-section" id="skincare">
+        <h2 class="category-title">Skincare</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731077/Dr_rashel_11_2027_Vitamin_C_Face_Cream_With_Hyaluronic_Acid_F_Brightening_50g_ku9sci.jpg" alt="Hydrating Face Cream" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Hydrating Face Cream</h3>
+                    <p class="product-description">Moisturize and nourish your skin with this lightweight cream</p>
+                    <div class="product-price">
+                        <span class="current-price">₹799</span>
+                        <span class="original-price">₹999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(120)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731145/Cucumber_Toner_for_Hydrating_Skin_gujnz2.jpg" alt="Refreshing Toner" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Refreshing Toner</h3>
+                    <p class="product-description">Balance your skin's pH with this gentle toner</p>
+                    <div class="product-price">
+                        <span class="current-price">₹699</span>
+                        <span class="original-price">₹899</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(95)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731226/Elemensis_Naturals_Vitamin_C_Face_Serum_30ml_wwzvq8.jpg" alt="Vitamin C Serum" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Vitamin C Serum</h3>
+                    <p class="product-description">Brighten your complexion with this powerful serum</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,299</span>
+                        <span class="original-price">₹1,599</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(150)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731295/Dot_Key_Skincare_mgnvkt.jpg" alt="Night Repair Cream" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Night Repair Cream</h3>
+                    <p class="product-description">Repair and rejuvenate your skin overnight</p>
+                    <div class="product-price">
+                        <span class="current-price">₹899</span>
+                        <span class="original-price">₹1,099</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(110)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731385/Ponds_sunscreen____.__noxyc4.jpg" alt="Sunscreen SPF 55" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Sunscreen SPF 55</h3>
+                    <p class="product-description">Protect your skin from harmful UV rays</p>
+                    <div class="product-price">
+                        <span class="current-price">₹799</span>
+                        <span class="original-price">₹999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(130)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" id="makeup">
+        <h2 class="category-title">Makeup</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731491/Est%C3%A9e_Lauder_Double_Wear_Stay-in-Place_24-Hour_Long-Wear_Matte_Foundation_Makeup_uuwmkb.jpg" alt="Liquid Foundation" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Liquid Foundation</h3>
+                    <p class="product-description">Smooth and long-lasting foundation</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,199</span>
+                        <span class="original-price">₹1,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(140)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731555/download_4_c1frkn.jpg" alt="Mascara" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Mascara</h3>
+                    <p class="product-description">Volumizing mascara for fuller lashes</p>
+                    <div class="product-price">
+                        <span class="current-price">₹699</span>
+                        <span class="original-price">₹899</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(95)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731639/download_6_wmfbnf.jpg" alt="Lipstick" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Lipstick</h3>
+                    <p class="product-description">Long-lasting lipstick in vibrant shades</p>
+                    <div class="product-price">
+                        <span class="current-price">₹499</span>
+                        <span class="original-price">₹699</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(120)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731744/download_7_ekuvj5.jpg" alt="Blush" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Blush</h3>
+                    <p class="product-description">Natural blush for a rosy glow</p>
+                    <div class="product-price">
+                        <span class="current-price">₹399</span>
+                        <span class="original-price">₹599</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(85)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731812/8_Essential_Products_If_You_re_Going_All_Out_With_Eyeliner_This_Fall_jln4p8.jpg" alt="Eyeliner" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Eyeliner</h3>
+                    <p class="product-description">Waterproof eyeliner for precise lines</p>
+                    <div class="product-price">
+                        <span class="current-price">₹299</span>
+                        <span class="original-price">₹399</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(90)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" id="haircare">
+        <h2 class="category-title">Hair Care</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731959/download_8_yex8sa.jpg" alt="Shampoo" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Shampoo</h3>
+                    <p class="product-description">Gentle shampoo for all hair types</p>
+                    <div class="product-price">
+                        <span class="current-price">₹499</span>
+                        <span class="original-price">₹699</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(80)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754732095/It_s_a_10_Miracle_Deep_Conditioner_Plus_Keratin_cypza5.jpg" alt="Conditioner" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Conditioner</h3>
+                    <p class="product-description">Nourishing conditioner for smooth hair</p>
+                    <div class="product-price">
+                        <span class="current-price">₹499</span>
+                        <span class="original-price">₹699</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(75)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754732186/Anti_Hair_Fall_Hair_Oil_chfz2z.jpg" alt="Hair Oil" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Hair Oil</h3>
+                    <p class="product-description">Strengthen and nourish your hair</p>
+                    <div class="product-price">
+                        <span class="current-price">₹399</span>
+                        <span class="original-price">₹499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(70)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754732221/download_9_vkyoeo.jpg" alt="Hair Mask" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Hair Mask</h3>
+                    <p class="product-description">Deep conditioning hair mask</p>
+                    <div class="product-price">
+                        <span class="current-price">₹599</span>
+                        <span class="original-price">₹799</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(85)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754732421/My_hair_has_never_been_this_long_and_this_hair_growth_serum_is_to_thank_spjr6r.jpg" alt="Hair Serum" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Hair Serum</h3>
+                    <p class="product-description">Smooth and shiny hair serum</p>
+                    <div class="product-price">
+                        <span class="current-price">₹699</span>
+                        <span class="original-price">₹899</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(90)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopEasy</h3>
+                    <p>Your trusted online shopping destination for beauty products</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="shipping-info.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="fashion-category.html">Fashion</a></li>
+                        <li><a href="girls.html">Girls</a></li>
+                        <li><a href="beauty-new.html">Beauty</a></li>
+                        <li><a href="home-decor.html">Home Decor</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-envelope"></i> beauty@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Vizag, Andhra, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEasy Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+
+                this.textContent = 'Added!';
+                this.style.background = '#ff69b4';
+
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = 'linear-gradient(45deg, #ff69b4, #ff1493)';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

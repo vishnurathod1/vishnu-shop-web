@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSV - Create Account</title>
+    <link rel="stylesheet" href="vsv-styles.css">
+    <link rel="stylesheet" href="animated-bg.css">
+    <link rel="stylesheet" href="slideshow.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="glow-orb"></div>
+        <div class="glow-orb"></div>
+        <div class="glow-orb"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="wave-container">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="registration-form">
+            <div class="logo">
+                <i><h1>VSV Shop Easy</h1></i>
+                <p>Online Shopping</p>
+            </div>
+            
+            <h2>Create Your Account</h2>
+            <form onsubmit="goToLoginpage(event)">
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        <i class="fas fa-phone"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-with-icon password-container">
+                        <input type="password" id="password" name="password" placeholder="Create a password" required>
+                        <span class="toggle-password" onclick="togglePassword('password', this)">👁️</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-with-icon password-container">
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                        <span class="toggle-password" onclick="togglePassword('confirm-password', this)">👁️</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <div class="input-with-icon">
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="male">
+                            <span>Male</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="female">
+                            <span>Female</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="other">
+                            <span>Other</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms" required>
+                        <span>I agree to the <a href="terms-and-conditions.html">Terms and Conditions</a> and <a href="privacy-policy.html">Privacy Policy</a></span>
+                    </label>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="newsletter">
+                        <span>Send me exclusive offers and updates</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="register-btn">Create Account</button>
+                
+                <div class="login-link">
+                    Already have an account? <a href="vsv-login.html">Login here</a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="image-section">
+            <div class="welcome-text">
+                <!-- Slideshow Container -->
+                <div class="slideshow-container">
+                    <div class="mySlides fade">
+                        <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754744913/download_15_bzxzwo.jpg " alt="VSV Welcome Banner 1" class="featured-banner">
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754744966/images_4_vkqxuz.jpg" alt="VSV Welcome Banner 2" class="featured-banner">
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754744965/download_14_hpuara.jpg" alt="VSV Welcome Banner 3" class="featured-banner">
+                    </div>
+
+                    <!-- Next and previous buttons -->
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+                
+                <!-- The dots/circles -->
+                <div class="dot-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+                
+                <h2>Welcome to VSV</h2>
+                <p>Join millions of shoppers who trust VSV for their online shopping needs. Get access to exclusive deals, fast delivery, and secure payments.</p>
+                <ul>
+                    <li>Secure Shopping Experience</li>
+                    <li>Fast & Reliable Delivery</li>
+                    <li>Easy Returns & Refunds</li>
+                    <li>24/7 Customer Support</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script src="slideshow.js"></script>
+    <script>
+    // Function to redirect to login page after registration
+    function goToLoginpage(event) {
+        event.preventDefault();
+        
+        // Get form values
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        
+        // Basic validation
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
+        
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters long!');
+            return;
+        }
+        
+        // Store user data for login (in real app, this would be handled server-side)
+        const userData = {
+            email: email,
+            password: password // Note: In production, never store passwords in plain text
+        };
+        
+        // Store registration data
+        let registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+        registeredUsers.push(userData);
+        localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+        
+        // Redirect to login page
+        setTimeout(function() {
+            window.location.href = 'vsv-login.html';
+        }, 1000);
+    }
+
+    // Password toggle functionality
+    function togglePassword(fieldId, icon) {
+        const input = document.getElementById(fieldId);
+        if (input.type === "password") {
+            input.type = "text";
+            icon.textContent = "🙈";
+        } else {
+            input.type = "password";
+            icon.textContent = "👁️";
+        }
+    }
+    </script>
+</body>
+</html>

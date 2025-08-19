@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fashion Category - ShopEasy</title>
+     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .fashion-hero {
+            background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)),
+                url('assets/banner-template-online-fashion-sale_23-2148585403.avif');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .fashion-hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+        .products-grid {
+            padding: 2rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products..." />
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="fashion-category.html" class="nav-link active">Fashion</a>
+                    <a href="#categories" class="nav-link">Categories</a>
+                    <a href="#deals" class="nav-link">Deals</a>
+                </nav>
+                <div class="nav-icons">
+                    <a href="#" class="icon-link"><i class="fas fa-user"></i></a>
+                    <a href="#" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="#" class="icon-link"><i class="fas fa-heart"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Fashion Hero Section -->
+    <section class="fashion-hero">
+        <h1>Fashion Collection 2024</h1>
+    </section>
+
+    <!-- Category Filter Section -->
+    <section class="category-filter container">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-category="all">All</button>
+            <a href="girls.html"><button class="filter-btn">Womens</button></a>
+            <a href="mens.html"><button class="filter-btn">Mens</button></a>
+            <a href="children.html"><button class="filter-btn">Children</button></a>
+        </div>
+    </section>
+
+    <!-- Girls Fashion Section -->
+    <section class="featured-products container" id="girls-section">
+        <h2 class="section-title">Girls Fashion</h2>
+        <div class="products-grid">
+            <div class="product-card" data-category="girls">
+                <div class="product-badge">New</div>
+                <img src="C:\Users\LENOVO\Downloads/download (1).jpeg" alt="Girls Floral Dress" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Girls Floral Dress</h3>
+                    <p class="product-description">Beautiful floral pattern for summer</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,299</span>
+                        <span class="original-price">₹2,199</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(89)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="girls">
+                <div class="product-badge">latest </div>
+                <img src="assets/download (2).jpeg" alt="Girls Pink T-Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Girls Pink T-Shirt</h3>
+                    <p class="product-description">Comfortable cotton t-shirt with cute design</p>
+                    <div class="product-price">
+                        <span class="current-price">₹599</span>
+                        <span class="original-price">₹999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(156)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="girls">
+                <div class="product-badge">Sale</div>
+                <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300" alt="Girls Denim Skirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Girls Denim Skirt</h3>
+                    <p class="product-description">Stylish denim skirt with adjustable waist</p>
+                    <div class="product-price">
+                        <span class="current-price">₹899</span>
+                        <span class="original-price">₹1,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(67)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Boys Fashion Section -->
+    <section class="featured-products container" id="boys-section">
+        <h2 class="section-title">Boys Fashion</h2>
+        <div class="products-grid">
+            <div class="product-card" data-category="boys">
+                <div class="product-badge">New</div>
+                <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=300" alt="Boys Blue Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Boys Blue Shirt</h3>
+                    <p class="product-description">Smart casual shirt for boys</p>
+                    <div class="product-price">
+                        <span class="current-price">₹799</span>
+                        <span class="original-price">₹1,299</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(124)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="boys">
+                <img src="https://images.unsplash.com/photo-1586363104862-3a4e5e87b04d?w=300" alt="Boys Cargo Shorts" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Boys Cargo Shorts</h3>
+                    <p class="product-description">Comfortable shorts with multiple pockets</p>
+                    <div class="product-price">
+                        <span class="current-price">₹699</span>
+                        <span class="original-price">₹1,199</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(98)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="boys">
+                <div class="product-badge">Hot</div>
+                <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2a6?w=300" alt="Boys Sports T-Shirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Boys Sports T-Shirt</h3>
+                    <p class="product-description">Breathable fabric for active kids</p>
+                    <div class="product-price">
+                        <span class="current-price">₹549</span>
+                        <span class="original-price">₹899</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(156)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Children Fashion Section -->
+    <section class="featured-products container" id="children-section">
+        <h2 class="section-title">Children Fashion</h2>
+        <div class="products-grid">
+            <div class="product-card" data-category="children">
+                <div class="product-badge">New</div>
+                <img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=300" alt="Kids Winter Jacket" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Kids Winter Jacket</h3>
+                    <p class="product-description">Warm and cozy winter jacket for kids</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,999</span>
+                        <span class="original-price">₹3,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(234)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="children">
+                <img src="https://images.unsplash.com/photo-1520413624224-91d4554286ce?w=300" alt="Kids Party Dress" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Kids Party Dress</h3>
+                    <p class="product-description">Elegant party dress for special occasions</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,499</span>
+                        <span class="original-price">₹2,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(187)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="children">
+                <div class="product-badge">Sale</div>
+                <img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=300" alt="Kids Casual Set" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Kids Casual Set</h3>
+                    <p class="product-description">Comfortable everyday wear for kids</p>
+                    <div class="product-price">
+                        <span class="current-price">₹999</span>
+                        <span class="original-price">₹1,799</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopEasy</h3>
+                    <p>Your trusted online shopping destination</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Order Tracking</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-envelope"></i> vsv@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Vizag, Andhra, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEasy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality similar to homepage
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+
+                this.textContent = 'Added!';
+                this.style.background = '#28a745';
+
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

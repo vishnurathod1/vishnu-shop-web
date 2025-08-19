@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VSV Easy Shop — Reports & Analytics</title>
+  <!-- Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfQ+VrA0G7C1u3Vv6I8pcnFybZ0Yl1bQ8C4F4jK5n8r9i8T3lPZB4Ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: #11182a;
+      --muted: #9aa4b2;
+      --text: #e6e9ef;
+      --brand: #6c8cff;
+      --brand-2: #15c39a;
+      --accent: #f59f00;
+      --danger: #ff6b6b;
+      --warning: #fbbf24;
+      --success: #10b981;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+    }
+    /* Light theme */
+    :root.light{
+      --bg:#f6f7fb; --card:#ffffff; --muted:#6b7280; --text:#0f172a; --brand:#4f46e5; --brand-2:#059669; --accent:#d97706; --danger:#dc2626; --shadow:0 8px 20px rgba(2,6,23,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto; background:var(--bg); color:var(--text); display:flex;
+    }
+
+    /* Layout */
+    .sidebar{
+      width:280px; background:linear-gradient(180deg, #0e172a 0%, #0b1220 100%);
+      border-right:1px solid rgba(255,255,255,.06); padding:20px; position:sticky; top:0; height:100vh; overflow:auto;
+    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; font-size:15px; letter-spacing:.2px;}
+    .brand .logo{display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:var(--shadow)}
+
+    .nav{margin-top:24px}
+    .nav h4{font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); margin:14px 12px}
+    .nav a{
+      display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; text-decoration:none; color:var(--text);
+      transition:.2s background;
+    }
+    .nav a:hover{background:rgba(255,255,255,.06)}
+    .nav a.active{background:linear-gradient(90deg, rgba(108,140,255,.18), transparent); border:1px solid rgba(108,140,255,.35)}
+    .nav .badge{margin-left:auto; font-size:12px; color:#fff; background:var(--danger); padding:2px 8px; border-radius:999px}
+
+    .main{
+      flex:1; display:flex; flex-direction:column; min-width:0;
+    }
+    .topbar{
+      position:sticky; top:0; z-index:10; background:rgba(17,24,42,.75); backdrop-filter: blur(10px); border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex; align-items:center; gap:12px; padding:14px 20px;
+    }
+    :root.light .topbar{background:rgba(255,255,255,.8)}
+
+    .search{
+      display:flex; align-items:center; gap:10px; background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:999px; padding:10px 14px; flex:1;
+    }
+    .search input{background:transparent; border:none; outline:none; color:var(--text); width:100%}
+
+    .top-actions{display:flex; align-items:center; gap:10px}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:var(--card); color:var(--text); cursor:pointer}
+    .btn:hover{filter:brightness(1.05)}
+    .btn.primary{background:var(--brand); border-color:var(--brand)}
+    .avatar{width:36px; height:36px; border-radius:999px; background:linear-gradient(135deg,#22d3ee,#6366f1); display:grid; place-items:center; font-weight:700}
+
+    .content{padding:20px; display:grid; gap:18px}
+
+    /* KPI cards */
+    .grid{display:grid; gap:18px}
+    .grid.kpi{grid-template-columns: repeat(4, minmax(220px, 1fr))}
+    @media (max-width:1100px){.grid.kpi{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.grid.kpi{grid-template-columns:1fr}}
+
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px}
+    .card h3{margin:0 0 6px; font-size:15px; color:var(--muted); font-weight:600}
+    .card .value{font-size:28px; font-weight:700}
+    .trend{display:flex; align-items:center; gap:8px; font-size:13px}
+    .trend.up{color:var(--brand-2)}
+    .trend.down{color:var(--danger)}
+
+    /* Report sections */
+    .report-section{margin-bottom:32px}
+    .report-header{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px}
+    .report-title{font-size:24px; font-weight:700; margin:0}
+    .report-filters{display:flex; gap:12px; align-items:center}
+    
+    .filter-group{display:flex; align-items:center; gap:8px}
+    .filter-group label{font-size:13px; color:var(--muted)}
+    .filter-group select, .filter-group input{
+      background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:8px;
+      padding:6px 10px; color:var(--text); font-size:13px
+    }
+
+    /* Charts */
+    .chart-container{position:relative; height:300px; margin:16px 0}
+    .chart-grid{display:grid; grid-template-columns: 2fr 1fr; gap:18px}
+    @media (max-width:1200px){.chart-grid{grid-template-columns:1fr}}
+
+    /* Tables */
+    .table-container{overflow-x:auto}
+    table{width:100%; border-collapse:collapse; font-size:14px}
+    th, td{padding:12px 10px; border-bottom:1px solid rgba(255,255,255,.06)}
+    th{text-align:left; color:var(--muted); font-weight:600; font-size:12px; letter-spacing:.04em; text-transform:uppercase}
+    tr:hover td{background:rgba(255,255,255,.03)}
+    .status{padding:4px 10px; border-radius:999px; font-size:12px;}
+    .status.success{background:rgba(16,185,129,.15); color:var(--success)}
+    .status.warning{background:rgba(251,191,36,.15); color:var(--warning)}
+    .status.danger{background:rgba(220,38,38,.15); color:var(--danger)}
+
+    /* Export buttons */
+    .export-group{display:flex; gap:8px}
+    .export-btn{padding:8px 12px; font-size:12px; border-radius:8px}
+
+    /* Toggle + collapse */
+    .toggle{display:none}
+    @media (max-width:960px){
+      .sidebar{position:fixed; left:0; top:0; transform:translateX(-100%); transition:.2s transform; z-index:30}
+      .sidebar.open{transform:translateX(0)}
+      .toggle{display:inline-flex}
+      body.nav-open::after{content:""; position:fixed; inset:0; backdrop-filter:blur(2px); background:rgba(0,0,0,.35);}
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="logo"><i class="fa-solid fa-bag-shopping"></i></div>
+      <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+    </div>
+
+    <nav class="nav">
+      <h4>Menu</h4>
+      <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+      <a href="orders.html"><i class="fa-solid fa-clipboard-list"></i>Orders <span class="badge">8</span></a>
+      <a href="products.html"><i class="fa-solid fa-box"></i>Products</a>
+      <a href="customersindashboard.html"><i class="fa-solid fa-users"></i>Customers</a>
+      <a href="inventory-updated.html"><i class="fa-solid fa-warehouse"></i>Inventory</a>
+      <a href="promotions.html"><i class="fa-solid fa-percent"></i>Promotions</a>
+      <a href="reports.html" class="active"><i class="fa-solid fa-chart-pie"></i>Reports</a>
+      <h4>Settings</h4>
+      <a href="#"><i class="fa-solid fa-gear"></i>Store Settings</a>
+      <a href=""><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <!-- Topbar -->
+    <div class="topbar">
+      <button class="btn toggle" id="navToggle"><i class="fa-solid fa-bars"></i></button>
+      <div class="search">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input placeholder="Search reports, data..." />
+      </div>
+      <div class="top-actions">
+        <button class="btn" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="btn"><i class="fa-regular fa-bell"></i></button>
+        <div class="avatar">VL</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Page Header -->
+      <div class="report-header">
+        <h1 class="report-title">Reports & Analytics</h1>
+        <div class="export-group">
+          <button class="btn export-btn" onclick="exportReport('pdf')">
+            <i class="fa-solid fa-file-pdf"></i> Export PDF
+          </button>
+          <button class="btn export-btn" onclick="exportReport('excel')">
+            <i class="fa-solid fa-file-excel"></i> Export Excel
+          </button>
+          <button class="btn export-btn" onclick="exportReport('csv')">
+            <i class="fa-solid fa-file-csv"></i> Export CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Report Filters -->
+      <div class="card">
+        <div class="report-filters">
+          <div class="filter-group">
+            <label>Date Range:</label>
+            <select id="dateRange">
+              <option value="today">Today</option>
+              <option value="week">This Week</option>
+              <option value="month" selected>This Month</option>
+              <option value="quarter">This Quarter</option>
+              <option value="year">This Year</option>
+              <option value="custom">Custom Range</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Category:</label>
+            <select id="categoryFilter">
+              <option value="all">All Categories</option>
+              <option value="fashion">Fashion</option>
+              <option value="electronics">Electronics</option>
+              <option value="home">Home & Decor</option>
+              <option value="sports">Sports</option>
+              <option value="kids">Kids</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Report Type:</label>
+            <select id="reportType">
+              <option value="sales">Sales Report</option>
+              <option value="inventory">Inventory Report</option>
+              <option value="customer">Customer Report</option>
+              <option value="performance">Performance Report</option>
+            </select>
+          </div>
+          <button class="btn primary" onclick="generateReport()">
+            <i class="fa-solid fa-refresh"></i> Generate
+          </button>
+        </div>
+      </div>
+
+      <!-- Sales Overview -->
+      <section class="report-section">
+        <div class="report-header">
+          <h2>Sales Overview</h2>
+          <div class="report-filters">
+            <span>Total Revenue: ₹2,847,320</span>
+            <span style="color: var(--brand-2)">↑ 23.5% vs last period</span>
+          </div>
+        </div>
+        
+        <div class="chart-grid">
+          <div class="card">
+            <div class="chart-container">
+              <canvas id="salesTrendChart"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="chart-container">
+              <canvas id="revenueBreakdownChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Top Products -->
+      <section class="report-section">
+        <div class="report-header">
+          <h2>Top Performing Products</h2>
+          <button class="btn">View All Products</button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>SKU</th>
+                <th>Units Sold</th>
+                <th>Revenue</th>
+                <th>Growth</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Wireless Earbuds Pro</td>
+                <td>ELC-001-WH</td>
+                <td>1,247</td>
+                <td>₹374,100</td>
+                <td class="trend up">+45.2%</td>
+                <td><span class="status success">Best Seller</span></td>
+              </tr>
+              <tr>
+                <td>Running Shoes Ultra</td>
+                <td>SHO-492-BL</td>
+                <td>892</td>
+                <td>₹267,600</td>
+                <td class="trend up">+28.7%</td>
+                <td><span class="status success">Trending</span></td>
+              </tr>
+              <tr>
+                <td>Smart Watch Series 5</td>
+                <td>WAT-789-BK</td>
+                <td>634</td>
+                <td>₹253,600</td>
+                <td class="trend up">+15.3%</td>
+                <td><span class="status success">Popular</span></td>
+              </tr>
+              <tr>
+                <td>Yoga Mat Premium</td>
+                <td>SPT-234-PU</td>
+                <td>523</td>
+                <td>₹78,450</td>
+                <td class="trend down">-5.2%</td>
+                <td><span class="status warning">Declining</span></td>
+              </tr>
+              <tr>
+                <td>Kids Backpack Dino</td>
+                <td>BAG-315-KD</td>
+                <td>445</td>
+                <td>₹66,750</td>
+                <td class="trend up">+12.8%</td>
+                <td><span class="status success">Steady</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Customer Analytics -->
+      <section class="report-section">
+        <div class="report-header">
+          <h2>Customer Analytics</h2>
+          <div class="report-filters">
+            <span>Total Customers: 8,492</span>
+            <span style="color: var(--brand-2)">↑ 18.3% new customers</span>
+          </div>
+        </div>
+        
+        <div class="chart-grid">
+          <div class="card">
+            <h3>Customer Acquisition</h3>
+            <div class="chart-container">
+              <canvas id="customerAcquisitionChart"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Customer Lifetime Value</h3>
+            <div class="chart-container">
+              <canvas id="clvChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Inventory Report -->
+      <section class="report-section">
+        <div class="report-header">
+          <h2>Inventory Report</h2>
+          <button class="btn">Manage Inventory</button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Current Stock</th>
+                <th>Sold This Month</th>
+                <th>Reorder Level</th>
+                <th>Stock Value</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Wireless Earbuds Pro</td>
+                <td>156</td>
+                <td>89</td>
+                <td>50</td>
+                <td>₹46,800</td>
+                <td><span class="status success">In Stock</span></td>
+              </tr>
+              <tr>
+                <td>Running Shoes Ultra</td>
+                <td>23</td>
+                <td>67</td>
+                <td>30</td>
+                <td>₹6,900</td>
+                <td><span class="status warning">Low Stock</span></td>
+              </tr>
+              <tr>
+                <td>Smart Watch Series 5</td>
+                <td>78</td>
+                <td>45</td>
+                <td>25</td>
+                <td>₹31,200</td>
+                <td><span class="status success">In Stock</span></td>
+              </tr>
+              <tr>
+                <td>Kids Backpack Dino</td>
+                <td>8</td>
+                <td>32</td>
+                <td>15</td>
+                <td>₹1,200</td>
+                <td><span class="status danger">Critical</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Performance Metrics -->
+      <section class="report-section">
+        <div class="report-header">
+          <h2>Performance Metrics</h2>
+        </div>
+        <div class="grid kpi">
+          <article class="card">
+            <h3>Conversion Rate</h3>
+            <div class="value">3.7%</div>
+            <div class="trend up"><i class="fa-solid fa-arrow-up"></i> +0.8% vs last month</div>
+          </article>
+          <article class="card">
+            <h3>Average Order Value</h3>
+            <div class="value">₹2,847</div>
+            <div class="trend up"><i class="fa-solid fa-arrow-up"></i> +12.3% vs last month</div>
+          </article>
+          <article class="card">
+            <h3>Cart Abandonment</h3>
+            <div class="value">68.2%</div>
+            <div class="trend down"><i class="fa-solid fa-arrow-down"></i> -5.1% vs last month</div>
+          </article>
+          <article class="card">
+            <h3>Return Rate</h3>
+            <div class="value">2.4%</div>
+            <div class="trend down"><i class="fa-solid fa-arrow-down"></i> -0.7% vs last month</div>
+          </article>
+        </div>
+      </section>
+
+      <div class="footer">© 2025 VSV Easy Shop • Reports & Analytics</div>
+    </div>
+  </main>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'light'){ root.classList.add('light'); }
+
+    themeToggle.addEventListener('click', () => {
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Sidebar toggle (mobile)
+    const navToggle = document.getElementById('navToggle');
+    const sidebar = document.getElementById('sidebar');
+    navToggle?.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      document.body.classList.toggle('nav-open');
+    });
+
+    // Charts
+    const styles = getComputedStyle(document.documentElement);
+    const cBrand = styles.getPropertyValue('--brand').trim();
+    const cBrand2 = styles.getPropertyValue('--brand-2').trim();
+    const cAccent = styles.getPropertyValue('--accent').trim();
+    const cDanger = styles.getPropertyValue('--danger').trim();
+    const cSuccess = styles.getPropertyValue('--success').trim();
+
+    // Sales Trend Chart
+    const salesTrendCtx = document.getElementById('salesTrendChart');
+    const salesTrendChart = new Chart(salesTrendCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Revenue (₹K)',
+          data: [220, 240, 235, 290, 310, 325, 318, 360, 342, 390, 410, 455],
+          borderColor: cBrand,
+          backgroundColor: cBrand + '22',
+          fill: true,
+          tension: 0.4,
+          borderWidth: 2
+        }, {
+          label: 'Orders',
+          data: [85, 92, 88, 110, 118, 125, 120, 145, 138, 155, 162, 178],
+          borderColor: cBrand2,
+          backgroundColor: cBrand2 + '22',
+          fill: true,
+          tension: 0.4,
+          borderWidth: 2,
+          yAxisID: 'y1'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,.08)' } },
+          y1: { position: 'right', grid: { display: false } },
+          x: { grid: { display: false } }
+        },
+        plugins: { 
+          legend: { 
+            labels: { color: styles.getPropertyValue('--text').trim() } 
+          } 
+        }
+      }
+    });
+
+    // Revenue Breakdown Chart
+    const revenueBreakdownCtx = document.getElementById('revenueBreakdownChart');
+    const revenueBreakdownChart = new Chart(revenueBreakdownCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Fashion', 'Electronics', 'Home & Decor', 'Sports', 'Kids', 'Beauty'],
+        datasets: [{
+          data: [32, 27, 18, 14, 9, 8],
+          backgroundColor: [cBrand, cBrand2, cAccent, cDanger, cSuccess, '#8b5cf6']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { color: styles.getPropertyValue('--text').trim() }
+          }
+        }
+      }
+    });
+
+    // Customer Acquisition Chart
+    const customerAcquisitionCtx = document.getElementById('customerAcquisitionChart');
+    const customerAcquisitionChart = new Chart(customerAcquisitionCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'New Customers',
+          data: [45, 52, 48, 65, 78, 82, 75, 89, 92, 98, 105, 118],
+          backgroundColor: cBrand,
+          borderRadius: 4
+        }, {
+          label: 'Returning Customers',
+          data: [120, 135, 128, 145, 158, 162, 155, 169, 172, 178, 185, 198],
+          backgroundColor: cBrand2,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,.08)' } },
+          x: { grid: { display: false } }
+        },
+        plugins: {
+          legend: {
+            labels: { color: styles.getPropertyValue('--text').trim() }
+          }
+        }
+      }
+    });
+
+    // Customer Lifetime Value Chart
+    const clvCtx = document.getElementById('clvChart');
+    const clvChart = new Chart(clvCtx, {
+      type: 'line',
+      data: {
+        labels: ['0-30 days', '31-60 days', '61-90 days', '91-180 days', '181-365 days', '365+ days'],
+        datasets: [{
+          label: 'Average CLV (₹)',
+          data: [1250, 2850, 4200, 6800, 12500, 18900],
+          borderColor: cSuccess,
+          backgroundColor: cSuccess + '22',
+          fill: true,
+          tension: 0.4,
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,.08)' } },
+          x: { grid: { display: false } }
+        },
+        plugins: {
+          legend: {
+            labels: { color: styles.getPropertyValue('--text').trim() }
+          }
+        }
+      }
+    });
+
+    // Report generation
+    function generateReport() {
+      const dateRange = document.getElementById('dateRange').value;
+      const category = document.getElementById('categoryFilter').value;
+      const reportType = document.getElementById('reportType').value;
+      
+      // Simulate report generation
+      console.log(`Generating ${reportType} report for ${dateRange} in ${category}`);
+      
+      // Update charts with new data
+      updateCharts(dateRange, category, reportType);
+    }
+
+    function updateCharts(dateRange, category, reportType) {
+      // This would typically fetch new data from API
+      // For demo purposes, we'll just log the parameters
+      console.log('Updating charts with:', { dateRange, category, reportType });
+    }
+
+    function exportReport(format) {
+      const dateRange = document.getElementById('dateRange').value;
+      const reportType = document.getElementById('reportType').value;
+      
+      // Simulate export functionality
+      console.log(`Exporting ${reportType} report as ${format} for ${dateRange}`);
+      
+      // Create download link
+      const filename = `vsv-report-${reportType}-${dateRange}.${format}`;
+      const link = document.createElement('a');
+      link.href = `data:text/plain;charset=utf-8,Report data for ${reportType}`;
+      link.download = filename;
+      link.click();
+    }
+
+    // Auto-refresh data every 5 minutes
+    setInterval(() => {
+      generateReport();
+    }, 300000);
+  </script>
+</body>
+</html>

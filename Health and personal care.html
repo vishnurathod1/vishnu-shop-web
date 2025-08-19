@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Health & Personal Care - ShopEasy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                <link rel="stylesheet" href="footer-styles.css">
+ <script src="add-to-cart.js"></script>
+<style>
+        .health-hero {
+            background: linear-gradient(rgba(34, 139, 34, 0.7), rgba(34, 139, 34, 0.7)),
+                url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754654477/download_10_exwey0.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .health-hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+        .category-section {
+            margin: 60px 0;
+            padding: 0 20px;
+        }
+        .category-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #228B22;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #228B22, #32CD32);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #228B22;
+            margin-bottom: 8px;
+        }
+        .product-description {
+            color: #7F8C8D;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .product-price {
+            margin-bottom: 15px;
+        }
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #228B22;
+        }
+        .original-price {
+            font-size: 1.1rem;
+            color: #95A5A6;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        .product-rating {
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+        .product-rating span {
+            color: #7F8C8D;
+            margin-left: 5px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .add-to-cart-btn, .buy-now-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .add-to-cart-btn {
+            background: linear-gradient(45deg, #228B22, #32CD32);
+            color: white;
+        }
+        .buy-now-btn {
+            background: linear-gradient(45deg, #006400, #008000);
+            color: white;
+        }
+        .add-to-cart-btn:hover, .buy-now-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #228B22;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="clothing.html" class="nav-link">Fashion</a>
+                    <a href="books.html" class="nav-link">Books</a>
+                    <a href="home-decor.html" class="nav-link">Home Decor</a>
+                </nav>
+               
+            <div class="nav-icons">
+                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                    </a>
+                    <a href="cart.html" class="icon-link"></a>
+                   <a href="vsv-login.html" class="icon-link" id="userIcon">
+                        <span class="user-status">sign out</span>
+</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Health & Personal Care Hero Section -->
+    <section class="health-hero">
+        <h1>Health & Personal Care Essentials</h1>
+        <p>Quality products to keep you healthy and happy</p>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="category-section" id="skincare">
+        <h2 class="category-title">Skincare</h2>
+        <div class="products-grid">
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754737061/download_19_vobons.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Moisturizer</h3>
+                    <p class="product-description">Hydrating and nourishing cream</p>
+                    <div class="product-price">
+                        <span class="current-price">₹499</span>
+                        <span class="original-price">₹699</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(120)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736977/Anessa_Perfect_UV_Sunscreen_Skincare_Milk_SPF_50_PA_60ml_xt56hm.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Sunscreen</h3>
+                    <p class="product-description">Protects against harmful UV rays</p>
+                    <div class="product-price">
+                        <span class="current-price">₹399</span>
+                        <span class="original-price">₹599</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(150)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736942/Cetaphil_skin_cleanser_ugrefr.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Face Wash</h3>
+                    <p class="product-description">Gentle cleansing formula</p>
+                    <div class="product-price">
+                        <span class="current-price">₹299</span>
+                        <span class="original-price">₹399</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(100)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736887/Covercoco_Luxury_24k_Gold_Face_Serum_Moisturizing_And_Anti-aging_For_Female_Brightening_Serum_For_Hands_And_Nose_Oem_odm_jddir3.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Serum</h3>
+                    <p class="product-description">Brightening and anti-aging</p>
+                    <div class="product-price">
+                        <span class="current-price">₹799</span>
+                        <span class="original-price">₹999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(130)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736845/%D9%82%D9%86%D8%A7%D8%B9_%D8%AA%D9%82%D8%B4%D9%8A%D8%B1_%D8%A7%D9%84%D8%B0%D9%87%D8%A8_%D8%B9%D9%8A%D8%A7%D8%B1_24_%D9%82%D9%8A%D8%B1%D8%A7%D8%B7_%D9%82%D9%86%D8%A7%D8%B9_%D8%A5%D8%B2%D8%A7%D9%84%D8%A9_%D8%A7%D9%84%D8%B1%D8%A4%D9%88%D8%B3_%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D8%A1_%D9%88%D8%AD%D8%A8_%D8%A7%D9%84%D8%B4%D8%A8%D8%A7%D8%A8_%D9%82%D9%86%D8%A7%D8%B9_%D8%A7%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D9%81_%D8%A7%D9%84%D8%B9%D9%85%D9%8A%D9%82_%D9%82%D9%86%D8%A7%D8%B9_%D8%A7%D9%84%D8%AA%D9%82%D8%B4%D9%8A%D8%B1_vdgpy7.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Face Mask</h3>
+                    <p class="product-description">Deep cleansing and hydration</p>
+                    <div class="product-price">
+                        <span class="current-price">₹299</span>
+                        <span class="original-price">₹399</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(110)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" id="oral-care">
+        <h2 class="category-title">Oral Care</h2>
+        <div class="products-grid">
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736798/Niacinamide_Whitening_Toothpaste_-_For_Healthier_Whiter_Teeth_jj2tbj.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Toothpaste</h3>
+                    <p class="product-description">Whitening and cavity protection</p>
+                    <div class="product-price">
+                        <span class="current-price">₹199</span>
+                        <span class="original-price">₹299</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(140)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736760/download_18_cozktu.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Toothbrush</h3>
+                    <p class="product-description">Soft bristles for gentle cleaning</p>
+                    <div class="product-price">
+                        <span class="current-price">₹299</span>
+                        <span class="original-price">₹399</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(120)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736688/Listerine_taotex.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Mouthwash</h3>
+                    <p class="product-description">Freshens breath and kills germs</p>
+                    <div class="product-price">
+                        <span class="current-price">₹249</span>
+                        <span class="original-price">₹349</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(110)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736650/Private_Label_Colored_Fruit_Flavor_Oral_Tooth_GUM_Care___Plastic_Flosser_Toothpick_Dental_Floss_Pick__Make_flossing_fun_and_e_nqkql4.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Dental Floss</h3>
+                    <p class="product-description">Removes plaque and food particles</p>
+                    <div class="product-price">
+                        <span class="current-price">₹149</span>
+                        <span class="original-price">₹199</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(90)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736616/1pc_Electric_Toothbrush_Holder_Wall-Mounted_Household_Toothbrush_Rack_Home_Bathroom_Decor_Fall_Decor_Back_To_School_xndutn.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Electric Toothbrush</h3>
+                    <p class="product-description">Rechargeable with multiple modes</p>
+                    <div class="product-price">
+                        <span class="current-price">₹999</span>
+                        <span class="original-price">₹1,199</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(130)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" id="hair-care">
+        <h2 class="category-title">Hair Care</h2>
+        <div class="products-grid">
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736559/Mercado_Livre_srqudi.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Shampoo</h3>
+                    <p class="product-description">Nourishing and strengthening formula</p>
+                    <div class="product-price">
+                        <span class="current-price">₹399</span>
+                        <span class="original-price">₹499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(140)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736528/5_Products_Allure_s_Executive_Beauty_Director_Is_Obsessing_Over_This_Week_xkhnax.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Conditioner</h3>
+                    <p class="product-description">Smooth and silky hair</p>
+                    <div class="product-price">
+                        <span class="current-price">₹349</span>
+                        <span class="original-price">₹449</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(120)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736499/African_Pride_Olive_Miracle_Anti-Breakage_Growth_Oil_8_oz___eBay_d6njqn.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Hair Oil</h3>
+                    <p class="product-description">Nourishes and strengthens hair</p>
+                    <div class="product-price">
+                        <span class="current-price">₹299</span>
+                        <span class="original-price">₹399</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(110)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736449/Frizz-Free_Hair_Magic_Sta_pnczc7.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Hair Serum</h3>
+                    <p class="product-description">Smoothens and adds shine</p>
+                    <div class="product-price">
+                        <span class="current-price">₹399</span>
+                        <span class="original-price">₹499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(120)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+<img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736410/The_Best_Hair_Masks_For_Dry_Damaged_Hair_That_You_Need_To_Try_blhqcc.jpg" alt="Product Image" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Hair Mask</h3>
+                    <p class="product-description">Deep conditioning treatment</p>
+                    <div class="product-price">
+                        <span class="current-price">₹499</span>
+                        <span class="original-price">₹599</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(130)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopEasy</h3>
+                    <p>Your trusted online shopping destination for health and personal care</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="shipping-info.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="fashion-category.html">Fashion</a></li>
+                        <li><a href="books.html">Books</a></li>
+                        <li><a href="home-decor.html">Home Decor</a></li>
+                        <li><a href="electronics.html">Electronics</a></li>
+                        <li><a href="health-personal-care.html">Health & Personal Care</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-envelope"></i> support@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Vizag, Andhra, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEasy Health & Personal Care. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+
+                this.textContent = 'Added!';
+                this.style.background = '#228B22';
+
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = 'linear-gradient(45deg, #228B22, #32CD32)';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

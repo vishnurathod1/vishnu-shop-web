@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Groceries - ShopEasy</title>
+       <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+                 <link rel="stylesheet" href="footer-styles.css">
+<script src="add-to-cart.js"></script>
+<style>
+        .groceries-hero {
+            background: linear-gradient(rgba(144, 238, 144, 0.8), rgba(34, 139, 34, 0.8)),
+                url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=300');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .groceries-hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+        .category-section {
+            margin: 60px 0;
+            padding: 0 20px;
+        }
+        .category-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #228B22;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #228B22, #32CD32);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+            aspect-ratio: 4/3;
+            transition: transform 0.3s ease;
+            background-color: #f0f0f0;
+            background-image: linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0),
+                              linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .product-image {
+                height: 200px;
+                aspect-ratio: 1/1;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-image {
+                height: 180px;
+            }
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2E8B57;
+            margin-bottom: 8px;
+        }
+        .product-description {
+            color: #7F8C8D;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .product-price {
+            margin-bottom: 15px;
+        }
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #228B22;
+        }
+        .original-price {
+            font-size: 1.1rem;
+            color: #95A5A6;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        .product-rating {
+            margin-bottom: 15px;
+            color: #32CD32;
+        }
+        .product-rating span {
+            color: #7F8C8D;
+            margin-left: 5px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .add-to-cart-btn, .buy-now-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .add-to-cart-btn {
+            background: linear-gradient(45deg, #32CD32, #228B22);
+            color: white;
+        }
+        .buy-now-btn {
+            background: linear-gradient(45deg, #006400, #228B22);
+            color: white;
+        }
+        .add-to-cart-btn:hover, .buy-now-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="fashion-category.html" class="nav-link">Fashion</a>
+                    <a href="groceries.html" class="nav-link active">Groceries</a>
+                    <a href="home-decor.html" class="nav-link">Home Decor</a>
+                </nav>
+               
+            <div class="nav-icons">
+                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                    </a>
+                    <a href="cart.html" class="icon-link"></a>
+                   <a href="vsv-login.html" class="icon-link" id="userIcon">
+                        <span class="user-status">sign out</span>
+</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Groceries Hero Section -->
+    <section class="groceries-hero">
+        <h1>Welcome to Groceries Collection 2025</h1>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="category-section" id="fruits">
+        <h2 class="category-title">Fruits</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727757/Top_view_delicious_apples_arrangement_fdavs2.jpg" alt="Fresh Apples" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fresh Apples</h3>
+                    <p class="product-description">Crisp and juicy apples</p>
+                    <div class="product-price">
+                        <span class="current-price">₹120</span>
+                        <span class="original-price">₹150</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(85)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727867/Descubra_a_melhor_forma_de_guardar_bananas_e_ter_a_fruta_fresca_veja_receitas_yu4mzm.jpg" alt="Fresh Bananas" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fresh Bananas</h3>
+                    <p class="product-description">Sweet and ripe bananas</p>
+                    <div class="product-price">
+                        <span class="current-price">₹60</span>
+                        <span class="original-price">₹80</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(90)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727974/download_awzrss.jpg" alt="Fresh Oranges" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fresh Oranges</h3>
+                    <p class="product-description">Vitamin C rich oranges</p>
+                    <div class="product-price">
+                        <span class="current-price">₹100</span>
+                        <span class="original-price">₹120</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(75)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754728094/Mango_season_baby_wani6c.jpg" alt="Fresh Mangoes" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fresh Mangoes</h3>
+                    <p class="product-description">Sweet and juicy mangoes</p>
+                    <div class="product-price">
+                        <span class="current-price">₹150</span>
+                        <span class="original-price">₹180</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(110)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754728160/grapes_qsleg8.jpg" alt="Fresh Grapes" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fresh Grapes</h3>
+                    <p class="product-description">Seedless and sweet grapes</p>
+                    <div class="product-price">
+                        <span class="current-price">₹130</span>
+                        <span class="original-price">₹160</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(95)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" id="vegetables">
+        <h2 class="category-title">Vegetables</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754674340/Tomatoes_ekdceu.jpg" alt="Fresh Tomatoes" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fresh Tomatoes</h3>
+                    <p class="product-description">Organic and ripe tomatoes</p>
+                    <div class="product-price">
+                        <span class="current-price">₹40</span>
+                        <span class="original-price">₹50</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(80)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754674440/carrots_ipzuif.jpg" alt="Fresh Potatoes" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fresh Carrots</h3>
+                    <p class="product-description">Fresh and healthy Carrots</p>
+                    <div class="product-price">
+                        <span class="current-price">₹30</span>
+                        <span class="original-price">₹40</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(75)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754674263/onions_wpifzi.jpg" alt="Fresh Onions" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fresh Onions</h3>
+                    <p class="product-description">Crisp and flavorful onions</p>
+                    <div class="product-price">
+                        <span class="current-price">₹35</span>
+                        <span class="original-price">₹45</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(70)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+                </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754674536/Brinjal_pilzuj.jpg" alt="Fresh Capsicum" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fresh Brinjal</h3>
+                    <p class="product-description">fresh Brinjal</p>
+                    <div class="product-price">
+                        <span class="current-price">₹50</span>
+                        <span class="original-price">₹60</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(85)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754726903/Zucchini_Photos_-_Download_Free_High-Quality_Pictures___Freepik_rj9aah.jpg" alt="Fresh Cucumber" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fresh Cucumber</h3>
+                    <p class="product-description">Cool and refreshing cucumber</p>
+                    <div class="product-price">
+                        <span class="current-price">₹40</span>
+                        <span class="original-price">₹50</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(90)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section" id="dairy">
+        <h2 class="category-title">Dairy Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727023/Bainne_%C3%9Ar_Fresh_Irish_Milk_vc1tun.jpg" alt="Fresh Milk" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Fresh Milk</h3>
+                    <p class="product-description">Pure and fresh milk</p>
+                    <div class="product-price">
+                        <span class="current-price">₹50</span>
+                        <span class="original-price">₹60</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(80)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727142/Molho_de_queijo_espirrando_no_ar_com_queijo_cheddar___PSD_Premium_1_owyh6d.jpg" alt="Cheese" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Cheese</h3>
+                    <p class="product-description">Delicious cheese varieties</p>
+                    <div class="product-price">
+                        <span class="current-price">₹150</span>
+                        <span class="original-price">₹180</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(110)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727405/Califia_Farms_Dairy-Free_Yogurt_Drinks_Review_Info_Cultured_Probiotic_yuunzc.jpg" alt="Yogurt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Yogurt</h3>
+                    <p class="product-description">Fresh and creamy yogurt</p>
+                    <div class="product-price">
+                        <span class="current-price">₹80</span>
+                        <span class="original-price">₹100</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                        <span>(90)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727473/Avoid_All_Butter_Brands_Except_These_8_oqjh6f.jpg" alt="Butter" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Butter</h3>
+                    <p class="product-description">Creamy and fresh butter</p>
+                    <div class="product-price">
+                        <span class="current-price">₹120</span>
+                        <span class="original-price">₹150</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(100)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727552/Let_s_Be_Real_Hershey_s_New_Caramel-Flavored_Whipped_Cream_Is_Going_Directly_in_My_Mouth_unkbsi.jpg" alt="Cream" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Cream</h3>
+                    <p class="product-description">Rich and smooth cream</p>
+                    <div class="product-price">
+                        <span class="current-price">₹130</span>
+                        <span class="original-price">₹160</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(110)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopEasy</h3>
+                    <p>Your trusted online shopping destination for groceries</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="shipping-info.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="fashion-category.html">Fashion</a></li>
+                        <li><a href="groceries.html">Groceries</a></li>
+                        <li><a href="home-decor.html">Home Decor</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-envelope"></i> groceries@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Vizag, Andhra, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEasy Groceries. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                cartCount++;
+                cartCountElement.textContent = cartCount;
+
+                this.textContent = 'Added!';
+                this.style.background = '#228B22';
+
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = 'linear-gradient(45deg, #32CD32, #228B22)';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

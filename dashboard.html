@@ -206,6 +206,22 @@
         </article>
       </section>
 
+      <!-- Bar Graph Section -->
+      <section class="grid" style="grid-template-columns:1fr;">
+        <article class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <h2>Monthly Sales by Category</h2>
+            <div>
+              <button class="btn" onclick="updateBarChart('current')">Current</button>
+              <button class="btn" onclick="updateBarChart('previous')">Previous</button>
+            </div>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="barChart" height="130"></canvas>
+          </div>
+        </article>
+      </section>
+
       <!-- Tables -->
       <section class="grid" style="grid-template-columns:1fr;">
         <article class="card">
@@ -398,7 +414,52 @@
       if(mode==='q'){ salesChart.data.labels = ['Q1','Q2','Q3','Q4']; salesChart.data.datasets[0].data = [695, 925, 1015, 1180]; }
       salesChart.update();
     }
-    
+
+    // Bar Chart Implementation
+    const barCtx = document.getElementById('barChart');
+    const barChart = new Chart(barCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Fashion', 'Electronics', 'Home', 'Sports', 'Kids'],
+        datasets: [{
+          label: 'Current Month Sales (₹K)',
+          data: [320, 275, 180, 145, 95],
+          backgroundColor: [cBrand, cBrand2, cAccent, '#ef4444', '#22c55e'],
+          borderColor: [cBrand, cBrand2, cAccent, '#ef4444', '#22c55e'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: { color: 'rgba(255,255,255,.08)' }
+          },
+          x: {
+            grid: { display: false }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: { color: styles.getPropertyValue('--text').trim() }
+          }
+        }
+      }
+    });
+
+    // Bar chart update function
+    function updateBarChart(period) {
+      if(period === 'current') {
+        barChart.data.datasets[0].label = 'Current Month Sales (₹K)';
+        barChart.data.datasets[0].data = [320, 275, 180, 145, 95];
+      } else {
+        barChart.data.datasets[0].label = 'Previous Month Sales (₹K)';
+        barChart.data.datasets[0].data = [290, 250, 165, 130, 85];
+      }
+      barChart.update();
+    }
   </script>
 </body>
 </html>

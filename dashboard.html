@@ -217,7 +217,7 @@
             </div>
           </div>
           <div class="chart-wrap">
-            <canvas id="barChart" height="130"></canvas>
+            <canvas id="barChart" height="150"></canvas>
           </div>
         </article>
       </section>
@@ -423,7 +423,7 @@
         labels: ['Fashion', 'Electronics', 'Home', 'Sports', 'Kids'],
         datasets: [{
           label: 'Current Month Sales (₹K)',
-          data: [320, 275, 180, 145, 95],
+          data: [1200, 570, 180, 145, 120],
           backgroundColor: [cBrand, cBrand2, cAccent, '#ef4444', '#22c55e'],
           borderColor: [cBrand, cBrand2, cAccent, '#ef4444', '#22c55e'],
           borderWidth: 1
@@ -453,10 +453,10 @@
     function updateBarChart(period) {
       if(period === 'current') {
         barChart.data.datasets[0].label = 'Current Month Sales (₹K)';
-        barChart.data.datasets[0].data = [320, 275, 180, 145, 95];
+        barChart.data.datasets[0].data=[1200, 570, 180, 145, 120];
       } else {
         barChart.data.datasets[0].label = 'Previous Month Sales (₹K)';
-        barChart.data.datasets[0].data = [290, 250, 165, 130, 85];
+        barChart.data.datasets[0].data = [1500 ,1250, 1065, 400,200 ];
       }
       barChart.update();
     }

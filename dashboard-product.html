@@ -132,7 +132,7 @@
       </div>
       <div class="top-actions">
         <button class="btn" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
-        <button class="btn"><i class="fa-regular fa-bell"></i></button>
+        <button class="btn"><i class="fa-solid fa-download"></i></button>
         <div class="avatar">VL</div>
       </div>
     </div>
@@ -149,7 +149,7 @@
               <input type="text" id="productName" placeholder="Enter product name" required>
             </div>
             <div class="form-group">
-              <label for="productSKU">product id *</label>
+              <label for="productSKU">SKU *</label>
               <input type="text" id="productSKU" placeholder="PROD-001" required>
             </div>
           </div>
@@ -268,6 +268,171 @@
       document.body.classList.toggle('nav-open');
     });
 
+    // Store products data
+    let products = [
+      {
+        name: "Wireless Headphones",
+        sku: "ELC-001",
+        price: "1999",
+        stock: "45",
+        category: "electronics",
+        description: "High-quality wireless headphones",
+        image: ""
+      },
+      {
+        name: "Running Shoes",
+        sku: "FAS-002",
+        price: "3499",
+        stock: "22",
+        category: "fashion",
+        description: "Comfortable running shoes",
+        image: ""
+      }
+    ];
+
+    let editingIndex = -1;
+
+    // Render products table
+    function renderProductsTable() {
+      const table = document.getElementById('productTable');
+      table.innerHTML = '';
+      
+      products.forEach((product, index) => {
+        const row = table.insertRow();
+        row.innerHTML = `
+          <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${product.name}</td>
+          <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${product.sku}</td>
+          <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">₹${parseFloat(product.price).toLocaleString()}</td>
+          <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${product.stock}</td>
+          <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${product.category}</td>
+          <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">
+            <button class="btn edit-btn" style="padding:6px 12px" data-index="${index}"><i class="fa-solid fa-edit"></i></button>
+            <button class="btn delete-btn" style="padding:6px 12px" data-index="${index}"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        `;
+      });
+
+      // Add event listeners to edit and delete buttons
+      document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const index = e.target.closest('.edit-btn').dataset.index;
+          editProduct(index);
+        });
+      });
+
+      document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const index = e.target.closest('.delete-btn').dataset.index;
+          deleteProduct(index);
+        });
+      });
+    }
+
+    // Edit product function
+    function editProduct(index) {
+      const product = products[index];
+      editingIndex = index;
+      
+      // Populate form with product data
+      document.getElementById('productName').value = product.name;
+      document.getElementById('productSKU').value = product.sku;
+      document.getElementById('productPrice').value = product.price;
+      document.getElementById('productStock').value = product.stock;
+      document.getElementById('productCategory').value = product.category;
+      document.getElementById('productDescription').value = product.description;
+      document.getElementById('productImage').value = product.image;
+      
+      // Change form button to "Update Product"
+      const submitBtn = document.querySelector('#productForm button[type="submit"]');
+      submitBtn.innerHTML = '<i class="fa-solid fa-save"></i> Update Product';
+      submitBtn.dataset.mode = 'edit';
+    }
+
+    // Delete product function
+    function deleteProduct(index) {
+      if (confirm('Are you sure you want to delete this product?')) {
+        products.splice(index, 1);
+        renderProductsTable();
+        alert('Product deleted successfully!');
+      }
+    }
+
+    // Export products to CSV
+    function exportToCSV() {
+      const headers = ['Name', 'SKU', 'Price', 'Stock', 'Category', 'Description'];
+      const csvContent = [
+        headers.join(','),
+        ...products.map(product => [
+          `"${product.name}"`,
+          `"${product.sku}"`,
+          `"${product.price}"`,
+          `"${product.stock}"`,
+          `"${product.category}"`,
+          `"${product.description}"`
+        ].join(','))
+      ].join('\n');
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'products_export.csv');
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Filter products
+    function filterProducts() {
+      console.log("Filter function triggered");
++      console.log("Category entered:", category);
+      const category = prompt('Enter category to filter by (electronics, fashion, home, beauty, sports, books):');
+      console.log("Category entered:", category);
+      if (category) {
+        const filteredProducts = products.filter(product => 
+          product.category.toLowerCase() === category.toLowerCase()
+        );
+        
+        if (filteredProducts.length === 0) {
+          alert('No products found in this category.');
+          return;
+        }
+        
+        // Create temporary filtered view
+        const table = document.getElementById('productTable');
+        table.innerHTML = '';
+        
+        filteredProducts.forEach((product, index) => {
+          const row = table.insertRow();
+          row.innerHTML = `
+            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${product.name}</td>
+            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${product.sku}</td>
+            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">₹${parseFloat(product.price).toLocaleString()}</td>
+            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${product.stock}</td>
+            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${product.category}</td>
+            <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">
+              <button class="btn edit-btn" style="padding:6px 12px" data-index="${index}"><i class="fa-solid fa-edit"></i></button>
+              <button class="btn delete-btn" style="padding:6px 12px" data-index="${index}"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          `;
+        });
+
+        // Add reset filter button
+        const resetBtn = document.createElement('button');
+        resetBtn.className = 'btn btn-primary';
+        resetBtn.innerHTML = '<i class="fa-solid fa-times"></i> Clear Filter';
+        resetBtn.style.marginTop = '10px';
+        resetBtn.onclick = renderProductsTable;
+        
+        const filterSection = document.querySelector('.card:last-child');
+        if (!document.getElementById('resetFilterBtn')) {
+          resetBtn.id = 'resetFilterBtn';
+          filterSection.appendChild(resetBtn);
+        }
+      }
+    }
+
     // Product form submission
     document.getElementById('productForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -282,26 +447,35 @@
         image: document.getElementById('productImage').value
       };
 
-      // Simulate adding product to table
-      const table = document.getElementById('productTable');
-      const newRow = table.insertRow();
-      
-      newRow.innerHTML = `
-        <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${productData.name}</td>
-        <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${productData.sku}</td>
-        <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">₹${parseFloat(productData.price).toLocaleString()}</td>
-        <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${productData.stock}</td>
-        <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">${productData.category}</td>
-        <td style="padding:12px; border-bottom:1px solid rgba(255,255,255,.06)">
-          <button class="btn" style="padding:6px 12px"><i class="fa-solid fa-edit"></i></button>
-          <button class="btn" style="padding:6px 12px"><i class="fa-solid fa-trash"></i></button>
-        </td>
-      `;
+      if (editingIndex >= 0) {
+        // Update existing product
+        products[editingIndex] = productData;
+        alert('Product updated successfully!');
+        editingIndex = -1;
+      } else {
+        // Add new product
+        products.push(productData);
+        alert('Product added successfully!');
+      }
 
-      // Clear form
+      renderProductsTable();
+      
+      // Reset form and button
       this.reset();
-      alert('Product added successfully!');
+      const submitBtn = document.querySelector('#productForm button[type="submit"]');
+      submitBtn.innerHTML = '<i class="fa-solid fa-save"></i> Add Product';
+      delete submitBtn.dataset.mode;
     });
+
+    // Add event listeners to filter and export buttons
+    const filterButton = document.querySelector('.btn:nth-child(1)');
+    console.log("Filter button found:", filterButton);
+    console.log("Attaching event listener to filter button");
++    filterButton.addEventListener('click', () => {
+      console.log("Filter button clicked");
+      filterProducts();
+    });
+    document.querySelector('.btn:nth-child(2)').addEventListener('click', exportToCSV);
 
     // Search functionality
     const searchInput = document.querySelector('.search input');
@@ -314,6 +488,9 @@
         row.style.display = text.includes(searchTerm) ? '' : 'none';
       });
     });
+
+    // Initialize the table
+    renderProductsTable();
   </script>
 </body>
 </html>

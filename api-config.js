@@ -1,6 +1,6 @@
 // API Configuration for frontend
 const API_CONFIG = {
-  BASE_URL: 'http://localhost:5000/api',
+  BASE_URL: 'http://localhost:5500/api',
   ENDPOINTS: {
     PRODUCTS: '/products',
     PRODUCT_BY_ID: '/products/:id',

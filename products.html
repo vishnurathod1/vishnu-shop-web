@@ -72,9 +72,10 @@
                     <a href="deals.html" class="nav-link">Deals</a>
                 </nav>
                 <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link"><i class="fas fa-user"></i></a>
-                    <a href="cart.html" class="icon-link"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
-                    <a href="vsv-login.html" class="icon-link"><span class="user-status">Sign Out</span></a>
+                    <a href="customer-account-enhanced (1).html" class="icon-link"><i class="fas fa-user"></i></a>
+                    <a href="cart-updated.html" class="icon-link"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+                    <a href="vsv-login.html" class="icon-link">
+            <button class="cta-button"> Logout</button></a>
                 </div>
             </div>
         </div>
@@ -152,7 +153,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>VSVShopEasy</h3>
+                    <h3>VSV Shop Easy</h3>
                     <p>Your trusted online shopping destination</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -173,7 +174,7 @@
                 <div class="footer-section">
                     <h4>Customer Service</h4>
                     <ul>
-                        <li><a href="customer-account.html">My Account</a></li>
+                        <li><a href="customer-account-enhanced (1).html">My Account</a></li>
                         <li><a href="order-tracking.html">Order Tracking</a></li>
                         <li><a href="returns.html">Returns</a></li>
                         <li><a href="customer-service.html">Help Center</a></li>
@@ -187,12 +188,44 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 ShopEasy. All rights reserved.</p>
+        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>
 
     <script src="products.js"></script>
+    <script>
+    // Product search from homepage
+    document.addEventListener('DOMContentLoaded', function() {
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+        const searchTerm = getQueryParam('search');
+        if (searchTerm) {
+            // Wait for products to be rendered by products.js
+            const interval = setInterval(() => {
+                const products = document.querySelectorAll('.product-card, .product-list-item');
+                if (products.length > 0) {
+                    let found = false;
+                    products.forEach(card => {
+                        const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+                        if (title && title.includes(searchTerm.trim().toLowerCase())) {
+                            card.style.display = 'block';
+                            found = true;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    if (!found) {
+                        products.forEach(card => card.style.display = 'block');
+                    }
+                    clearInterval(interval);
+                }
+            }, 100);
+        }
+    });
+    </script>
 </body>
 </html>
 

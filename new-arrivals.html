@@ -18,7 +18,9 @@
     <meta name="msapplication-TileColor" content="#667eea">
     <meta name="theme-color" content="#667eea">
       <script src="add-to-cart.js"></script>
-
+<style>
+     
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -40,17 +42,17 @@
                
                       
             <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
-                    <a href="cart.html" class="icon-link">
+                    <a href="cart-updated.html" class="icon-link">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                        <span class="cart-count">0</span><a href="cart-updated.html" class="icon-link">
                     </a>
                     <a href="cart.html" class="icon-link"></a>
                    <a href="vsv-login.html" class="icon-link" id="userIcon">
-                        <span class="user-status">sign out</span>
+            <button class="cta-button"> Logout</button></a>
 </a>
                 </div>
             </div>
@@ -58,11 +60,10 @@
     </header>
 
     <!-- Hero Section for New Arrivals -->
-    <section class="hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;">
         <div class="hero-content">
             <h1>New Arrivals 2025</h1>
             <p>Discover the latest trends and fresh styles just dropped</p>
-            
         </div>
     </section>
 
@@ -71,14 +72,14 @@
         <div class="container">
             <div class="filter-bar">
                 <h3>Filter by:</h3>
-                <select class="filter-select">
+                <select class="filter-select" id="category-filter">
                     <option value="all">All Categories</option>
                     <option value="electronics">Electronics</option>
                     <option value="fashion">Fashion</option>
                     <option value="home">Home & Living</option>
                     <option value="beauty">Beauty</option>
                 </select>
-                <select class="filter-select">
+                <select class="filter-select" id="sort-filter">
                     <option value="newest">Newest First</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
@@ -93,14 +94,14 @@
             <h2 class="section-title">Just Dropped</h2>
             <div class="products-grid">
                 <!-- Product 1 -->
-                <div class="product-card">
+                <div class="product-card" data-category="electronics" data-price="8999">
                     <div class="product-badge">NEW</div>
                     <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754824188/download_23_drlekr.jpg" alt="Smart Speaker" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">AI Smart Speaker</h3>
                         <p class="product-description">Voice-controlled with premium sound</p>
                         <div class="product-price">
-                            <span class="current-price">₹8,999</span>
+                            <span class="current-price">₹8999</span>
                         </div>
                         <div class="product-rating">
                             <i class="fas fa-star"></i>
@@ -115,14 +116,14 @@
                 </div>
 
                 <!-- Product 2 -->
-                <div class="product-card">
+                <div class="product-card" data-category="fashion" data-price="12999">
                     <div class="product-badge">NEW</div>
                     <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754824317/download_24_y8makj.jpg" alt="Designer Bag" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Luxury Handbag</h3>
                         <p class="product-description">Premium leather with gold accents</p>
                         <div class="product-price">
-                            <span class="current-price">₹12,999</span>
+                            <span class="current-price">₹12999</span>
                         </div>
                         <div class="product-rating">
                             <i class="fas fa-star"></i>
@@ -137,14 +138,14 @@
                 </div>
 
                 <!-- Product 3 -->
-                <div class="product-card">
+                <div class="product-card" data-category="fashion" data-price="4499">
                     <div class="product-badge">NEW</div>
                     <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" alt="Running Shoes" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Sport Sneakers</h3>
                         <p class="product-description">Lightweight with advanced cushioning</p>
                         <div class="product-price">
-                            <span class="current-price">₹4,499</span>
+                            <span class="current-price">₹4499</span>
                         </div>
                         <div class="product-rating">
                             <i class="fas fa-star"></i>
@@ -159,14 +160,14 @@
                 </div>
 
                 <!-- Product 4 -->
-                <div class="product-card">
+                <div class="product-card" data-category="electronics" data-price="6999">
                     <div class="product-badge">NEW</div>
                     <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754824411/download_25_bx2tf1.jpg" alt="Wireless Earbuds" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Premium Earbuds</h3>
                         <p class="product-description">Noise-cancelling with 24hr battery</p>
                         <div class="product-price">
-                            <span class="current-price">₹6,999</span>
+                            <span class="current-price">₹6999</span>
                         </div>
                         <div class="product-rating">
                             <i class="fas fa-star"></i>
@@ -181,14 +182,14 @@
                 </div>
 
                 <!-- Product 5 -->
-                <div class="product-card">
+                <div class="product-card" data-category="home" data-price="11999">
                     <div class="product-badge">NEW</div>
                     <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754824521/download_26_fwg3ph.jpg" alt="Smart Home Hub" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Smart Home Hub</h3>
                         <p class="product-description">Control your entire home with one device</p>
                         <div class="product-price">
-                            <span class="current-price">₹11,999</span>
+                            <span class="current-price">₹11999</span>
                         </div>
                         <div class="product-rating">
                             <i class="fas fa-star"></i>
@@ -203,14 +204,14 @@
                 </div>
 
                 <!-- Product 6 -->
-                <div class="product-card">
+                <div class="product-card" data-category="beauty" data-price="3299">
                     <div class="product-badge">NEW</div>
                     <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754824674/images_6_qcjc79.jpg" alt="Skincare Set" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Complete Skincare Set</h3>
                         <p class="product-description">7-step routine for glowing skin</p>
                         <div class="product-price">
-                            <span class="current-price">₹3,299</span>
+                            <span class="current-price">₹3299</span>
                         </div>
                         <div class="product-rating">
                             <i class="fas fa-star"></i>
@@ -234,7 +235,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ShopEasy</h3>
+                    <h3>VSV Shop Easy</h3>
                     <p>Your trusted online shopping destination</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -257,7 +258,7 @@
                 <div class="footer-section">
                     <h4>Customer Service</h4>
                     <ul>
-                        <li><a href="customer-account.html">My Account</a></li>
+                        <li><a href="customer-account-enhanced (1).html">My Account</a></li>
                         <li><a href="order-tracking.html">Order Tracking</a></li>
                         <li><a href="returns.html">Returns</a></li>
                         <li><a href="customer-service.html">Help Center</a></li>
@@ -273,7 +274,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 ShopEasy. All rights reserved.</p>
+        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>
@@ -298,6 +299,81 @@
                 }, 1000);
             });
         });
+
+        // Filter functionality
+        const categoryFilter = document.getElementById('category-filter');
+        const sortFilter = document.getElementById('sort-filter');
+        const productCards = document.querySelectorAll('.product-card');
+        const productsGrid = document.querySelector('.products-grid');
+
+        // Store original order for "Newest First"
+        const originalOrder = Array.from(productCards);
+
+        // Filter and sort products
+        function filterProducts() {
+            const categoryValue = categoryFilter.value;
+            const sortValue = sortFilter.value;
+            
+            let filteredProducts = Array.from(originalOrder);
+            
+            // Filter by category
+            if (categoryValue !== 'all') {
+                filteredProducts = filteredProducts.filter(card => 
+                    card.dataset.category === categoryValue
+                );
+            }
+            
+            // Sort products
+            switch(sortValue) {
+                case 'price-low':
+                    filteredProducts.sort((a, b) => 
+                        parseInt(a.dataset.price) - parseInt(b.dataset.price)
+                    );
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => 
+                        parseInt(b.dataset.price) - parseInt(a.dataset.price)
+                    );
+                    break;
+                case 'newest':
+                default:
+                    // Keep original order for newest
+                    break;
+            }
+            
+            // Update display
+            updateProductDisplay(filteredProducts);
+        }
+
+        function updateProductDisplay(products) {
+            // Hide all products
+            productCards.forEach(card => {
+                card.style.display = 'none';
+            });
+            
+            // Show filtered products
+            products.forEach(card => {
+                card.style.display = 'block';
+            });
+            
+            // Update grid layout
+            if (products.length === 0) {
+                productsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">No products found matching your filters.</p>';
+            } else {
+                // Remove no products message if it exists
+                const noProductsMsg = productsGrid.querySelector('p');
+                if (noProductsMsg && noProductsMsg.textContent.includes('No products found')) {
+                    noProductsMsg.remove();
+                }
+            }
+        }
+
+        // Add event listeners to filter selects
+        categoryFilter.addEventListener('change', filterProducts);
+        sortFilter.addEventListener('change', filterProducts);
+
+        // Initialize filters
+        filterProducts();
     </script>
 </body>
 </html>

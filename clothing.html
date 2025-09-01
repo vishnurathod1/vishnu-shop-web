@@ -151,6 +151,72 @@
     </style>
 </head>
 <body>
+    <script>
+// Product search from homepage
+document.addEventListener('DOMContentLoaded', function() {
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    const searchTerm = getQueryParam('search');
+    if (searchTerm) {
+        const products = document.querySelectorAll('.product-card');
+        let found = false;
+        products.forEach(card => {
+            const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+            if (title && title.includes(searchTerm.trim().toLowerCase())) {
+                card.style.display = 'block';
+                found = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        if (!found) {
+            products.forEach(card => card.style.display = 'block');
+        }
+    }
+});
+</script> <script>
+        // Filter products by search query from URL
+        document.addEventListener('DOMContentLoaded', function () {
+            function normalize(str) {
+                return str
+                    .toLowerCase()
+                    .normalize('NFKD')
+                    .replace(/[\u0000-\u000f]/g, '')
+                    .replace(/[^a-z0-9 ]/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+            }
+            const params = new URLSearchParams(window.location.search);
+            const search = params.get('search');
+            if (search) {
+                const normalizedSearch = normalize(search);
+                document.querySelectorAll('.category-section, .category1').forEach(section => {
+                    const cards = section.querySelectorAll('.product-card');
+                    let anyVisible = false;
+                    cards.forEach(card => {
+                        const titleEl = card.querySelector('.product-title');
+                        if (titleEl) {
+                            const normalizedTitle = normalize(titleEl.textContent);
+                            if (!normalizedTitle.includes(normalizedSearch)) {
+                                card.style.display = 'none';
+                            } else {
+                                card.style.display = '';
+                                anyVisible = true;
+                            }
+                        }
+                    });
+                    // Hide section if no products are visible
+                    if (!anyVisible) {
+                        section.style.display = 'none';
+                    } else {
+                        section.style.display = '';
+                    }
+                });
+            }
+        });
+        </script>
      <!-- Header -->
     <header class="header">
         <div class="container">
@@ -160,23 +226,22 @@
                 </div>
                 <nav class="nav-menu">
                     <a href="homepage.html" class="nav-link">Home</a>
-                    <a href="fashion-category.html" class="nav-link">Fashion</a>
-                    <a href="books.html" class="nav-link">Books</a>
-                    <a href="home-decor.html" class="nav-link">Home Decor</a>
+                    <a href="books and media.html" class="nav-link">Books</a>
+                    <a href="Home and decor.html" class="nav-link">Home Decor</a>
                     <a href="electronics.html" class="nav-link active">Electronics</a>
                 </nav>
     <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
-                    <a href="cart.html" class="icon-link">
+                    <a href="cart-updated.html" class="icon-link">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span><a href="cart.html" class="icon-link">
                     </a>
-                    <a href="cart.html" class="icon-link"></a>
+                    <a href="cart-updated.html" class="icon-link"></a>
                    <a href="vsv-login.html" class="icon-link" id="userIcon">
-                        <span class="user-status">sign out</span>
+            <button class="cta-button"> Logout</button></a>
 </a>
                 </div>
             </div> 
@@ -186,6 +251,7 @@
     <!-- Hero Section -->
     <section class="clothing-hero">
         <h1>Welcome to Complete Clothing Collection 2025</h1>
+       
     </section>
 
     <!-- Category 1: Shirts -->
@@ -202,7 +268,7 @@
                     <h3 class="product-title">Classic White Shirt</h3>
                     <p class="product-description">Premium cotton formal shirt with modern fit</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,299</span>
+                        <span class="current-price">₹1299</span>
                         <span class="original-price">₹1,899</span>
                     </div>
                     <div class="product-rating">
@@ -243,7 +309,7 @@
                     <h3 class="product-title">Formal Black Shirt</h3>
                     <p class="product-description">Elegant black shirt perfect for formal occasions</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,599</span>
+                        <span class="current-price">₹1599</span>
                         <span class="original-price">₹2,199</span>
                     </div>
                     <div class="product-rating">
@@ -264,7 +330,7 @@
                     <h3 class="product-title">Checkered Casual Shirt</h3>
                     <p class="product-description">Stylish checkered pattern for casual wear</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,199</span>
+                        <span class="current-price">₹1199</span>
                         <span class="original-price">₹1,699</span>
                     </div>
                     <div class="product-rating">
@@ -426,7 +492,7 @@
                     <h3 class="product-title">Slim Fit Jeans</h3>
                     <p class="product-description">Modern slim fit jeans in stretch denim</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,999</span>
+                        <span class="current-price">₹1999</span>
                         <span class="original-price">₹2,799</span>
                     </div>
                     <div class="product-rating">
@@ -447,7 +513,7 @@
                     <h3 class="product-title">Regular Fit Jeans</h3>
                     <p class="product-description">Classic regular fit jeans for everyday wear</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,799</span>
+                        <span class="current-price">₹1799</span>
                         <span class="original-price">₹2,499</span>
                     </div>
                     <div class="product-rating">
@@ -467,7 +533,7 @@
                     <h3 class="product-title">Skinny Jeans</h3>
                     <p class="product-description">Trendy skinny fit jeans in premium denim</p>
                     <div class="product-price">
-                        <span class="current-price">₹2,299</span>
+                        <span class="current-price">₹2299</span>
                         <span class="original-price">₹2,999</span>
                     </div>
                     <div class="product-rating">
@@ -488,7 +554,7 @@
                     <h3 class="product-title">Distressed Jeans</h3>
                     <p class="product-description">Stylish distressed jeans with modern rips</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,599</span>
+                        <span class="current-price">₹1599</span>
                         <span class="original-price">₹2,199</span>
                     </div>
                     <div class="product-rating">
@@ -502,13 +568,13 @@
                 </div>
             </div>
 
-            <div class="category" data-product-id="jeans-5" data-price="1899" data-product-name="Straight Fit Jeans" data-category="jeans">
+            <div class="product-card" data-product-id="jeans-5" data-price="1899" data-product-name="Straight Fit Jeans" data-category="jeans">
                 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754730050/Straight_Fit_Jeans_g3fmam.webp" alt="Straight Fit Jeans" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Straight Fit Jeans</h3>
                     <p class="product-description">Classic straight fit jeans in dark wash</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,899</span>
+                        <span class="current-price">₹1899</span>
                         <span class="original-price">₹2,499</span>
                     </div>
                     <div class="product-rating">
@@ -538,7 +604,7 @@
                     <h3 class="product-title">Maxi Dress</h3>
                     <p class="product-description">Flowing maxi dress in floral print</p>
                     <div class="product-price">
-                        <span class="current-price">₹2,499</span>
+                        <span class="current-price">₹2499</span>
                         <span class="original-price">₹3,499</span>
                     </div>
                     <div class="product-rating">
@@ -551,11 +617,11 @@
                     </div>
                 </div>
             </div>
-             <div class="product-card">
-                <img src="c:\Users\LENOVO\Desktop\girls\download (7).jpeg" alt="Classic Saree" class="product-image" />
+            <div class="product-card" data-product-id="saree-1" data-price="2999" data-product-name="Classic Saree" data-category="clothing">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1755791230/download_36_lslsfe.jpg" alt="Classic Saree" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Classic Saree</h3>
-                    <p class="product-description">Comfortable and Classic</p>
+                    <p class="product-description">Comfortable and Classic traditional wear</p>
                     <div class="product-price">
                         <span class="current-price">₹2999</span>
                         <span class="original-price">₹5999</span>
@@ -565,18 +631,18 @@
                         <span>(98)</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart-btn">Add to Cart</button>
-                        <button class="buy-now-btn">Buy Now</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('saree-1', 'Classic Saree', 2999)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('saree-1', 'Classic Saree', 2999)">Buy Now</button>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-product-id="kurthi-1" data-price="999" data-product-name="Kurthi Set" data-category="clothing">
                 <div class="product-badge">Sale</div>
-                <img src="c:\Users\LENOVO\Desktop\girls\download (8).jpeg" alt="Kurthi Set" class="product-image" />
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1755791232/download_37_xoxa4h.jpg" alt="Kurthi Set" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Kurthi Set</h3>
-                    <p class="product-description">Glitter and unique design</p>
+                    <p class="product-description">Glitter and unique design ethnic wear</p>
                     <div class="product-price">
                         <span class="current-price">₹999</span>
                         <span class="original-price">₹1,299</span>
@@ -586,11 +652,11 @@
                         <span>(201)</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart-btn">Add to Cart</button>
-                        <button class="buy-now-btn">Buy Now</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('kurthi-1', 'Kurthi Set', 999)">Add to Cart</button>
+                        <button class="buy-now-btn" onclick="buyNow('kurthi-1', 'Kurthi Set', 999)">Buy Now</button>
                     </div>
                 </div>
-        </div>
+            </div>
     </section>
     
  <!-- Footer -->
@@ -598,7 +664,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ShopEasy</h3>
+                    <h3>VSV Shop Easy</h3>
                     <p>Your trusted online shopping destination for girls fashion</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -625,7 +691,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 ShopEasy Girls Fashion. All rights reserved.</p>
+        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>
@@ -650,12 +716,84 @@
             });
         });
 
-        // Filter functionality for sub-categories
-        document.querySelectorAll('.sub-category-card').forEach(card => {
-            card.addEventListener('click', function () {
-                const category = this.querySelector('h3').textContent.toLowerCase();
-                alert(`Filtering for ${category}...`);
-            });
+        // Search functionality for clothing page
+        function performClothingSearch() {
+            const searchInput = document.getElementById('clothingSearch');
+            const query = searchInput.value.trim();
+            
+            if (query) {
+                // Use the existing performSearch function from universal-search.js
+                if (typeof performSearch === 'function') {
+                    performSearch(query);
+                } else {
+                    // Fallback if universal-search.js isn't loaded
+                    const searchTerm = query.toLowerCase();
+                    const products = document.querySelectorAll('.product-card');
+                    let found = false;
+                    
+                    products.forEach(card => {
+                        const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+                        const description = card.querySelector('.product-description')?.textContent.toLowerCase();
+                        
+                        if ((title && title.includes(searchTerm)) || 
+                            (description && description.includes(searchTerm))) {
+                            card.style.display = 'block';
+                            found = true;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    
+                    // If no products found, show all products
+                    if (!found) {
+                        products.forEach(card => card.style.display = 'block');
+                        alert('No products found matching your search. Showing all products.');
+                    }
+                }
+            }
+        }
+
+        // Handle Enter key in search input
+        document.getElementById('clothingSearch').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performClothingSearch();
+            }
+        });
+
+        // Handle search parameters on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('search');
+            
+            if (searchTerm) {
+                const searchInput = document.getElementById('clothingSearch');
+                if (searchInput) {
+                    searchInput.value = searchTerm;
+                }
+                
+                // Filter products based on search term
+                const products = document.querySelectorAll('.product-card');
+                let found = false;
+                
+                products.forEach(card => {
+                    const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+                    const description = card.querySelector('.product-description')?.textContent.toLowerCase();
+                    
+                    if ((title && title.includes(searchTerm.toLowerCase())) || 
+                        (description && description.includes(searchTerm.toLowerCase()))) {
+                        card.style.display = 'block';
+                        found = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // If no products found, show all products
+                if (!found) {
+                    products.forEach(card => card.style.display = 'block');
+                }
+            }
         });
     </script>
 </body>

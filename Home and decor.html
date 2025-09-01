@@ -235,6 +235,32 @@
     </style>
 </head>
 <body>
+<script>
+// Product search from homepage
+document.addEventListener('DOMContentLoaded', function() {
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    const searchTerm = getQueryParam('search');
+    if (searchTerm) {
+        const products = document.querySelectorAll('.product-card');
+        let found = false;
+        products.forEach(card => {
+            const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+            if (title && title.includes(searchTerm.trim().toLowerCase())) {
+                card.style.display = 'block';
+                found = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        if (!found) {
+            products.forEach(card => card.style.display = 'block');
+        }
+    }
+});
+</script>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -245,23 +271,23 @@
                 
                 <nav class="nav-menu">
                     <a href="homepage.html" class="nav-link">Home</a>
-                    <a href="fashion-category.html" class="nav-link">Fashion</a>
-                    <a href="home-decor.html" class="nav-link active">Home Decor</a>
-                    <a href="#categories" class="nav-link">Categories</a>
+                    <a href="clothing.html" class="nav-link">clothing</a>
+                    <a href="Home and decor.html" class="nav-link active">Home Decor</a>
+                    <a href="categories.html" class="nav-link">Categories</a>
                 </nav>
                 
             <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
-                    <a href="cart.html" class="icon-link">
+                    <a href="cart-updated.html" class="icon-link">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span><a href="cart.html" class="icon-link">
                     </a>
-                    <a href="cart.html" class="icon-link"></a>
+                    <a href="cart-updated.html" class="icon-link"></a>
                    <a href="vsv-login.html" class="icon-link" id="userIcon">
-                        <span class="user-status">sign out</span>
+            <button class="cta-button"> Logout</button></a>
 </a>
                 </div>
             </div>
@@ -278,12 +304,14 @@
         <h2 class="category-title">Living Room</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754735314/Sofas_Couches_Settees___DUSK_bpzkpr.jpg" alt="Modern Sofa" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Modern Sofa</h3>
                     <p class="product-description">Comfortable and stylish 3-seater sofa</p>
                     <div class="product-price">
-                        <span class="current-price">₹25,999</span>
+                        <span class="current-price">₹25999</span>
                         <span class="original-price">₹30,999</span>
                     </div>
                     <div class="product-rating">
@@ -297,12 +325,14 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754735263/Mesa_de_caf%C3%A9_moderna_de_vidrio_triangular_con_base_abstracta_de_madera_y_tapa_de_vidrio_templado_-_45_L_x_32_W_x_16_H_Marr%C3%B3n_Natural_-_transparente_Mesa_de_caf%C3%A9_lckhe4.jpg" alt="Coffee Table" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Coffee Table</h3>
                     <p class="product-description">Elegant wooden coffee table with glass top</p>
                     <div class="product-price">
-                        <span class="current-price">₹8,499</span>
+                        <span class="current-price">₹8499</span>
                         <span class="original-price">₹10,999</span>
                     </div>
                     <div class="product-rating">
@@ -316,12 +346,14 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754735221/Post_by_SAFAVIEH_hezbfk.jpg" alt="Floor Lamp" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Floor Lamp</h3>
                     <p class="product-description">Stylish floor lamp with adjustable brightness</p>
                     <div class="product-price">
-                        <span class="current-price">₹4,299</span>
+                        <span class="current-price">₹4299</span>
                         <span class="original-price">₹5,499</span>
                     </div>
                     <div class="product-rating">
@@ -340,7 +372,7 @@
                     <h3 class="product-title">Area Rug</h3>
                     <p class="product-description">Soft and durable area rug for living room</p>
                     <div class="product-price">
-                        <span class="current-price">₹6,799</span>
+                        <span class="current-price">₹6799</span>
                         <span class="original-price">₹8,999</span>
                     </div>
                     <div class="product-rating">
@@ -359,7 +391,7 @@
                     <h3 class="product-title">Bookshelf</h3>
                     <p class="product-description">Spacious wooden bookshelf with multiple shelves</p>
                     <div class="product-price">
-                        <span class="current-price">₹9,999</span>
+                        <span class="current-price">₹9999</span>
                         <span class="original-price">₹12,999</span>
                     </div>
                     <div class="product-rating">
@@ -380,12 +412,14 @@
         <h2 class="category-title">Bedroom</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754735063/download_14_hqo3dv.jpg" alt="King Size Bed" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">King Size Bed</h3>
                     <p class="product-description">Luxurious king size bed with storage</p>
                     <div class="product-price">
-                        <span class="current-price">₹35,999</span>
+                        <span class="current-price">₹35999</span>
                         <span class="original-price">₹42,999</span>
                     </div>
                     <div class="product-rating">
@@ -399,12 +433,14 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754735025/Asmara_Nightstand_c4ykgg.jpg" alt="Nightstand" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Nightstand</h3>
                     <p class="product-description">Elegant wooden nightstand with drawer</p>
                     <div class="product-price">
-                        <span class="current-price">₹7,499</span>
+                        <span class="current-price">₹7499</span>
                         <span class="original-price">₹9,499</span>
                     </div>
                     <div class="product-rating">
@@ -423,7 +459,7 @@
                     <h3 class="product-title">Dresser</h3>
                     <p class="product-description">Spacious dresser with mirror</p>
                     <div class="product-price">
-                        <span class="current-price">₹12,999</span>
+                        <span class="current-price">₹12999</span>
                         <span class="original-price">₹15,999</span>
                     </div>
                     <div class="product-rating">
@@ -442,7 +478,7 @@
                     <h3 class="product-title">Bedside Lamp</h3>
                     <p class="product-description">Soft light bedside lamp</p>
                     <div class="product-price">
-                        <span class="current-price">₹2,499</span>
+                        <span class="current-price">₹2499</span>
                         <span class="original-price">₹3,499</span>
                     </div>
                     <div class="product-rating">
@@ -461,7 +497,7 @@
                     <h3 class="product-title">Wardrobe</h3>
                     <p class="product-description">Spacious wardrobe with sliding doors</p>
                     <div class="product-price">
-                        <span class="current-price">₹18,999</span>
+                        <span class="current-price">₹18999</span>
                         <span class="original-price">₹22,999</span>
                     </div>
                     <div class="product-rating">
@@ -482,12 +518,14 @@
         <h2 class="category-title">Kitchen</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754734844/Elegant_Gold_Rim_Dinnerware_Set_for_6___18-piece_Scalloped_Bone_China_Plates___Luxury_Modern_Table_Setting_-_Etsy_ghktlf.jpg" alt="Dining Set" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Dining Set</h3>
                     <p class="product-description">Elegant dining set for 6 people</p>
                     <div class="product-price">
-                        <span class="current-price">₹22,999</span>
+                        <span class="current-price">₹22999</span>
                         <span class="original-price">₹27,999</span>
                     </div>
                     <div class="product-rating">
@@ -501,12 +539,14 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754734810/Thyme_Table_32-Piece_Non-Stick_Cookware_Bakeware_Set_Taupe_j8nnko.jpg" alt="Cookware Set" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Cookware Set</h3>
                     <p class="product-description">Non-stick cookware set with 10 pieces</p>
                     <div class="product-price">
-                        <span class="current-price">₹8,499</span>
+                        <span class="current-price">₹8499</span>
                         <span class="original-price">₹10,999</span>
                     </div>
                     <div class="product-rating">
@@ -520,12 +560,14 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754734777/download_15_a9waki.jpg" alt="Kitchen Island" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Kitchen Island</h3>
                     <p class="product-description">Spacious kitchen island with storage</p>
                     <div class="product-price">
-                        <span class="current-price">₹15,999</span>
+                        <span class="current-price">₹15999</span>
                         <span class="original-price">₹18,999</span>
                     </div>
                     <div class="product-rating">
@@ -544,7 +586,7 @@
                     <h3 class="product-title">Bar Stools</h3>
                     <p class="product-description">Set of 2 modern bar stools</p>
                     <div class="product-price">
-                        <span class="current-price">₹6,799</span>
+                        <span class="current-price">₹6799</span>
                         <span class="original-price">₹8,999</span>
                     </div>
                     <div class="product-rating">
@@ -563,7 +605,7 @@
                     <h3 class="product-title">Storage Cabinet</h3>
                     <p class="product-description">Compact storage cabinet with shelves</p>
                     <div class="product-price">
-                        <span class="current-price">₹9,999</span>
+                        <span class="current-price">₹9999</span>
                         <span class="original-price">₹12,999</span>
                     </div>
                     <div class="product-rating">
@@ -589,7 +631,7 @@
                     <h3 class="product-title">Vanity</h3>
                     <p class="product-description">Modern bathroom vanity with storage</p>
                     <div class="product-price">
-                        <span class="current-price">₹12,999</span>
+                        <span class="current-price">₹12999</span>
                         <span class="original-price">₹15,999</span>
                     </div>
                     <div class="product-rating">
@@ -608,7 +650,7 @@
                     <h3 class="product-title">Shower Caddy</h3>
                     <p class="product-description">Rust-resistant shower caddy with hooks</p>
                     <div class="product-price">
-                        <span class="current-price">₹3,499</span>
+                        <span class="current-price">₹3499</span>
                         <span class="original-price">₹4,499</span>
                     </div>
                     <div class="product-rating">
@@ -627,7 +669,7 @@
                     <h3 class="product-title">Towel Rack</h3>
                     <p class="product-description">Wall-mounted towel rack with multiple bars</p>
                     <div class="product-price">
-                        <span class="current-price">₹2,499</span>
+                        <span class="current-price">₹2499</span>
                         <span class="original-price">₹3,499</span>
                     </div>
                     <div class="product-rating">
@@ -646,7 +688,7 @@
                     <h3 class="product-title">Bath Mat</h3>
                     <p class="product-description">Soft and absorbent bath mat</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,299</span>
+                        <span class="current-price">₹1299</span>
                         <span class="original-price">₹1,799</span>
                     </div>
                     <div class="product-rating">
@@ -665,7 +707,7 @@
                     <h3 class="product-title">Shower Head</h3>
                     <p class="product-description">High-pressure shower head with multiple settings</p>
                     <div class="product-price">
-                        <span class="current-price">₹3,999</span>
+                        <span class="current-price">₹3999</span>
                         <span class="original-price">₹4,999</span>
                     </div>
                     <div class="product-rating">
@@ -685,7 +727,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ShopEasy</h3>
+                    <h3>VSV Shop Easy</h3>
                     <p>Your trusted online shopping destination for electronics</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -709,9 +751,9 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="homepage.html">Home</a></li>
-                        <li><a href="fashion-category.html">Fashion</a></li>
-                        <li><a href="books.html">Books</a></li>
-                        <li><a href="home-decor.html">Home Decor</a></li>
+                        <li><a href="clothing.html">Fashion</a></li>
+                        <li><a href="books and media.html">Books</a></li>
+                        <li><a href="Home and decor.html">Home Decor</a></li>
                         <li><a href="electronics.html">Electronics</a></li>
                     </ul>
                 </div>
@@ -724,7 +766,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 ShopEasy Electronics. All rights reserved.</p>
+        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>

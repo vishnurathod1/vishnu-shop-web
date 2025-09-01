@@ -141,6 +141,32 @@
     </style>
 </head>
 <body>
+<script>
+// Product search from homepage
+document.addEventListener('DOMContentLoaded', function() {
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    const searchTerm = getQueryParam('search');
+    if (searchTerm) {
+        const products = document.querySelectorAll('.product-card');
+        let found = false;
+        products.forEach(card => {
+            const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+            if (title && title.includes(searchTerm.trim().toLowerCase())) {
+                card.style.display = 'block';
+                found = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        if (!found) {
+            products.forEach(card => card.style.display = 'block');
+        }
+    }
+});
+</script>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -151,20 +177,20 @@
                 
                 <nav class="nav-menu">
                     <a href="homepage.html" class="nav-link">Home</a>
-                    <a href="clothing.html" class="nav-link">Fashion</a>
-                    <a href="books.html" class="nav-link active">Books</a>
-                    <a href="home-decor.html" class="nav-link">Home Decor</a>
+                    <a href="clothing.html" class="nav-link">Clothing</a>
+                    <a href="books and media.html" class="nav-link active">Books</a>
+                    <a href="Home and decor.html" class="nav-link">Home Decor</a>
                 </nav>
                  <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
-                    <a href="cart.html" class="icon-link">
+                    <a href="cart-updated.html" class="icon-link">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                        <span class="cart-count">0</span><a href="cart-updated.html" class="icon-link">
                     </a>
-                    <a href="cart.html" class="icon-link"></a>
+                    <a href="cart-updated.html" class="icon-link"></a>
                    <a href="vsv-login.html" class="icon-link" id="userIcon">
             <button class="cta-button"> Logout</button></a>
 </a>
@@ -185,6 +211,8 @@
         <h2 class="category-title">Fiction</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754668130/You_were_not_born_to_suffer_x6ygup.jpg" alt="Mystery Novel" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">You were not born to suffer</h3>
@@ -204,6 +232,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754668545/What_are_you_doing_with_your_life_myl9oz.jpg" alt="Romance Novel" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">What are you doing with your life</h3>
@@ -223,6 +253,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">popular</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754668671/Think_faster_Think_smarter_ffvnom.jpg" alt="Fantasy Novel" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fantasy Novel</h3>
@@ -286,6 +318,8 @@
         <h2 class="category-title">Non-Fiction</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754669010/Emotional_Intelligence_p6ffrm.jpg" alt="Biography" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Biography</h3>
@@ -305,6 +339,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730232/Do_What_You_Love_Love_What_You_Do_ngchcn.jpg" alt="Self-Help" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Self-Help</h3>
@@ -324,6 +360,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754730310/12_all-time_favorite_cookbooks_fuhc9w.jpg" alt="Cookbook" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Cookbook</h3>
@@ -489,7 +527,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ShopEasy</h3>
+                    <h3>VSV Shop Easy</h3>
                     <p>Your trusted online shopping destination for books</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -514,8 +552,8 @@
                     <ul>
                         <li><a href="homepage.html">Home</a></li>
                         <li><a href="fashion-category.html">Fashion</a></li>
-                        <li><a href="books.html">Books</a></li>
-                        <li><a href="home-decor.html">Home Decor</a></li>
+                        <li><a href="books and media.html">Books</a></li>
+                        <li><a href="Home and decor.html">Home Decor</a></li>
                     </ul>
                 </div>
                 
@@ -527,7 +565,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 ShopEasy Books. All rights reserved.</p>
+        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>

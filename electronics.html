@@ -12,7 +12,7 @@
 <style>
         .electronics-hero {
             background: linear-gradient(rgba(94, 88, 88, 0.7), rgba(24, 22, 22, 0.7)),
-                url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754806729/download_17_kbo4x9.jpg');
+                url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1755681793/download_32_usy1ym.jpg');
             background-size: cover;
             background-position: center;
             height: 500px;
@@ -153,6 +153,32 @@
     </style>
 </head>
 <body>
+<script>
+// Product search from homepage
+document.addEventListener('DOMContentLoaded', function() {
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    const searchTerm = getQueryParam('search');
+    if (searchTerm) {
+        const products = document.querySelectorAll('.product-card');
+        let found = false;
+        products.forEach(card => {
+            const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+            if (title && title.includes(searchTerm.trim().toLowerCase())) {
+                card.style.display = 'block';
+                found = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        if (!found) {
+            products.forEach(card => card.style.display = 'block');
+        }
+    }
+});
+</script>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -162,23 +188,23 @@
                 </div>
                 <nav class="nav-menu">
                     <a href="homepage.html" class="nav-link">Home</a>
-                    <a href="fashion-category.html" class="nav-link">Fashion</a>
-                    <a href="books.html" class="nav-link">Books</a>
-                    <a href="home-decor.html" class="nav-link">Home Decor</a>
+                    <a href="clothing.html" class="nav-link">clothing</a>
+                    <a href="books and media.html" class="nav-link">Books</a>
+                    <a href="Home and decor.html" class="nav-link">Home Decor</a>
                     <a href="electronics.html" class="nav-link active">Electronics</a>
                 </nav>
                        <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
-                    <a href="cart.html" class="icon-link">
+                    <a href="cart-updated.html" class="icon-link">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span>
                     </a>
-                    <a href="cart.html" class="icon-link"></a>
+                    <a href="cart-updated.html" class="icon-link"></a>
                    <a href="vsv-login.html" class="icon-link" id="userIcon">
-                        <span class="user-status">sign out</span>
+            <button class="cta-button"> Logout</button></a>
 </a>
                 </div>
             </div>
@@ -198,8 +224,11 @@
     <!-- Categories Section -->
     <section class="category-section" id="smartphones">
         <h2 class="category-title">Smartphones</h2>
+        
         <div class="products-grid">
             <div class="product-card">
+              <div class="product-badge">Hot</div>
+
 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754748052/iPhone_15_Pro_gtp4sb.webp" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">iPhone 15 Pro</h3>
@@ -207,7 +236,7 @@
                      
                     <p class="product-description">The latest Apple flagship smartphone</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,19,900</span>
+                        <span class="current-price">₹119900</span>
                         <span class="original-price">₹1,29,900</span>
                     </div>
                     <div class="product-rating">
@@ -221,13 +250,15 @@
                 </div>
             </div>
             <div class="product-card">
+             <div class="product-badge">New</div>
+
 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754748203/Samsung_Galaxy_S24_jrvujl.webp" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Samsung Galaxy S24</h3>
                     <p class="product-description">Powerful Android smartphone with great camera</p>
                     <h2>Samsung Galaxy S24 5G, 8GB Ram, 256GB</h2>
                     <div class="product-price">
-                        <span class="current-price">₹89,999</span>
+                        <span class="current-price">₹89999</span>
                         <span class="original-price">₹99,999</span>
                     </div>
                     <div class="product-rating">
@@ -241,13 +272,15 @@
                 </div>
             </div>
             <div class="product-card">
+                <div class="product-badge">New</div>
+
 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754750093/Google_Pixel_8_sgpqgy.webp" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Google Pixel 8</h3>
                     <h2>New Google Pixel 8 5G ram/rom12/128GB Obsidian | Sahivalue</h2>
                     <p class="product-description">Pure Android experience with excellent camera</p>
                     <div class="product-price">
-                        <span class="current-price">₹69,999</span>
+                        <span class="current-price">₹69999</span>
                         <span class="original-price">₹79,999</span>
                     </div>
                     <div class="product-rating">
@@ -267,7 +300,7 @@
                     <h2>Ram/Rom12/256GB</h2>
                     <p class="product-description">Fast and smooth performance with great display</p>
                     <div class="product-price">
-                        <span class="current-price">₹59,999</span>
+                        <span class="current-price">₹59999</span>
                         <span class="original-price">₹69,999</span>
                     </div>
                     <div class="product-rating">
@@ -287,7 +320,7 @@
                     <h2>Ram/Rom12/256GB</h2>
                     <p class="product-description">Affordable smartphone with premium features</p>
                     <div class="product-price">
-                        <span class="current-price">₹49,999</span>
+                        <span class="current-price">₹49999</span>
                         <span class="original-price">₹59,999</span>
                     </div>
                     <div class="product-rating">
@@ -313,7 +346,7 @@
                     <h2>Ram/Rom 16/256</h2>
                     <p class="product-description">Powerful laptop with M2 chip</p>
                     <div class="product-price">
-                        <span class="current-price">₹2,39,900</span>
+                        <span class="current-price">₹239900</span>
                         <span class="original-price">₹2,49,900</span>
                     </div>
                     <div class="product-rating">
@@ -327,13 +360,15 @@
                 </div>
             </div>
             <div class="product-card">
+       <div class="product-badge">New</div>
+
 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754753238/Dell_XPS_15_gpexq8.webp" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Dell XPS 15</h3>
                     <h2>Ram/Rom 8/256</h2>
                     <p class="product-description">High-performance Windows laptop</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,79,999</span>
+                        <span class="current-price">₹179999</span>
                         <span class="original-price">₹1,89,999</span>
                     </div>
                     <div class="product-rating">
@@ -347,13 +382,15 @@
                 </div>
             </div>
             <div class="product-card">
+         <div class="product-badge">Hot</div>
+
 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754753332/HP_Spectre_x360_fsxr36.webp" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">HP Spectre x360</h3>
                     <h2> Ram/Rom 16/512</h2>
                     <p class="product-description">Convertible laptop with touchscreen</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,49,999</span>
+                        <span class="current-price">₹149999</span>
                         <span class="original-price">₹1,59,999</span>
                     </div>
                     <div class="product-rating">
@@ -373,7 +410,7 @@
                     <h2> Ram/Rom  8/512</h2>
                     <p class="product-description">Business laptop with robust build</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,29,999</span>
+                        <span class="current-price">₹129999</span>
                         <span class="original-price">₹1,39,999</span>
                     </div>
                     <div class="product-rating">
@@ -393,7 +430,7 @@
                     <h2> Ram/Rom  8/512</h2>
                     <p class="product-description">Gaming laptop with high refresh rate</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,59,999</span>
+                        <span class="current-price">₹159999</span>
                         <span class="original-price">₹1,69,999</span>
                     </div>
                     <div class="product-rating">
@@ -413,12 +450,14 @@
         <h2 class="category-title">Cameras</h2>
         <div class="products-grid">
             <div class="product-card">
+        <div class="product-badge">Hot</div>
+
 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754753786/Canon_EOS_R6_fazxdl.webp" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Canon EOS R6</h3>
                     <p class="product-description">Professional mirrorless camera</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,99,999</span>
+                        <span class="current-price">₹199999</span>
                         <span class="original-price">₹2,09,999</span>
                     </div>
                     <div class="product-rating">
@@ -432,12 +471,14 @@
                 </div>
             </div>
             <div class="product-card">
+           <div class="product-badge">New</div>
+
 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754753900/Sony_A7_IV_zqjtuq.webp" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Sony A7 IV</h3>
                     <p class="product-description">Full-frame mirrorless camera</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,79,999</span>
+                        <span class="current-price">₹179999</span>
                         <span class="original-price">₹1,89,999</span>
                     </div>
                     <div class="product-rating">
@@ -456,7 +497,7 @@
                     <h3 class="product-title">Nikon Z6 II</h3>
                     <p class="product-description">Versatile mirrorless camera</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,59,999</span>
+                        <span class="current-price">₹159999</span>
                         <span class="original-price">₹1,69,999</span>
                     </div>
                     <div class="product-rating">
@@ -470,12 +511,14 @@
                 </div>
             </div>
             <div class="product-card">
+         <div class="product-badge">Hot</div>
+
 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754082/Fujifilm_X-T5_vf1xkd.webp" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fujifilm X-T5</h3>
                     <p class="product-description">Compact mirrorless camera</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,29,999</span>
+                        <span class="current-price">₹129999</span>
                         <span class="original-price">₹1,39,999</span>
                     </div>
                     <div class="product-rating">
@@ -489,12 +532,14 @@
                 </div>
             </div>
             <div class="product-card">
+         <div class="product-badge">Hot</div>
+
 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754187/GoPro_Hero_12_lzc96q.webp" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">GoPro Hero 12</h3>
                     <p class="product-description">Action camera for adventure enthusiasts</p>
                     <div class="product-price">
-                        <span class="current-price">₹49,999</span>
+                        <span class="current-price">₹49999</span>
                         <span class="original-price">₹59,999</span>
                     </div>
                     <div class="product-rating">
@@ -514,12 +559,14 @@
         <h2 class="category-title">Accessories</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754277/AirPods_Pro_3_el4lqb.webp" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">AirPods Pro 3</h3>
                     <p class="product-description">Wireless noise-cancelling earbuds</p>
                     <div class="product-price">
-                        <span class="current-price">₹24,999</span>
+                        <span class="current-price">₹24999</span>
                         <span class="original-price">₹29,999</span>
                     </div>
                     <div class="product-rating">
@@ -533,12 +580,14 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754754395/Samsung_Galaxy_Watch_6_cxehks.webp" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Samsung Galaxy Watch 6</h3>
                     <p class="product-description">Smartwatch with health tracking</p>
                     <div class="product-price">
-                        <span class="current-price">₹29,999</span>
+                        <span class="current-price">₹29999</span>
                         <span class="original-price">₹34,999</span>
                     </div>
                     <div class="product-rating">
@@ -557,7 +606,7 @@
                     <h3 class="product-title">Sony WH-1000XM5</h3>
                     <p class="product-description">Wireless noise-cancelling headphones</p>
                     <div class="product-price">
-                        <span class="current-price">₹29,999</span>
+                        <span class="current-price">₹29999</span>
                         <span class="original-price">₹34,999</span>
                     </div>
                     <div class="product-rating">
@@ -576,7 +625,7 @@
                     <h3 class="product-title">Anker PowerCore</h3>
                     <p class="product-description">Portable charger with fast charging</p>
                     <div class="product-price">
-                        <span class="current-price">₹3,999</span>
+                        <span class="current-price">₹3999</span>
                         <span class="original-price">₹4,999</span>
                     </div>
                     <div class="product-rating">
@@ -595,7 +644,7 @@
                     <h3 class="product-title">Logitech MX Master 3</h3>
                     <p class="product-description">Advanced wireless mouse</p>
                     <div class="product-price">
-                        <span class="current-price">₹9,999</span>
+                        <span class="current-price">₹9999</span>
                         <span class="original-price">₹11,999</span>
                     </div>
                     <div class="product-rating">
@@ -616,7 +665,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ShopEasy</h3>
+                    <h3>VSV Shop Easy</h3>
                     <p>Your trusted online shopping destination for electronics</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -640,9 +689,9 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="homepage.html">Home</a></li>
-                        <li><a href="fashion-category.html">Fashion</a></li>
-                        <li><a href="books.html">Books</a></li>
-                        <li><a href="home-decor.html">Home Decor</a></li>
+                        <li><a href="clothing.html">Fashion</a></li>
+                        <li><a href="books and media.html">Books</a></li>
+                        <li><a href="Home and decor.html">Home Decor</a></li>
                         <li><a href="electronics.html">Electronics</a></li>
                     </ul>
                 </div>
@@ -655,7 +704,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 ShopEasy Electronics. All rights reserved.</p>
+        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>

@@ -162,6 +162,32 @@
     </style>
 </head>
 <body>
+<script>
+// Product search from homepage
+document.addEventListener('DOMContentLoaded', function() {
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    const searchTerm = getQueryParam('search');
+    if (searchTerm) {
+        const products = document.querySelectorAll('.product-card');
+        let found = false;
+        products.forEach(card => {
+            const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+            if (title && title.includes(searchTerm.trim().toLowerCase())) {
+                card.style.display = 'block';
+                found = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        if (!found) {
+            products.forEach(card => card.style.display = 'block');
+        }
+    }
+});
+</script>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -172,23 +198,23 @@
                 
                 <nav class="nav-menu">
                     <a href="homepage.html" class="nav-link">Home</a>
-                    <a href="fashion-category.html" class="nav-link">Fashion</a>
+                    <a href="clothing.html" class="nav-link">Clothing</a>
                     <a href="groceries.html" class="nav-link active">Groceries</a>
-                    <a href="home-decor.html" class="nav-link">Home Decor</a>
+                    <a href="Home and decor.html" class="nav-link">Home Decor</a>
                 </nav>
                
             <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
-                    <a href="cart.html" class="icon-link">
+                    <a href="cart-updated.html" class="icon-link">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                        <span class="cart-count">0</span><a href="cart-updated.html" class="icon-link">
                     </a>
-                    <a href="cart.html" class="icon-link"></a>
+                    <a href="cart-updated.html" class="icon-link"></a>
                    <a href="vsv-login.html" class="icon-link" id="userIcon">
-                        <span class="user-status">sign out</span>
+            <button class="cta-button"> Logout</button></a>
 </a>
                 </div>
             </div>
@@ -205,6 +231,8 @@
         <h2 class="category-title">Fruits</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727757/Top_view_delicious_apples_arrangement_fdavs2.jpg" alt="Fresh Apples" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Apples</h3>
@@ -224,6 +252,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727867/Descubra_a_melhor_forma_de_guardar_bananas_e_ter_a_fruta_fresca_veja_receitas_yu4mzm.jpg" alt="Fresh Bananas" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Bananas</h3>
@@ -243,6 +273,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727974/download_awzrss.jpg" alt="Fresh Oranges" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Oranges</h3>
@@ -306,6 +338,8 @@
         <h2 class="category-title">Vegetables</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754674340/Tomatoes_ekdceu.jpg" alt="Fresh Tomatoes" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Tomatoes</h3>
@@ -325,6 +359,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754674440/carrots_ipzuif.jpg" alt="Fresh Potatoes" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Carrots</h3>
@@ -363,6 +399,8 @@
                 </div>
                 </div>
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754674536/Brinjal_pilzuj.jpg" alt="Fresh Capsicum" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Brinjal</h3>
@@ -407,6 +445,8 @@
         <h2 class="category-title">Dairy Products</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727023/Bainne_%C3%9Ar_Fresh_Irish_Milk_vc1tun.jpg" alt="Fresh Milk" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Milk</h3>
@@ -445,6 +485,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727405/Califia_Farms_Dairy-Free_Yogurt_Drinks_Review_Info_Cultured_Probiotic_yuunzc.jpg" alt="Yogurt" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Yogurt</h3>
@@ -464,6 +506,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727473/Avoid_All_Butter_Brands_Except_These_8_oqjh6f.jpg" alt="Butter" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Butter</h3>
@@ -509,7 +553,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ShopEasy</h3>
+                    <h3>VSV Shop Easy</h3>
                     <p>Your trusted online shopping destination for groceries</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -533,9 +577,9 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="homepage.html">Home</a></li>
-                        <li><a href="fashion-category.html">Fashion</a></li>
+                        <li><a href="clothing.html">Fashion</a></li>
                         <li><a href="groceries.html">Groceries</a></li>
-                        <li><a href="home-decor.html">Home Decor</a></li>
+                        <li><a href="Home and decor.html">Home Decor</a></li>
                     </ul>
                 </div>
                 
@@ -547,7 +591,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 ShopEasy Groceries. All rights reserved.</p>
+        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>
@@ -572,5 +616,46 @@
             });
         });
     </script>
-</body>
+        <script>
+        // Filter products by search query from URL
+        document.addEventListener('DOMContentLoaded', function () {
+            function normalize(str) {
+                return str
+                    .toLowerCase()
+                    .normalize('NFKD')
+                    .replace(/[\u0000-\u000f]/g, '')
+                    .replace(/[^a-z0-9 ]/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+            }
+            const params = new URLSearchParams(window.location.search);
+            const search = params.get('search');
+            if (search) {
+                const normalizedSearch = normalize(search);
+                document.querySelectorAll('.category-section, .category1').forEach(section => {
+                    const cards = section.querySelectorAll('.product-card');
+                    let anyVisible = false;
+                    cards.forEach(card => {
+                        const titleEl = card.querySelector('.product-title');
+                        if (titleEl) {
+                            const normalizedTitle = normalize(titleEl.textContent);
+                            if (!normalizedTitle.includes(normalizedSearch)) {
+                                card.style.display = 'none';
+                            } else {
+                                card.style.display = '';
+                                anyVisible = true;
+                            }
+                        }
+                    });
+                    // Hide section if no products are visible
+                    if (!anyVisible) {
+                        section.style.display = 'none';
+                    } else {
+                        section.style.display = '';
+                    }
+                });
+            }
+        });
+        </script>
+    </body>
 </html>

@@ -1,440 +1,382 @@
-// Universal Search System for VSV ShopEasy
-// Works across all pages and categories with real-time search functionality
+// Universal Search Functionality for VSV ShopEasy
+// This script provides search functionality across all pages
 
-class UniversalSearch {
-    constructor() {
-        this.products = [];
-        this.categories = [];
-        this.searchIndex = new Map();
-        this.isInitialized = false;
-        this.init();
+// Product and category data
+const searchData = {
+    categories: {
+        'electronics': 'electronics.html',
+        'clothing': 'clothing.html',
+        'home decor': 'Home and decor.html',
+        'beauty': 'beauty.html',
+        'footwear': 'footwear.html',
+        'sports': 'sports-new.html',
+        'kids toys': 'kids-toys.html',
+        'groceries': 'groceries.html',
+        'books': 'books and media.html',
+        'luggage faves': 'luggage faves.html',
+        'health': 'Health and personal care.html',
+        'personal care': 'Health and personal care.html',
+        'accessories': 'accessories.html',
+        'new arrivals': 'new-arrivals.html',
+        'deals': 'deals.html',
+        'products': 'products.html'
+    },
+    products: {
+        // Electronics
+        'iphone 15 pro': 'electronics.html',
+        'samsung galaxy s24': 'electronics.html',
+        'google pixel 8': 'electronics.html',
+        'oneplus 12': 'electronics.html',
+        'xiaomi 14': 'electronics.html',
+        'macbook pro': 'electronics.html',
+        'dell xps 15': 'electronics.html',
+        'hp spectre x360': 'electronics.html',
+        'lenovo thinkpad': 'electronics.html',
+        'asus rog strix': 'electronics.html',
+        'canon eos r6': 'electronics.html',
+        'sony a7 iv': 'electronics.html',
+        'nikon z6 ii': 'electronics.html',
+        'fujifilm x-t5': 'electronics.html',
+        'gopro hero 12': 'electronics.html',
+        'airpods pro': 'electronics.html',
+        'samsung galaxy watch': 'electronics.html',
+        'sony wh-1000xm5': 'electronics.html',
+        'anker powercore': 'electronics.html',
+        'logitech mx master': 'electronics.html',
+        
+        // Accessories
+        'anklets for wedding': 'accessories.html',
+        'bridal bangles': 'accessories.html',
+        'jhumkas': 'accessories.html',
+        'diamond studded ring': 'accessories.html',
+        'engagement ring': 'accessories.html',
+        'gold jewellery': 'accessories.html',
+        'bangles': 'accessories.html',
+        'jewellery': 'accessories.html',
+        'bracelet': 'accessories.html',
+        'bridal kundan anklet': 'accessories.html',
+        'designer leather handbag': 'accessories.html',
+        'rfid leather wallet': 'accessories.html',
+        'travel backpack': 'accessories.html',
+        'apple watch series 9': 'accessories.html',
+        'fossil gen 6 smartwatch': 'accessories.html',
+        'titan analog watch': 'accessories.html',
+        //groceries
+        'fresh apples': 'groceries.html',
+        'fresh bananas':'groceries.html',
+        'fresh oranges':'groceries.html',
+        'fresh mangoes': 'groceries.html',
+                'fresh grapes' :'groceries.html',
+                'fresh tomatoes':'groceries.html',
+                'fresh carrots':'groceries.html',
+                'fresh onions':'groceries.html',
+                'fresh brinjal':'groceries.html',
+                'fresh cucumber':'groceries.html',
+                'fresh milk':'groceries.html',
+                'cheese':'groceries.html',
+                'yogurt':'groceries.html',
+                'butter':'groceries.html',
+                'cream':'groceries.html',
+        //kids and toys
+                'wooden alphabet blocks':'kids-toys.html',
+                'math learning puzzle':'kids-toys.html',
+                'junior science kit' :'kids-toys.html',
+                'learning flash cards' :'kids-toys.html',
+                'coding robot for kids':'kids-toys.html',
+                'superhero action figure set':'kids-toys.html',
+                'transformers robot' :'kids-toys.html',
+                'dinosaur figure set':'kids-toys.html',
+                'anime character figures':'kids-toys.html',
+                'military action set':'kids-toys.html',
+                'lego classic building set':'kids-toys.html',
+                'mega bloks building set':'kids-toys.html',
+                'technic building kit':'kids-toys.html',
+                'architecture building set':'kids-toys.html',
+                'wooden building blocks':'kids-toys.html',
+                'kids tricycle':'kids-toys.html',
+                'kids scooter': 'kids-toys.html',
+                'garden swing set':'kids-toys.html',
+                'sand and water table':'kids-toys.html',
+                'kids basketball set':'kids-toys.html',
+                //footwear
+                'nike air max':'footwear.html',
+                'adidas harden':'footwear.html',
+                'puma ignite':'footwear.html',
+                'asics gel':'footwear.html',
+                'reebok crossfit':'footwear.html',
+                'converse chuck':'footwear.html',
+                'sperry loafers':'footwear.html',
+                'timberland boat':'footwear.html',
+                'tommy espadrilles':'footwear.html',
+                'minnetonka moccasins':'footwear.html',
+                'oxford shoes':'footwear.html',
+                'derby shoes':'footwear.html',
+                'monk strap':'footwear.html',
+                'formal loafers':'footwear.html',
+                'brogues':'footwear.html',
+                'sports sandals':'footwear.html',
+                'leather wedges':'footwear.html',
+                'flip flops':'footwear.html',
+                'house slippers':'footwear.html',
+                //Luggage Faves
+                'premium carry-on':'luggage faves.html',
+                'hardside spinner':'luggage faves.html',
+                'softside cabin':'luggage faves.html',
+                'business carry-on':'luggage faves.html',
+                'compact traveler':'luggage faves.html',
+                'large spinner':'luggage faves.html',
+                'medium suitcase':'luggage faves.html',
+                'hardside set':'luggage faves.html',
+                'softside large':'luggage faves.html',
+                'premium checked':'luggage faves.html',
+                'travel backpack':'luggage faves.html',
+                'hiking backpack':'luggage faves.html',
+                'business backpack':'luggage faves.html',
+                'convertible backpack':'luggage faves.html',
+                'weekender backpack':'luggage faves.html',
+                'packing cubes':'luggage faves.html',
+                'travel pillow':'luggage faves.html',
+                'luggage scale':'luggage faves.html',
+                'toiletry bag':'luggage faves.html',
+                'luggage tags':'luggage faves.html',
+                //books and media
+                'you were not born to suffer':'books and media.html',
+                'what are you doing with your life':'books and media.html',
+                'fantasy novel':'books and media.html',
+                'thriller novel':'books and media.html',
+                'mind management not time management':'books and media.html',
+                'biography':'books and media.html',
+                'self-help':'books and media.html',
+                'cookbook':'books and media.html',
+                'travel guide':'books and media.html',
+                'history book':'books and media.html',
+                'fairy tales':'books and media.html',
+                'picture books':'books and media.html',
+                'educational books':'books and media.html',
+                'story books':'books and media.html',
+                'activity books':'books and media.html',
+                //health and personal care
+                'moisturizer':'Health and personal care.html',
+                'sunscreen':'Health and personal care.html',
+                'face wash':'Health and personal care.html',
+                'serum':'Health and personal care.html',
+                'face mask':'Health and personal care.html',
+                'toothpaste':'Health and personal care.html',
+                'toothbrush':'Health and personal care.html',
+                'mouthwash':'Health and personal care.html',
+                'dental floss':'Health and personal care.html',
+                'electric toothbrush':'Health and personal care.html',
+                'shampoo':'Health and personal care.html',
+                'conditioner':'Health and personal care.html',
+                'hair oil':'Health and personal care.html',
+                'hair serum':'Health and personal care.html',
+                'hair mask':'Health and personal care.html',
+                //beauty
+                'hydrating face cream':'beauty.html',
+                'refreshing toner':'beauty.html',
+                'vitamin c serum':'beauty.html',
+                'night repair cream':'beauty.html',
+                'sunscreen spf 55':'beauty.html',
+                'liquid foundation':'beauty.html',
+                'mascara':'beauty.html',
+                'lipstick':'beauty.html',
+                'blush':'beauty.html',
+                'eyeliner':'beauty.html',
+                'shampoo':'beauty.html',
+                'conditioner':'beauty.html',
+                'hair oil':'beauty.html',
+                'hair mask':'beauty.html',
+                'hair serum':'beauty.html',
+                //home and decor
+                'modern sofa':'Home and decor.html',
+                'coffee table':'Home and decor.html',
+                'floor lamp':'Home and decor.html',
+                'area rug':'Home and decor.html',
+                'bookshelf':'Home and decor.html',
+                'king size bed':'Home and decor.html',
+                'nightstand':'Home and decor.html',
+                'dresser':'Home and decor.html',
+                'bedside lamp':'Home and decor.html',
+                'wardrobe':'Home and decor.html',
+                'dining set':'Home and decor.html',
+                'cookware set':'Home and decor.html',
+                'kitchen island':'Home and decor.html',
+                'bar stools':'Home and decor.html',
+                'storage cabinet':'Home and decor.html',
+                'vanity':'Home and decor.html',
+                'shower caddy':'Home and decor.html',
+                'towel rack':'Home and decor.html',
+                'bath mat':'Home and decor.html',
+                'shower head':'Home and decor.html',
+                //sports
+                'professional cricket bat':'sports-new.html',
+                'cricket ball set':'sports-new.html',
+                'cricket helmet':'sports-new.html',
+                'cricket gloves':'sports-new.html',
+                'cricket pads':'sports-new.html',
+                'professional football':'sports-new.html',
+                'football boots':'sports-new.html',
+                'football jersey':'sports-new.html',
+                'football shin guards':'sports-new.html',
+                //clothing
+                'classic white shirt':'clothing.html',
+                'blue striped shirt':'clothing.html',
+                'formal black shirt':'clothing.html',
+                'checkered casual shirt':'clothing.html',
+                'linen summer shirt':'clothing.html',
+                'graphic print t-shirt':'clothing.html',
+                'solid color t-shirt':'clothing.html',
+                'polo t-shirt':'clothing.html',
+                'v-neck t-shirt':'clothing.html',
+                'round neck t-shirt':'clothing.html',
+                'slim fit jeans':'clothing.html',
+                'regular fit jeans':'clothing.html',
+                'skinny jeans':'clothing.html',
+                'distressed jeans':'clothing.html',
+                'straight fit jeans':'clothing.html',
+                'maxi dress':'clothing.html',
+                'classic saree':'clothing.html',
+                'kurthi set':'clothing.html',
+                'premium shirts':'clothing.html',
+                'trendy t-shirts':'clothing.html',
+                'designer jeans':'clothing.html',
+                'elegant dresses':'clothing.html',
+                'white shirt':'clothing.html',
+                'blue shirt':'clothing.html',
+                'black shirt':'clothing.html',
+                'checkered shirt':'clothing.html',
+                'linen shirt':'clothing.html',
+                'graphic t-shirt':'clothing.html',
+                'solid t-shirt':'clothing.html',
+                'polo shirt':'clothing.html',
+                'v neck t shirt':'clothing.html',
+                'round neck t shirt':'clothing.html',
+                'jeans':'clothing.html',
+                'dress':'clothing.html',
+                'saree':'clothing.html',
+                'kurthi':'clothing.html',
+                't shirt':'clothing.html',
+                'tshirt':'clothing.html',
+                'shirt':'clothing.html',
+        
+        // Homepage featured
+        'wireless headphones': 'homepage.html',
+        'smart watch': 'homepage.html',
+        'running shoes': 'homepage.html',
+        'gaming laptop': 'homepage.html'
     }
+};
 
-    async init() {
-        try {
-            await this.loadData();
-            this.buildSearchIndex();
-            this.setupSearchUI();
-            this.isInitialized = true;
-            console.log('Universal Search initialized successfully');
-        } catch (error) {
-            console.error('Failed to initialize Universal Search:', error);
+// Universal search function
+function performSearch(query) {
+    if (!query || query.trim() === '') return;
+    
+    query = query.toLowerCase().trim();
+    
+    // Check for exact product matches
+    for (const [product, page] of Object.entries(searchData.products)) {
+        if (product === query || product.includes(query)) {
+            window.location.href = `${page}?search=${encodeURIComponent(query)}`;
+            return;
         }
     }
-
-    async loadData() {
-        // Load products from existing system
-        try {
-            const response = await fetch('./routes/products.json');
-            this.products = await response.json();
-        } catch (error) {
-            console.log('Using fallback product data');
-            this.products = this.getFallbackProducts();
+    
+    // Check for category matches
+    for (const [category, page] of Object.entries(searchData.categories)) {
+        if (category === query || category.includes(query)) {
+            window.location.href = `${page}?search=${encodeURIComponent(query)}`;
+            return;
         }
-
-        // Define categories
-        this.categories = [
-            { id: 'electronics', name: 'Electronics', url: 'electronics.html', icon: 'fa-laptop', count: 0 },
-            { id: 'fashion', name: 'Fashion', url: 'clothing.html', icon: 'fa-tshirt', count: 0 },
-            { id: 'footwear', name: 'Footwear', url: 'footwear.html', icon: 'fa-shoe-prints', count: 0 },
-            { id: 'beauty', name: 'Beauty', url: 'beauty.html', icon: 'fa-spa', count: 0 },
-            { id: 'home', name: 'Home & Decor', url: 'Home and decor.html', icon: 'fa-home', count: 0 },
-            { id: 'health', name: 'Health & Personal Care', url: 'Health and personal care.html', icon: 'fa-heartbeat', count: 0 },
-            { id: 'books', name: 'Books & Media', url: 'books and media.html', icon: 'fa-book', count: 0 },
-            { id: 'sports', name: 'Sports & Fitness', url: 'sports-new (1).html', icon: 'fa-running', count: 0 },
-            { id: 'toys', name: 'Kids & Toys', url: 'kids-toys.html', icon: 'fa-puzzle-piece', count: 0 },
-            { id: 'groceries', name: 'Groceries', url: 'groceries.html', icon: 'fa-shopping-basket', count: 0 },
-            { id: 'accessories', name: 'Accessories', url: 'Accessories.html', icon: 'fa-gem', count: 0 },
-            { id: 'luggage', name: 'Luggage', url: 'Luggage faves.html', icon: 'fa-suitcase', count: 0 }
-        ];
-
-        // Count products per category
-        this.categories.forEach(category => {
-            category.count = this.products.filter(p => p.category === category.id).length;
-        });
     }
-
-    getFallbackProducts() {
-        return [
-            {
-                id: 1, name: "iPhone 15 Pro", category: "electronics", price: 119900,
-                image: "https://res.cloudinary.com/ddxbevmiz/image/upload/v1754748052/iPhone_15_Pro_gtp4sb.webp"
-            },
-            {
-                id: 2, name: "Smart Watch", category: "electronics", price: 7999,
-                image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300"
-            },
-            {
-                id: 3, name: "Running Shoes", category: "fashion", price: 3499,
-                image: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=300"
-            },
-            {
-                id: 4, name: "Gaming Laptop", category: "electronics", price: 59999,
-                image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=300"
-            },
-            {
-                id: 5, name: "Yoga Mat", category: "sports", price: 899,
-                image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=300"
-            }
-        ];
-    }
-
-    buildSearchIndex() {
-        this.searchIndex.clear();
-
-        // Index products
-        this.products.forEach(product => {
-            const keywords = [
-                product.name,
-                product.description || '',
-                product.category,
-                product.brand || '',
-                product.tags || []
-            ].flat().join(' ').toLowerCase();
-
-            this.searchIndex.set(`product_${product.id}`, {
-                type: 'product',
-                data: product,
-                keywords: keywords,
-                category: product.category
-            });
-        });
-
-        // Index categories
-        this.categories.forEach(category => {
-            const keywords = category.name.toLowerCase();
-            this.searchIndex.set(`category_${category.id}`, {
-                type: 'category',
-                data: category,
-                keywords: keywords,
-                count: category.count
-            });
-        });
-    }
-
-    search(query, filters = {}) {
-        if (!query || query.trim() === '') return [];
-
-        const searchTerm = query.toLowerCase();
-        let results = [];
-
-        // Search through all indexed items
-        for (const [key, item] of this.searchIndex) {
-            const score = this.calculateRelevance(item, searchTerm);
-            if (score > 0) {
-                results.push({
-                    id: key,
-                    type: item.type,
-                    data: item.data,
-                    score: score
-                });
-            }
+    
+    // Check for partial matches in products
+    for (const [product, page] of Object.entries(searchData.products)) {
+        if (product.includes(query) || query.includes(product)) {
+            window.location.href = `${page}?search=${encodeURIComponent(query)}`;
+            return;
         }
+    }
+    
+    // Fallback to products page
+    window.location.href = `products.html?search=${encodeURIComponent(query)}`;
+}
 
-        // Apply filters
-        if (filters.category && filters.category !== 'all') {
-            results = results.filter(r => r.data.category === filters.category);
+// Search input handler
+function setupSearchInput(inputId, buttonId = null) {
+    const searchInput = document.getElementById(inputId);
+    if (!searchInput) return;
+    
+    const searchHandler = () => {
+        const query = searchInput.value.trim();
+        if (query) {
+            performSearch(query);
         }
-
-        // Sort by relevance
-        results.sort((a, b) => b.score - a.score);
-
-        return results.slice(0, 20); // Limit to 20 results
-    }
-
-    calculateRelevance(item, searchTerm) {
-        let score = 0;
-        const keywords = item.keywords;
-
-        // Exact match
-        if (keywords === searchTerm) score += 10;
-        else if (keywords.startsWith(searchTerm)) score += 8;
-        else if (keywords.includes(searchTerm)) score += 6;
-
-        // Category bonus
-        if (item.type === 'category') score += 2;
-
-        return score;
-    }
-
-    setupSearchUI() {
-        // Create search bar if it doesn't exist
-        this.createUniversalSearchBar();
-        this.addSearchEventListeners();
-    }
-
-    createUniversalSearchBar() {
-        // Check if search bar already exists
-        if (document.getElementById('universal-search')) return;
-
-        const searchHTML = `
-            <div class="universal-search-container">
-                <div class="search-wrapper">
-                    <input type="text" 
-                           id="universal-search" 
-                           placeholder="Search products, categories..." 
-                           class="universal-search-input"
-                           autocomplete="off">
-                    <button id="universal-search-btn" class="universal-search-btn">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <div id="universal-search-results" class="search-dropdown" style="display: none;">
-                        <div class="search-results-content">
-                            <div id="search-suggestions"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        // Insert into header or create floating search
-        const header = document.querySelector('.header .container .nav-wrapper');
-        if (header) {
-            header.insertAdjacentHTML('afterbegin', searchHTML);
-        } else {
-            document.body.insertAdjacentHTML('afterbegin', searchHTML);
+    };
+    
+    // Handle button click
+    if (buttonId) {
+        const searchBtn = document.getElementById(buttonId);
+        if (searchBtn) {
+            searchBtn.addEventListener('click', searchHandler);
         }
-
-        // Add styles
-        this.addSearchStyles();
     }
+    
+    // Handle Enter key
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            searchHandler();
+        }
+    });
+}
 
-    addSearchStyles() {
-        const style = document.createElement('style');
-        style.textContent = `
-            .universal-search-container {
-                position: relative;
-                max-width: 600px;
-                margin: 0 auto;
-                z-index: 1000;
-            }
-
-            .search-wrapper {
-                position: relative;
-                display: flex;
-                align-items: center;
-            }
-
-            .universal-search-input {
-                width: 100%;
-                padding: 12px 45px 12px 15px;
-                border: 2px solid #ddd;
-                border-radius: 25px;
-                font-size: 16px;
-                outline: none;
-                transition: all 0.3s ease;
-            }
-
-            .universal-search-input:focus {
-                border-color: #667eea;
-                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-            }
-
-            .universal-search-btn {
-                position: absolute;
-                right: 5px;
-                top: 50%;
-                transform: translateY(-50%);
-                background: #667eea;
-                color: white;
-                border: none;
-                padding: 8px 12px;
-                border-radius: 50%;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-
-            .universal-search-btn:hover {
-                background: #5a6fd8;
-                transform: translateY(-50%) scale(1.1);
-            }
-
-            .search-dropdown {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                max-height: 400px;
-                overflow-y: auto;
-                z-index: 1001;
-            }
-
-            .search-result-item {
-                padding: 12px;
-                border-bottom: 1px solid #eee;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                transition: background 0.2s;
-            }
-
-            .search-result-item:hover {
-                background: #f8f9fa;
-            }
-
-            .search-result-item img {
-                width: 50px;
-                height: 50px;
-                object-fit: cover;
-                margin-right: 12px;
-                border-radius: 4px;
-            }
-
-            .search-result-info h4 {
-                margin: 0 0 4px 0;
-                font-size: 14px;
-                font-weight: 600;
-            }
-
-            .search-result-info p {
-                margin: 0;
-                font-size: 12px;
-                color: #666;
-            }
-
-            .search-result-price {
-                color: #667eea;
-                font-weight: bold;
-            }
-
-            .search-result-category {
-                background: #e3f2fd;
-                color: #1976d2;
-                padding: 2px 6px;
-                border-radius: 3px;
-                font-size: 10px;
-                margin-left: 8px;
-            }
-
-            @media (max-width: 768px) {
-                .universal-search-container {
-                    margin: 10px;
-                }
-                
-                .universal-search-input {
-                    font-size: 14px;
-                    padding: 10px 40px 10px 12px;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    addSearchEventListeners() {
-        const searchInput = document.getElementById('universal-search');
-        const searchBtn = document.getElementById('universal-search-btn');
-        const resultsContainer = document.getElementById('universal-search-results');
-
-        if (!searchInput) return;
-
-        let searchTimeout;
-        searchInput.addEventListener('input', (e) => {
-            clearTimeout(searchTimeout);
-            const query = e.target.value.trim();
-            
-            if (query.length > 0) {
-                searchTimeout = setTimeout(() => {
-                    this.performSearch(query);
-                }, 300);
+// Handle search parameters on page load
+function handleSearchParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchTerm = urlParams.get('search');
+    
+    if (searchTerm) {
+        const products = document.querySelectorAll('.product-card');
+        let found = false;
+        
+        products.forEach(card => {
+            const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+            if (title && title.includes(searchTerm.trim().toLowerCase())) {
+                card.style.display = 'block';
+                found = true;
             } else {
-                this.hideResults();
+                card.style.display = 'none';
             }
         });
-
-        searchInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                this.performSearch(e.target.value.trim());
-            }
-        });
-
-        searchBtn.addEventListener('click', () => {
-            this.performSearch(searchInput.value.trim());
-        });
-
-        // Close results when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.universal-search-container')) {
-                this.hideResults();
-            }
-        });
-    }
-
-    performSearch(query) {
-        if (!query) {
-            this.hideResults();
-            return;
+        
+        // If no products found, show all products
+        if (!found) {
+            products.forEach(card => card.style.display = 'block');
         }
-
-        const results = this.search(query);
-        this.displaySearchResults(results);
-    }
-
-    displaySearchResults(results) {
-        const suggestionsContainer = document.getElementById('search-suggestions');
-        if (!suggestionsContainer) return;
-
-        if (results.length === 0) {
-            suggestionsContainer.innerHTML = `
-                <div class="search-result-item">
-                    <div class="search-result-info">
-                        <h4>No results found</h4>
-                        <p>Try searching with different keywords</p>
-                    </div>
-                </div>
-            `;
-            return;
+        
+        // Set the search input value if it exists
+        const searchInput = document.querySelector('.search-bar input, input[type="text"][placeholder*="search" i]');
+        if (searchInput) {
+            searchInput.value = searchTerm;
         }
-
-        suggestionsContainer.innerHTML = results.map(result => {
-            if (result.type === 'product') {
-                return `
-                    <div class="search-result-item" onclick="window.location.href='products.html#product-${result.data.id}'">
-                        <img src="${result.data.image}" alt="${result.data.name}">
-                        <div class="search-result-info">
-                            <h4>${result.data.name}</h4>
-                            <p class="search-result-price">₹${result.data.price}</p>
-                            <span class="search-result-category">${result.data.category}</span>
-                        </div>
-                    </div>
-                `;
-            } else if (result.type === 'category') {
-                return `
-                    <div class="search-result-item" onclick="window.location.href='${result.data.url}'">
-                        <div class="search-result-info">
-                            <h4><i class="fas ${result.data.icon}"></i> ${result.data.name}</h4>
-                            <p>${result.data.count} items available</p>
-                        </div>
-                    </div>
-                `;
-            }
-        }).join('');
-
-        document.getElementById('universal-search-results').style.display = 'block';
-    }
-
-    hideResults() {
-        const resultsContainer = document.getElementById('universal-search-results');
-        if (resultsContainer) {
-            resultsContainer.style.display = 'none';
-        }
-    }
-
-    // Utility method to get search suggestions
-    getSuggestions(query) {
-        if (!query || query.length < 2) return [];
-        return this.search(query).slice(0, 5);
     }
 }
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    window.universalSearch = new UniversalSearch();
+// Initialize search on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Setup search for homepage
+    setupSearchInput('homeSearch', 'searchBtn');
+    
+    // Setup search for other pages
+    setupSearchInput('searchInput');
+    
+    // Handle search parameters
+    handleSearchParams();
 });
 
-// Make available globally
-window.UniversalSearch = UniversalSearch;
+// Export for global use
+window.VSVSearch = {
+    performSearch,
+    setupSearchInput,
+    handleSearchParams
+};

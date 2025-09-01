@@ -3,57 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - Frequently Asked Questions</title>
-     <link rel="stylesheet" href="style.css">
+    <title>FAQ - Frequently Asked Questions | VSV ShopEasy</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="footer-styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <style>
         .faq-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
-            font-family: Arial, sans-serif;
+            padding: 80px 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         .faq-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
         
         .faq-header h1 {
-            color: #333;
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .faq-header p {
+            font-size: 1.3rem;
             color: #666;
-            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .faq-section {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         
         .faq-section h2 {
-            color: #2c3e50;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #3498db;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+            position: relative;
             padding-bottom: 10px;
         }
         
+        .faq-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        .faq-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
         .faq-item {
-            margin-bottom: 20px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
         }
         
         .faq-question {
-            background-color: #f8f9fa;
-            padding: 20px;
+            padding: 25px 30px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 1.1rem;
             color: #333;
             display: flex;
             justify-content: space-between;
@@ -62,13 +91,14 @@
         }
         
         .faq-question:hover {
-            background-color: #e9ecef;
+            background-color: #f8f9fa;
         }
         
         .faq-question::after {
-            content: '+';
-            font-size: 1.5em;
-            color: #3498db;
+            content: '\f067';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #667eea;
             transition: transform 0.3s;
         }
         
@@ -77,93 +107,287 @@
         }
         
         .faq-answer {
-            padding: 0 20px;
+            padding: 0 30px;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out, padding 0.3s ease;
-            background-color: white;
             color: #555;
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
         .faq-item.active .faq-answer {
             max-height: 500px;
-            padding: 20px;
+            padding: 0 30px 25px;
         }
         
-        .contact-info {
+        .contact-cta {
             text-align: center;
-            margin-top: 50px;
-            padding: 30px;
-            background-color: #f8f9fa;
-            border-radius: 10px;
+            margin-top: 60px;
+            padding: 50px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
         }
         
-        .contact-info h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
+        .contact-cta h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
         }
         
-        .contact-info p {
+        .contact-cta p {
+            font-size: 1.2rem;
             color: #666;
-            margin-bottom: 10px;
+            margin-bottom: 2rem;
         }
         
-        .contact-info a {
-            color: #3498db;
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
             text-decoration: none;
+            display: inline-block;
         }
         
-        .contact-info a:hover {
-            text-decoration: underline;
+        .contact-btn.primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .contact-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .contact-btn.secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .contact-btn.secondary:hover {
+            background: #667eea;
+            color: white;
         }
         
         @media (max-width: 768px) {
             .faq-container {
-                padding: 20px 10px;
+                padding: 60px 15px;
             }
             
             .faq-header h1 {
-                font-size: 2em;
+                font-size: 2.5rem;
             }
             
             .faq-section h2 {
-                font-size: 1.5em;
+                font-size: 1.5rem;
+            }
+            
+            .faq-question {
+                padding: 20px;
+                font-size: 1rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="faq-container">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
+                
+               
+                
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="faq.html" class="nav-link active">FAQ</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+                
+                <div class="nav-icons">
+                    <a href="customer-account-enhanced (1).html" class="icon-link">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="cart-updated.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="faq-container">
         <div class="faq-header">
             <h1>Frequently Asked Questions</h1>
-            <p>Find answers to common questions about shopping with us</p>
+            <p>Find answers to common questions about shopping with VSV ShopEasy</p>
         </div>
 
         <div class="faq-section">
             <h2>Ordering & Payment</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question">How do I place an order?</div>
-                <div class="faq-answer">
-                    Placing an order is simple! Browse our products, add items to your cart, and proceed to checkout. You'll need to provide your shipping address and payment information. Once your order is confirmed, you'll receive an email with your order details.
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">How do I place an order?</div>
+                    <div class="faq-answer">
+                        <p>Placing an order is simple and secure:</p>
+                        <ol>
+                            <li>Browse our products and add items to your cart</li>
+                            <li>Click on the cart icon and proceed to checkout</li>
+                            <li>Enter your shipping address and contact details</li>
+                            <li>Choose your preferred payment method</li>
+                            <li>Review your order and confirm payment</li>
+                        </ol>
+                        <p>You'll receive an order confirmation email with tracking details once your order is placed.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What payment methods do you accept?</div>
+                    <div class="faq-answer">
+                        <p>We accept all major payment methods:</p>
+                        <ul>
+                            <li>Credit/Debit Cards (Visa, MasterCard, American Express)</li>
+                            <li>UPI (Google Pay, PhonePe, Paytm)</li>
+                            <li>Net Banking</li>
+                            <li>PayPal</li>
+                            <li>Cash on Delivery (COD) - Available on select products</li>
+                        </ul>
+                        <p>All transactions are secured with 256-bit SSL encryption for your safety.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Is it safe to use my credit card on your website?</div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Your security is our top priority. We use:</p>
+                        <ul>
+                            <li>256-bit SSL encryption for all transactions</li>
+                            <li>PCI-DSS compliant payment processing</li>
+                            <li>Two-factor authentication for added security</li>
+                            <li>Regular security audits and updates</li>
+                        </ul>
+                        <p>We never store your complete card details on our servers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I modify or cancel my order after placing it?</div>
+                    <div class="faq-answer">
+                        <p>Yes, you can modify or cancel your order within 2 hours of placing it:</p>
+                        <ul>
+                            <li>Go to "My Orders" in your account</li>
+                            <li>Click on "Modify Order" or "Cancel Order"</li>
+                            <li>Follow the prompts to make changes</li>
+                        </ul>
+                        <p><strong>Note:</strong> Once an order is shipped, modifications are not possible. Contact customer service for assistance.</p>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="faq-item">
-                <div class="faq-question">What payment methods do you accept?</div>
-                <div class="faq-answer">
-                    We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, Google Pay, and debit cards. All payments are processed securely through our encrypted payment gateway.
+        <div class="faq-section">
+            <h2>Shipping & Delivery</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">What are your shipping options and delivery times?</div>
+                    <div class="faq-answer">
+                        <p>We offer multiple shipping options:</p>
+                        <ul>
+                            <li><strong>Standard Delivery:</strong> 5-7 business days - Free on orders over ₹999</li>
+                            <li><strong>Express Delivery:</strong> 2-3 business days - ₹99 extra</li>
+                            <li><strong>Same Day Delivery:</strong> Available in select cities - ₹199 extra</li>
+                        </ul>
+                        <p>Delivery times may vary based on your location and product availability.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Do you ship internationally?</div>
+                    <div class="faq-answer">
+                        <p>Currently, we only ship within India. We're working on expanding our shipping services to international locations soon.</p>
+                        <p>All orders are shipped from our warehouses in India.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How can I track my order?</div>
+                    <div class="faq-answer">
+                        <p>Tracking your order is easy:</p>
+                        <ol>
+                            <li>Log into your account and go to "My Orders"</li>
+                            <li>Click on the order you want to track</li>
+                            <li>View real-time tracking updates</li>
+                        </ol>
+                        <p>You'll also receive tracking updates via SMS and email as your order progresses.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What if I'm not available to receive my delivery?</div>
+                    <div class="faq-answer">
+                        <p>If you're not available:</p>
+                        <ul>
+                            <li>Our delivery partner will attempt delivery 3 times</li>
+                            <li>You can reschedule delivery through the tracking link</li>
+                            <li>Leave delivery instructions in your account settings</li>
+                            <li>Opt for pickup from a nearby pickup point</li>
+                        </ul>
+                        <p>After 3 failed attempts, the package will be returned to our warehouse.</p>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="faq-item">
-                <div class="faq-question">Is it safe to use my credit card on your website?</div>
-                <div class="faq-answer">
-                    Absolutely! We use SSL encryptionThe search for "FAQ frequently asked questions" did not return any existing FAQ page or related content in the project files. This means there is no existing FAQ page, so we will need to create a new one from scratch.
+        <div class="faq-section">
+            <h2>Returns & Refunds</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">What is your return policy?</div>
+                    <div class="faq-answer">
+                        <p>We offer a hassle-free return policy:</p>
+                        <ul>
+                            <li><strong>30-day return window</strong> from the date of delivery</li>
+                            <li>Items must be unused and in original packaging</li>
+                            <li>Free returns on defective or wrong items</li>
+                            <li>Return shipping fee may apply for change-of-mind returns</li>
+                        </ul>
+                        <p>Some items like perishables, personal care products, and custom orders are non-returnable.</p>
+                    </div>
+                </div>
 
-Next, I will check the style.css file to understand the current styling conventions used in the project so that the new FAQ page can be styled consistently.
+                <div class="faq-item">
+                    <div class="faq-question">How do I return an item?</div>
+                    <div class="faq-answer">
+                        <p>To initiate a return:</p>
+                        <ol>
+                            <li>Log into your account and go to "My Orders"</li>
+                            <li>Select the item you want to return</li>
+                            <li>Click "Return Item" and select the reason</li>
+                            <li>Choose pickup or drop-off option</li>
+                            <li>Pack the item and attach the return label</li>
+                        </ol>
+                        <p>We'll process your refund within 5-7 business days after receiving the returned item.</p>
+                    </div>
+                </div>
 
-<read_file>
-<path>style.css</path>
-</read_file>
+                <div class="faq-item">
+                    <div class="faq-question">When will I receive my refund?</div>
+                    <div class="faq-answer">
+                        <p>Refund processing times:</p>

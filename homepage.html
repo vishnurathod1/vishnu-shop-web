@@ -16,6 +16,8 @@
     <meta name="msapplication-TileColor" content="#667eea">
     <meta name="theme-color" content="#667eea">
       <script src="add-to-cart.js"></script>
+            <script src="universal-search.js"></script>
+
 
 </head>
 <body>
@@ -28,12 +30,10 @@
                 </div>
                 
                 <div class="search-bar">
-                    <form action="search.html" method="GET">
                     <input type="text" placeholder="Search products, categories..." id="homeSearch">
-                    <button class="search-btn" onclick="searchFromHome()">
+                    <button class="search-btn" id="searchBtn" type="button">
                         <i class="fas fa-search"></i>
                     </button>
-                    </form>
                 </div>
                 
                 <nav class="nav-menu">
@@ -42,11 +42,11 @@
                     <a href="products.html" class="nav-link">Products</a>
                     <a href="categories.html" class="nav-link">Categories</a>
                     <a href="deals.html" class="nav-link">Deals</a>
-                    <a href="dashboard.html" class="nav-link">dashboard</a>
+
                 </nav>
                 
                 <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
@@ -109,7 +109,7 @@
                     </a>
                 </div>
                 <div class="category-card">
-                    <a href="sports-new (1).html" style="text-decoration: none; color: inherit;">
+                    <a href="sports-new.html" style="text-decoration: none; color: inherit;">
                         <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300" alt="Sports">
                         <h3>Sports</h3>   
                     </a>
@@ -161,7 +161,98 @@
         <div class="container">
             <h2 class="section-title">Featured Products</h2>
             <div class="products-grid">
-                <div class="product-card">
+                <div class="product-card" data-product-id="shirt-home-1" data-price="1299" data-product-name="Classic White Shirt" data-category="clothing">
+                    <div class="product-badge">New</div>
+                    <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754726868/259MS_PWhite_wwjvrw.webp" alt="Classic White Shirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Classic White Shirt</h3>
+                        <p class="product-description">Premium cotton formal shirt with modern fit</p>
+                        <div class="product-price">
+                            <span class="current-price">₹1299</span>
+                            <span class="original-price">₹1,899</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(234)</span>
+                        </div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy now</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-product-id="jeans-home-1" data-price="1999" data-product-name="Slim Fit Jeans" data-category="clothing">
+                    <div class="product-badge">Hot</div>
+                    <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754729172/Slim_Fit_Jeans_vpbxoj.webp" alt="Slim Fit Jeans" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Slim Fit Jeans</h3>
+                        <p class="product-description">Modern slim fit jeans in stretch denim</p>
+                        <div class="product-price">
+                            <span class="current-price">₹1999</span>
+                            <span class="original-price">₹2,799</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(198)</span>
+                        </div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                         <button class="buy-now-btn">Buy now</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-product-id="tshirt-home-1" data-price="599" data-product-name="Graphic Print T-Shirt" data-category="clothing">
+                    <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754728404/Graphic_Print_T-Shirt_sqgnmp.webp" alt="Graphic Print T-Shirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Graphic Print T-Shirt</h3>
+                        <p class="product-description">Cool graphic print on soft cotton fabric</p>
+                        <div class="product-price">
+                            <span class="current-price">₹599</span>
+                            <span class="original-price">₹899</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(178)</span>
+                        </div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                         <button class="buy-now-btn">Buy now</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-product-id="dress-home-1" data-price="2499" data-product-name="Maxi Dress" data-category="clothing">
+                    <div class="product-badge">Sale</div>
+                    <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754730141/Maxi_Dress_h9ajbg.webp" alt="Maxi Dress" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Maxi Dress</h3>
+                        <p class="product-description">Flowing maxi dress in floral print</p>
+                        <div class="product-price">
+                            <span class="current-price">₹2499</span>
+                            <span class="original-price">₹3,499</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(156)</span>
+                        </div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                         <button class="buy-now-btn">Buy now</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-product-id="headphones-1" data-price="2999" data-product-name="Wireless Headphones" data-category="electronics">
                     <div class="product-badge">New</div>
                     <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300" alt="Wireless Headphones" class="product-image">
                     <div class="product-info">
@@ -184,14 +275,14 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-product-id="watch-1" data-price="7999" data-product-name="Smart Watch" data-category="electronics">
                     <div class="product-badge">Sale</div>
                     <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300" alt="Smart Watch" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Smart Watch</h3>
                         <p class="product-description">Track your fitness and stay connected</p>
                         <div class="product-price">
-                            <span class="current-price">₹7,999</span>
+                            <span class="current-price">₹7999</span>
                             <span class="original-price">₹12,999</span>
                         </div>
                         <div class="product-rating">
@@ -207,13 +298,13 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-product-id="shoes-1" data-price="3499" data-product-name="Running Shoes" data-category="footwear">
                     <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=300" alt="Running Shoes" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Running Shoes</h3>
                         <p class="product-description">Comfortable and durable for daily runs</p>
                         <div class="product-price">
-                            <span class="current-price">₹3,499</span>
+                            <span class="current-price">₹3499</span>
                             <span class="original-price">₹5,499</span>
                         </div>
                         <div class="product-rating">
@@ -229,14 +320,14 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-product-id="laptop-1" data-price="59999" data-product-name="Gaming Laptop" data-category="electronics">
                     <div class="product-badge">Hot</div>
                     <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=300" alt="Laptop" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Gaming Laptop</h3>
                         <p class="product-description">High performance for gaming and work</p>
                         <div class="product-price">
-                            <span class="current-price">₹59,999</span>
+                            <span class="current-price">₹59999</span>
                             <span class="original-price">₹79,999</span>
                         </div>
                         <div class="product-rating">
@@ -263,7 +354,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ShopEasy</h3>
+                    <h3>VSV Shop Easy</h3>
                     <p>Your trusted online shopping destination</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -286,7 +377,7 @@
                 <div class="footer-section">
                     <h4>Customer Service</h4>
                     <ul>
-                        <li><a href="customer-account.html">My Account</a></li>
+                        <li><a href="customer-account-enhanced (1).html">My Account</a></li>
                         <li><a href="order-tracking.html">Order Tracking</a></li>
                         <li><a href="returns.html">Returns</a></li>
                         <li><a href="customer-service.html">Help Center</a></li>
@@ -295,32 +386,29 @@
                 
                 <div class="footer-section">
                     <h4>Contact Info</h4>
-                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-phone"></i> +91 6304570624</p>
                     <p><i class="fas fa-envelope"></i> vsv@shopeasy.com</p>
                     <p><i class="fas fa-map-marker-alt"></i> vizag,andra, India</p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 ShopEasy. All rights reserved.</p>
+        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>
 
+    <script src="universal-search.js"></script>
     <script>
         // Simple cart functionality
         let cartCount = 0;
         const cartCountElement = document.querySelector('.cart-count');
-        
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
             button.addEventListener('click', function() {
                 cartCount++;
                 cartCountElement.textContent = cartCount;
-                
-                // Add animation
                 this.textContent = 'Added!';
                 this.style.background = '#28a745';
-                
                 setTimeout(() => {
                     this.textContent = 'Add to Cart';
                     this.style.background = '#667eea';
@@ -328,25 +416,5 @@
             });
         });
     </script>
-     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const searchInput = document.getElementById("searchInput");
-      if (!searchInput) return;
-
-      searchInput.addEventListener("input", function () {
-        const filter = searchInput.value.toLowerCase();
-        const products = document.querySelectorAll(".product-card");
-
-        products.forEach((product) => {
-          const title = product.querySelector(".product-title")?.textContent.toLowerCase();
-          if (title && title.includes(filter)) {
-            product.style.display = "block";
-          } else {
-            product.style.display = "none";
-          }
-        });
-      });
-    });
-  </script>
   </body>
   </html>

@@ -209,6 +209,32 @@
     </style>
 </head>
 <body>
+<script>
+// Product search from homepage
+document.addEventListener('DOMContentLoaded', function() {
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    const searchTerm = getQueryParam('search');
+    if (searchTerm) {
+        const products = document.querySelectorAll('.product-card');
+        let found = false;
+        products.forEach(card => {
+            const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+            if (title && title.includes(searchTerm.trim().toLowerCase())) {
+                card.style.display = 'block';
+                found = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        if (!found) {
+            products.forEach(card => card.style.display = 'block');
+        }
+    }
+});
+</script>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -219,24 +245,24 @@
                 
                 <nav class="nav-menu">
                     <a href="homepage.html" class="nav-link">Home</a>
-                    <a href="fashion-category.html" class="nav-link">Fashion</a>
+                    <a href="clothing.html" class="nav-link">clothing</a>
                     <a href="kids-toys.html" class="nav-link active">Kids Toys</a>
-                    <a href="#categories" class="nav-link">Categories</a>
+                    <a href="categories.html" class="nav-link">Categories</a>
                 </nav>
 
                        
             <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
-                    <a href="cart.html" class="icon-link">
+                    <a href="cart-updated.html" class="icon-link">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span><a href="cart.html" class="icon-link">
                     </a>
-                    <a href="cart.html" class="icon-link"></a>
+                    <a href="cart-updated.html" class="icon-link"></a>
                    <a href="vsv-login.html" class="icon-link" id="userIcon">
-                        <span class="user-status">sign out</span>
+            <button class="cta-button"> Logout</button></a>
 </a>
 
         </div>
@@ -252,13 +278,15 @@
         <h2 class="category-title">Educational Toys</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <div class="age-badge">Ages 3-6</div>
                 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754704116/Wooden_Alphabet_Blocks_sq6amr.webp" alt="Alphabet Blocks" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Wooden Alphabet Blocks</h3>
                     <p class="product-description">Colorful wooden blocks with letters and numbers for early learning</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,299</span>
+                        <span class="current-price">₹1299</span>
                         <span class="original-price">₹1,799</span>
                     </div>
                     <div class="product-rating">
@@ -272,6 +300,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">new</div>
+
                 <div class="age-badge">Ages 4-8</div>
                 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754704464/Math_Learning_Puzzle_bid6nz.webp" alt="Math Puzzle" class="product-image" />
                 <div class="product-info">
@@ -292,13 +322,15 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <div class="age-badge">Ages 5-10</div>
                 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754704958/magic_of_science_kit_sdcria.webp" alt="Science Kit" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">magic of Science Kit</h3>
                     <p class="product-description">Complete science experiment kit with 50+ activities</p>
                     <div class="product-price">
-                        <span class="current-price">₹2,499</span>
+                        <span class="current-price">₹2499</span>
                         <span class="original-price">₹3,499</span>
                     </div>
                     <div class="product-rating">
@@ -338,7 +370,7 @@
                     <h3 class="product-title">Learning Resources Artie 3000 The Coding Robot</h3>
                     <p class="product-description">Fuel creativity and imagination with the Artie 3000 Drawing Robot! Kids can program this super fun robot to draw with preprogrammed designs, shapes, and games—or create your own custom code. Easy to learn</p>
                     <div class="product-price">
-                        <span class="current-price">₹4,999</span>
+                        <span class="current-price">₹4999</span>
                         <span class="original-price">₹6,999</span>
                     </div>
                     <div class="product-rating">
@@ -359,13 +391,15 @@
         <h2 class="category-title">Action Figures</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
                 <div class="age-badge">Ages 4-8</div>
                 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754708176/superhero_sqeiul.webp" alt="Superhero Set" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Superhero Action Figure Set</h3>
                     <p class="product-description">Set of 5popular superhero figures with accessories</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,000</span>
+                        <span class="current-price">₹1000</span>
                         <span class="original-price">₹1,499</span>
                     </div>
                     <div class="product-rating">
@@ -379,13 +413,15 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <div class="age-badge">Ages 5-10</div>
                 <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754708529/Transformers_Robot_la6lwo.webp" alt="Transformers" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Transformers Robot</h3>
                     <p class="product-description">Transforming robot that changes into vehicle</p>
                     <div class="product-price">
-                        <span class="current-price">₹2,299</span>
+                        <span class="current-price">₹2299</span>
                         <span class="original-price">₹2,999</span>
                     </div>
                     <div class="product-rating">
@@ -405,7 +441,7 @@
                     <h3 class="product-title">Dinosaur Figure Set</h3>
                     <p class="product-description">Set of 11 realistic dinosaur figures with sound effects</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,599</span>
+                        <span class="current-price">₹1599</span>
                         <span class="original-price">₹2,199</span>
                     </div>
                     <div class="product-rating">
@@ -425,7 +461,7 @@
                     <h3 class="product-title">Anime Character Figures</h3>
                     <p class="product-description">Collectible anime figures with detailed design</p>
                     <div class="product-price">
-                        <span class="current-price">₹3,499</span>
+                        <span class="current-price">₹3499</span>
                         <span class="original-price">₹4,499</span>
                     </div>
                     <div class="product-rating">
@@ -445,7 +481,7 @@
                     <h3 class="product-title">Military Action Set</h3>
                     <p class="product-description">Complete military action figure set with vehicles</p>
                     <div class="product-price">
-                        <span class="current-price">₹2,799</span>
+                        <span class="current-price">₹2799</span>
                         <span class="original-price">₹3,699</span>
                     </div>
                     <div class="product-rating">
@@ -472,7 +508,7 @@
                     <h3 class="product-title">LEGO Classic Building Set</h3>
                     <p class="product-description">900+ pieces creative building set with endless possibilities</p>
                     <div class="product-price">
-                        <span class="current-price">₹4,999</span>
+                        <span class="current-price">₹4999</span>
                         <span class="original-price">₹6,499</span>
                     </div>
                     <div class="product-rating">
@@ -492,7 +528,7 @@
                     <h3 class="product-title">Mega Bloks Building Set</h3>
                     <p class="product-description">Large building blocks perfect for small hands</p>
                     <div class="product-price">
-                        <span class="current-price">₹2,499</span>
+                        <span class="current-price">₹2499</span>
                         <span class="original-price">₹3,299</span>
                     </div>
                     <div class="product-rating">
@@ -512,7 +548,7 @@
                     <h3 class="product-title">Technic Building Kit</h3>
                     <p class="product-description">Advanced building set car with  moving parts</p>
                     <div class="product-price">
-                        <span class="current-price">₹6,999</span>
+                        <span class="current-price">₹6999</span>
                         <span class="original-price">₹8,999</span>
                     </div>
                     <div class="product-rating">
@@ -532,7 +568,7 @@
                     <h3 class="product-title">Architecture Building Set</h3>
                     <p class="product-description">Build famous landmarks with this architectural set</p>
                     <div class="product-price">
-                        <span class="current-price">₹3,999</span>
+                        <span class="current-price">₹3999</span>
                         <span class="original-price">₹5,499</span>
                     </div>
                     <div class="product-rating">
@@ -552,7 +588,7 @@
                     <h3 class="product-title">Wooden Building Blocks</h3>
                     <p class="product-description">100-piece natural wooden blocks in various shapes</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,799</span>
+                        <span class="current-price">₹1799</span>
                         <span class="original-price">₹2,399</span>
                     </div>
                     <div class="product-rating">
@@ -579,7 +615,7 @@
                     <h3 class="product-title">Kids Tricycle</h3>
                     <p class="product-description">Sturdy tricycle with safety features and adjustable seat</p>
                     <div class="product-price">
-                        <span class="current-price">₹3,499</span>
+                        <span class="current-price">₹3499</span>
                         <span class="original-price">₹4,499</span>
                     </div>
                     <div class="product-rating">
@@ -599,7 +635,7 @@
                     <h3 class="product-title">Kids Scooter</h3>
                     <p class="product-description">Adjustable height scooter with LED wheels</p>
                     <div class="product-price">
-                        <span class="current-price">₹2,999</span>
+                        <span class="current-price">₹2999</span>
                         <span class="original-price">₹3,999</span>
                     </div>
                     <div class="product-rating">
@@ -619,7 +655,7 @@
                     <h3 class="product-title">Garden Swing Set</h3>
                     <p class="product-description">Complete swing and slide set for backyard fun</p>
                     <div class="product-price">
-                        <span class="current-price">₹49,999</span>
+                        <span class="current-price">₹49999</span>
                         <span class="original-price">₹70,599</span>
                     </div>
                     <div class="product-rating">
@@ -639,7 +675,7 @@
                     <h3 class="product-title">Sand and Water Table</h3>
                     <p class="product-description">Multi-activity table for sand and water play</p>
                     <div class="product-price">
-                        <span class="current-price">₹2,499</span>
+                        <span class="current-price">₹2499</span>
                         <span class="original-price">₹3,299</span>
                     </div>
                     <div class="product-rating">
@@ -659,7 +695,7 @@
                     <h3 class="product-title">Kids Basketball Set</h3>
                     <p class="product-description">Adjustable height basketball hoop and ball set</p>
                     <div class="product-price">
-                        <span class="current-price">₹3,799</span>
+                        <span class="current-price">₹3799</span>
                         <span class="original-price">₹4,999</span>
                     </div>
                     <div class="product-rating">
@@ -676,7 +712,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ShopEasy</h3>
+                    <h3>VSV Shop Easy</h3>
                     <p>Your trusted online shopping destination for books</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -700,9 +736,9 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="homepage.html">Home</a></li>
-                        <li><a href="fashion-category.html">Fashion</a></li>
-                        <li><a href="books.html">Books</a></li>
-                        <li><a href="home-decor.html">Home Decor</a></li>
+                        <li><a href="clothing.html">Fashion</a></li>
+                        <li><a href="books and media.html">Books</a></li>
+                        <li><a href="Home and decor.html">Home Decor</a></li>
                     </ul>
                 </div>
                 
@@ -714,7 +750,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 ShopEasy Books. All rights reserved.</p>
+        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>

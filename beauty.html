@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-     <title>Beauty Products - ShopEasy</title>
+    <title>Beauty Products - ShopEasy</title>
      <link rel="stylesheet" href="style.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-     <script src="add-to-cart.js"></script>
-    <link rel="stylesheet" href="footer-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="add-to-cart.js"></script>
+   <link rel="stylesheet" href="footer-styles.css">
 
     <style>
         .beauty-hero {
-            background: linear-gradient(rgba(255, 182, 193, 0.8), rgba(255, 105, 180, 0.8)),
-                url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754573748/download_9_kgmxct.jpg');
+            background: linear-gradient(rgba(114, 79, 84, 0.8), rgba(229, 151, 164, 0.8)),
+                url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754654946/download_13_q7czvx.jpg');
             background-size: cover;
             background-position: center;
             height: 500px;
@@ -115,7 +115,7 @@
         }
         .product-actions {
             display: flex;
-            gap: 11px;
+            gap: 10px;
         }
         .add-to-cart-btn, .buy-now-btn {
             flex: 1;
@@ -142,6 +142,32 @@
     </style>
 </head>
 <body>
+<script>
+// Product search from homepage
+document.addEventListener('DOMContentLoaded', function() {
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    const searchTerm = getQueryParam('search');
+    if (searchTerm) {
+        const products = document.querySelectorAll('.product-card');
+        let found = false;
+        products.forEach(card => {
+            const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+            if (title && title.includes(searchTerm.trim().toLowerCase())) {
+                card.style.display = 'block';
+                found = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        if (!found) {
+            products.forEach(card => card.style.display = 'block');
+        }
+    }
+});
+</script>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -151,13 +177,12 @@
                 </div>
                 <nav class="nav-menu">
                     <a href="homepage.html" class="nav-link">Home</a>
-                    <a href="clothing.html" class="nav-link">Fashion</a>
-                    <a href="beauty-new.html" class="nav-link active">Beauty</a>
-                    <a href="home-decor.html" class="nav-link">Home Decor</a>
-                    <a href="dashboard.html" class="nav-link">Dashboard</a>
+                    <a href="clothing.html" class="nav-link">Clothing</a>
+                    <a href="beauty.html" class="nav-link active">Beauty</a>
+                    <a href="Home and decor.html" class="nav-link">Home Decor</a>
                 </nav>
                 <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
@@ -165,7 +190,7 @@
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span><a href="cart.html" class="icon-link">
                     </a>
-                    <a href="cart.html" class="icon-link"></a>
+                    <a href="cart-updated.html" class="icon-link"></a>
                    <a href="vsv-login.html" class="icon-link" id="userIcon">
             <button class="cta-button"> Logout</button></a>
 </a>
@@ -187,6 +212,8 @@
         <h2 class="category-title">Skincare</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731077/Dr_rashel_11_2027_Vitamin_C_Face_Cream_With_Hyaluronic_Acid_F_Brightening_50g_ku9sci.jpg" alt="Hydrating Face Cream" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Hydrating Face Cream</h3>
@@ -206,6 +233,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731145/Cucumber_Toner_for_Hydrating_Skin_gujnz2.jpg" alt="Refreshing Toner" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Refreshing Toner</h3>
@@ -225,12 +254,14 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731226/Elemensis_Naturals_Vitamin_C_Face_Serum_30ml_wwzvq8.jpg" alt="Vitamin C Serum" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Vitamin C Serum</h3>
                     <p class="product-description">Brighten your complexion with this powerful serum</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,299</span>
+                        <span class="current-price">₹1299</span>
                         <span class="original-price">₹1,599</span>
                     </div>
                     <div class="product-rating">
@@ -288,12 +319,14 @@
         <h2 class="category-title">Makeup</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731491/Est%C3%A9e_Lauder_Double_Wear_Stay-in-Place_24-Hour_Long-Wear_Matte_Foundation_Makeup_uuwmkb.jpg" alt="Liquid Foundation" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Liquid Foundation</h3>
                     <p class="product-description">Smooth and long-lasting foundation</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,199</span>
+                        <span class="current-price">₹1199</span>
                         <span class="original-price">₹1,499</span>
                     </div>
                     <div class="product-rating">
@@ -307,6 +340,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731555/download_4_c1frkn.jpg" alt="Mascara" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Mascara</h3>
@@ -389,6 +424,8 @@
         <h2 class="category-title">Hair Care</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754731959/download_8_yex8sa.jpg" alt="Shampoo" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Shampoo</h3>
@@ -408,6 +445,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754732095/It_s_a_10_Miracle_Deep_Conditioner_Plus_Keratin_cypza5.jpg" alt="Conditioner" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Conditioner</h3>
@@ -427,6 +466,8 @@
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754732186/Anti_Hair_Fall_Hair_Oil_chfz2z.jpg" alt="Hair Oil" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Hair Oil</h3>
@@ -491,7 +532,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ShopEasy</h3>
+                    <h3>VSV Shop Easy</h3>
                     <p>Your trusted online shopping destination for beauty products</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -530,7 +571,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 ShopEasy Beauty. All rights reserved.</p>
+        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>

@@ -29,15 +29,15 @@
                 </nav>
                 
                  <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
-                    <a href="cart.html" class="icon-link">
+                    <a href="cart-updated.html" class="icon-link">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                        <span class="cart-count">0</span><a href="cart-updated.html" class="icon-link">
                     </a>
-                    <a href="cart.html" class="icon-link"></a>
+                    <a href="cart-updated.html" class="icon-link"></a>
                    <a href="vsv-login.html" class="icon-link" id="userIcon">
             <button class="cta-button"> Logout</button></a>
 </a>
@@ -60,7 +60,7 @@
             <div class="categories-filter">
                 <button class="filter-btn active" data-filter="all">All Categories</button>
                 <button class="filter-btn" data-filter="electronics">Electronics</button>
-                <button class="filter-btn" data-filter="fashion">Fashion</button>
+                <button class="filter-btn" data-filter="fashion">clothing</button>
                 <button class="filter-btn" data-filter="home">Home & Living</button>
                 <button class="filter-btn" data-filter="beauty">Beauty & Personal Care</button>
             </div>
@@ -82,7 +82,7 @@
 
                 <!-- Fashion -->
                 <div class="category-item" data-category="fashion">
-                    <a href="fashion-category.html" class="category-link">
+                    <a href="clothing.html" class="category-link">
                         <div class="category-image">
                             <img src="https://images.unsplash.com/photo-1560243563-062bfc001d68?w=400" alt="Fashion">
                         </div>
@@ -96,7 +96,7 @@
 
                 <!-- Home Decor -->
                 <div class="category-item" data-category="home">
-                    <a href="home-decor.html" class="category-link">
+                    <a href="Home and decor.html" class="category-link">
                         <div class="category-image">
                             <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400" alt="Home Decor">
                         </div>
@@ -110,7 +110,7 @@
 
                 <!-- Beauty -->
                 <div class="category-item" data-category="beauty">
-                    <a href="beauty-new.html" class="category-link">
+                    <a href="beauty.html" class="category-link">
                         <div class="category-image">
                             <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400" alt="Beauty">
                         </div>
@@ -138,7 +138,7 @@
 
                 <!-- Sports -->
                 <div class="category-item" data-category="sports">
-                    <a href="sports-new (1).html" class="category-link">
+                    <a href="sports-new.html" class="category-link">
                         <div class="category-image">
                             <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400" alt="Sports">
                         </div>
@@ -152,7 +152,7 @@
 
                 <!-- Kids -->
                 <div class="category-item" data-category="kids">
-                    <a href="children.html" class="category-link">
+                    <a href="kids-toys.html" class="category-link">
                         <div class="category-image">
                             <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=400" alt="Kids">
                         </div>
@@ -166,7 +166,7 @@
 
                 <!-- Books -->
                 <div class="category-item" data-category="books">
-                    <a href="books.html" class="category-link">
+                    <a href="books and media.html" class="category-link">
                         <div class="category-image">
                             <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400" alt="Books">
                         </div>
@@ -222,6 +222,34 @@
                 </div>
                 </div>
             </section>
+            <script>
+            // Search filter for categories page
+            document.addEventListener('DOMContentLoaded', function() {
+                function getQueryParam(param) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    return urlParams.get(param);
+                }
+                const searchTerm = getQueryParam('search');
+                if (searchTerm) {
+                    const filter = searchTerm.trim().toLowerCase();
+                    const categories = document.querySelectorAll('.category-item');
+                    let found = false;
+                    categories.forEach(cat => {
+                        const title = cat.querySelector('h3')?.textContent.toLowerCase();
+                        if (title && title.includes(filter)) {
+                            cat.style.display = 'block';
+                            found = true;
+                        } else {
+                            cat.style.display = 'none';
+                        }
+                    });
+                    if (!found) {
+                        // If no category matches, show all
+                        categories.forEach(cat => cat.style.display = 'block');
+                    }
+                }
+            });
+            </script>
             </body>
             </html>
                 

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfQ+VrA0G7C1u3Vv6I8pcnFybZ0Yl1bQ8C4F4jK5n8r9i8T3lPZB4Ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root{
       --bg: #0b1220;
@@ -52,6 +52,12 @@
     .nav a:hover{background:rgba(255,255,255,.06)}
     .nav a.active{background:linear-gradient(90deg, rgba(108,140,255,.18), transparent); border:1px solid rgba(108,140,255,.35)}
     .nav .badge{margin-left:auto; font-size:12px; color:#fff; background:var(--danger); padding:2px 8px; border-radius:999px}
+    .toggle-icon {
+      margin-left: auto;
+      font-size: 0.75em;
+      color: var(--muted);
+      transition: transform 0.3s ease;
+    }
 
     .main{
       flex:1; display:flex; flex-direction:column; min-width:0;
@@ -284,16 +290,16 @@
 
     <nav class="nav">
       <h4>Menu</h4>
-      <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
-      <a href="orders.html"><i class="fa-solid fa-clipboard-list"></i>Orders <span class="badge">8</span></a>
-      <a href="products.html"><i class="fa-solid fa-box"></i>Products</a>
-      <a href="customersindashboard.html"><i class="fa-solid fa-users"></i>Customers</a>
-      <a href="inventory-updated.html"><i class="fa-solid fa-warehouse"></i>Inventory</a>
-      <a href="promotions.html"><i class="fa-solid fa-percent"></i>Promotions</a>
-      <a href="reports.html"><i class="fa-solid fa-chart-pie"></i>Reports</a>
+      <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i>Dashboard <i class="fa-solid fa-chevron-right toggle-icon"></i></a>
+      <a href="orders.html"><i class="fa-solid fa-clipboard-list"></i>Orders  <i class="fa-solid fa-chevron-right toggle-icon"></i></a>
+      <a href="dashboard-products.html"><i class="fa-solid fa-box"></i>Products <i class="fa-solid fa-chevron-right toggle-icon"></i></a>
+      <a href="dashboard-customers.html"><i class="fa-solid fa-users"></i>Customers <i class="fa-solid fa-chevron-right toggle-icon"></i></a>
+      <a href="inventory-dashboard.html"><i class="fa-solid fa-warehouse"></i>Inventory <i class="fa-solid fa-chevron-right toggle-icon"></i></a>
+      <a href="promo.html"><i class="fa-solid fa-percent"></i>Promotions <i class="fa-solid fa-chevron-right toggle-icon"></i></a>
+      <a href="reports.html"><i class="fa-solid fa-chart-pie"></i>Reports <i class="fa-solid fa-chevron-right toggle-icon"></i></a>
       <h4>Settings</h4>
-      <a href="store-settings.html" class="active"><i class="fa-solid fa-gear"></i>Store Settings</a>
-      <a href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+      <a href="store-settings.html" class="active"><i class="fa-solid fa-gear"></i>Store Settings <i class="fa-solid fa-chevron-right toggle-icon"></i></a>
+      <a href="dashboard-login.html"><i class="fa-solid fa-right-from-bracket"></i>Logout <i class="fa-solid fa-chevron-right toggle-icon"></i></a>
     </nav>
   </aside>
 
@@ -392,7 +398,7 @@
           
           <div class="form-group">
             <label for="store-address">Store Address</label>
-            <textarea id="store-address">123 Shopping Street, Mumbai, Maharashtra 400001, India</textarea>
+            <textarea id="store-address">123 Shopping Street, andhra, vishakapatnam, India</textarea>
             <span class="help-text">Your business address</span>
           </div>
           

@@ -196,6 +196,32 @@
     </style>
 </head>
 <body>
+<script>
+// Product search from homepage
+document.addEventListener('DOMContentLoaded', function() {
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    const searchTerm = getQueryParam('search');
+    if (searchTerm) {
+        const products = document.querySelectorAll('.product-card');
+        let found = false;
+        products.forEach(card => {
+            const title = card.querySelector('.product-title')?.textContent.toLowerCase();
+            if (title && title.includes(searchTerm.trim().toLowerCase())) {
+                card.style.display = 'block';
+                found = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        if (!found) {
+            products.forEach(card => card.style.display = 'block');
+        }
+    }
+});
+</script>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -206,23 +232,23 @@
                 
                 <nav class="nav-menu">
                     <a href="homepage.html" class="nav-link">Home</a>
-                    <a href="fashion-category.html" class="nav-link">Fashion</a>
+                    <a href="clothing.html" class="nav-link">Clothing</a>
                     <a href="luggage-faves.html" class="nav-link active">Luggage</a>
                 </nav>
                 
                        
             <div class="nav-icons">
-                    <a href="customer-account.html" class="icon-link" id="userIcon">
+                    <a href="customer-account-enhanced (1).css" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
-                    <a href="cart.html" class="icon-link">
+                    <a href="cart-updated.html" class="icon-link">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                        <span class="cart-count">0</span><a href="cart-updated.html" class="icon-link">
                     </a>
-                    <a href="cart.html" class="icon-link"></a>
+                    <a href="cart-updated.html" class="icon-link"></a>
                    <a href="vsv-login.html" class="icon-link" id="userIcon">
-                        <span class="user-status">sign out</span>
+            <button class="cta-button"> Logout</button></a>
 </a>
                 </div>
             </div>
@@ -246,7 +272,7 @@
                     <h3 class="product-title">Premium Carry-On</h3>
                     <p class="product-description">Lightweight 20" carry-on with TSA lock</p>
                     <div class="product-price">
-                        <span class="current-price">₹8,999</span>
+                        <span class="current-price">₹8999</span>
                         <span class="original-price">₹11,999</span>
                     </div>
                     <div class="product-rating">
@@ -265,7 +291,7 @@
                     <h3 class="product-title">Hardside Spinner</h3>
                     <p class="product-description">Durable ABS hardside with 360° wheels</p>
                     <div class="product-price">
-                        <span class="current-price">₹7,499</span>
+                        <span class="current-price">₹7499</span>
                         <span class="original-price">₹9,999</span>
                     </div>
                     <div class="product-rating">
@@ -285,7 +311,7 @@
                     <h3 class="product-title">Softside Cabin</h3>
                     <p class="product-description">Expandable softside with laptop compartment</p>
                     <div class="product-price">
-                        <span class="current-price">₹6,299</span>
+                        <span class="current-price">₹6299</span>
                         <span class="original-price">₹8,499</span>
                     </div>
                     <div class="product-rating">
@@ -304,7 +330,7 @@
                     <h3 class="product-title">Business Carry-On</h3>
                     <p class="product-description">Professional carry-on with USB charging port</p>
                     <div class="product-price">
-                        <span class="current-price">₹9,999</span>
+                        <span class="current-price">₹9999</span>
                         <span class="original-price">₹12,999</span>
                     </div>
                     <div class="product-rating">
@@ -323,7 +349,7 @@
                     <h3 class="product-title">Compact Traveler</h3>
                     <p class="product-description">Ultra-lightweight 18" under-seat bag</p>
                     <div class="product-price">
-                        <span class="current-price">₹4,999</span>
+                        <span class="current-price">₹4999</span>
                         <span class="original-price">₹6,999</span>
                     </div>
                     <div class="product-rating">
@@ -350,7 +376,7 @@
                     <h3 class="product-title">Large Spinner</h3>
                     <p class="product-description">28" expandable checked luggage with 360° wheels</p>
                     <div class="product-price">
-                        <span class="current-price">₹12,999</span>
+                        <span class="current-price">₹12999</span>
                         <span class="original-price">₹16,999</span>
                     </div>
                     <div class="product-rating">
@@ -369,7 +395,7 @@
                     <h3 class="product-title">Medium Suitcase</h3>
                     <p class="product-description">24" lightweight suitcase with TSA lock</p>
                     <div class="product-price">
-                        <span class="current-price">₹10,499</span>
+                        <span class="current-price">₹10499</span>
                         <span class="original-price">₹13,999</span>
                     </div>
                     <div class="product-rating">
@@ -389,7 +415,7 @@
                     <h3 class="product-title">Hardside Set</h3>
                     <p class="product-description">4-piece hardside luggage set (20", 24", 28",32")</p>
                     <div class="product-price">
-                        <span class="current-price">₹24,999</span>
+                        <span class="current-price">₹24999</span>
                         <span class="original-price">₹34,999</span>
                     </div>
                     <div class="product-rating">
@@ -408,7 +434,7 @@
                     <h3 class="product-title">Softside Large</h3>
                     <p class="product-description">Expandable softside with multiple compartments</p>
                     <div class="product-price">
-                        <span class="current-price">₹9,999</span>
+                        <span class="current-price">₹9999</span>
                         <span class="original-price">₹12,999</span>
                     </div>
                     <div class="product-rating">
@@ -427,7 +453,7 @@
                     <h3 class="product-title">Premium Checked</h3>
                     <p class="product-description">Luxury 26" checked luggage with leather trim</p>
                     <div class="product-price">
-                        <span class="current-price">₹15,999</span>
+                        <span class="current-price">₹15999</span>
                         <span class="original-price">₹19,999</span>
                     </div>
                     <div class="product-rating">
@@ -454,7 +480,7 @@
                     <h3 class="product-title">Travel Backpack</h3>
                     <p class="product-description">40L travel backpack with laptop compartment</p>
                     <div class="product-price">
-                        <span class="current-price">₹4,999</span>
+                        <span class="current-price">₹4999</span>
                         <span class="original-price">₹6,999</span>
                     </div>
                     <div class="product-rating">
@@ -473,7 +499,7 @@
                     <h3 class="product-title">Hiking Backpack</h3>
                     <p class="product-description">50L waterproof hiking backpack</p>
                     <div class="product-price">
-                        <span class="current-price">₹6,499</span>
+                        <span class="current-price">₹6499</span>
                         <span class="original-price">₹8,999</span>
                     </div>
                     <div class="product-rating">
@@ -493,7 +519,7 @@
                     <h3 class="product-title">Business Backpack</h3>
                     <p class="product-description">Professional backpack with USB charging port</p>
                     <div class="product-price">
-                        <span class="current-price">₹3,999</span>
+                        <span class="current-price">₹3999</span>
                         <span class="original-price">₹5,499</span>
                     </div>
                     <div class="product-rating">
@@ -512,7 +538,7 @@
                     <h3 class="product-title">Convertible Backpack</h3>
                     <p class="product-description">Convertible backpack with wheels and handle</p>
                     <div class="product-price">
-                        <span class="current-price">₹7,999</span>
+                        <span class="current-price">₹7999</span>
                         <span class="original-price">₹10,999</span>
                     </div>
                     <div class="product-rating">
@@ -531,7 +557,7 @@
                     <h3 class="product-title">Weekender Backpack</h3>
                     <p class="product-description">Stylish 30L weekender backpack</p>
                     <div class="product-price">
-                        <span class="current-price">₹3,499</span>
+                        <span class="current-price">₹3499</span>
                         <span class="original-price">₹4,999</span>
                     </div>
                     <div class="product-rating">
@@ -558,7 +584,7 @@
                     <h3 class="product-title">Packing Cubes</h3>
                     <p class="product-description">Set of 6 packing cubes for organization</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,999</span>
+                        <span class="current-price">₹1999</span>
                         <span class="original-price">₹2,999</span>
                     </div>
                     <div class="product-rating">
@@ -577,7 +603,7 @@
                     <h3 class="product-title">Travel Pillow</h3>
                     <p class="product-description">Memory foam neck pillow with washable cover</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,299</span>
+                        <span class="current-price">₹1299</span>
                         <span class="original-price">₹1,999</span>
                     </div>
                     <div class="product-rating">
@@ -616,7 +642,7 @@
                     <h3 class="product-title">Toiletry Bag</h3>
                     <p class="product-description">Water-resistant hanging toiletry bag</p>
                     <div class="product-price">
-                        <span class="current-price">₹1,499</span>
+                        <span class="current-price">₹1499</span>
                         <span class="original-price">₹2,299</span>
                     </div>
                     <div class="product-rating">
@@ -655,7 +681,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>ShopEasy</h3>
+                    <h3>VSV Shop Easy</h3>
                     <p>Your trusted online shopping destination for beauty products</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -679,10 +705,10 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="homepage.html">Home</a></li>
-                        <li><a href="fashion-category.html">Fashion</a></li>
+                        <li><a href="clothing.html">Fashion</a></li>
                         <li><a href="girls.html">Girls</a></li>
-                        <li><a href="beauty-new.html">Beauty</a></li>
-                        <li><a href="home-decor.html">Home Decor</a></li>
+                        <li><a href="beauty.html">Beauty</a></li>
+                        <li><a href="Home and decor.html">Home Decor</a></li>
                     </ul>
                 </div>
                 
@@ -694,7 +720,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 ShopEasy Beauty. All rights reserved.</p>
+        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>

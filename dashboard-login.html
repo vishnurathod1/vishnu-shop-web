@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VSV - Admin Dashboard Login</title>
+    <link rel="stylesheet" href="vsv-styles.css" />
+    <link rel="stylesheet" href="animated-bg.css" />
+    <link rel="stylesheet" href="slideshow.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg" style="background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);">
+        <div class="glow-orb"></div>
+        <div class="glow-orb"></div>
+        <div class="glow-orb"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="wave-container">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="registration-form" style="background-color: #463d5e; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); padding: 30px;">
+            <div class="logo">
+                <i><h1>VSV Shop Easy</h1></i>
+                <p>Admin Dashboard Login</p>
+            </div>
+
+            <h2>Welcome Back, Admin</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 30px;">
+                Sign in to your admin account
+            </p>
+
+            <form action="dashboard.html" method="POST">
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your admin email"
+                            required
+                        />
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-with-icon password-container">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        />
+                        <span
+                            class="toggle-password"
+                            onclick="togglePassword('password', this)"
+                            >👁️</span
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember" />
+                        <span>Remember me</span>
+                    </label>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <a
+                            href="vsv-forgot-password.html"
+                            style="color: #667eea; text-decoration: none"
+                            >Forgot password?</a
+                        >
+                    </label>
+                </div>
+
+                <button type="submit" class="register-btn">Sign In</button>
+
+                <div class="login-link">
+                    Don't have an admin account? <a href="vsv-registration.html">Create Account</a>
+                </div>
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <div class="social-login">
+                    <button type="button" class="social-btn">
+                        <i class="fab fa-google"></i>
+                        Continue with Google
+                    </button>
+                    <button type="button" class="social-btn">
+                        <i class="fab fa-facebook-f"></i>
+                        Continue with Facebook
+                    </button>
+                    <button type="button" class="social-btn">
+                        <i class="fab fa-apple"></i>
+                        Continue with Apple
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="image-section">
+        <div class="welcome-text" >
+                <!-- Slideshow Container -->
+                <div class="slideshow-container">
+                    <div class="mySlides fade">
+                        <img
+                            src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756648043/download_2_iu5dxw.jpg"
+                            alt="VSV Admin Login Banner 1"
+                            class="featured-banner"
+                        />
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img
+                            src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756648043/download_1_idhkaj.jpg"
+                            alt="VSV Admin Login Banner 2"
+                            class="featured-banner"
+                        />
+                    </div>
+
+                    <div class="mySlides fade">
+                        <img
+                            src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756648043/download_3_p7ljpx.jpg"
+                            alt="VSV Admin Login Banner 3"
+                            class="featured-banner"
+                        />
+                    </div>
+
+                    <!-- Next and previous buttons -->
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+
+                <!-- The dots/circles -->
+                <div class="dot-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+
+                <h2>Welcome Back to VSV Admin</h2>
+                <p>
+                    Sign in to access your dashboard and manage your store efficiently.
+                    Monitor sales, inventory, customers, and more.
+                </p>
+                <ul>
+                    <li>Secure Admin Login</li>
+                    <li>Manage Products & Orders</li>
+                    <li>View Reports & Analytics</li>
+                    <li>Exclusive Admin Controls</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="slideshow.js"></script>
+    <script>
+        // Password toggle functionality
+        function togglePassword(fieldId, icon) {
+            const input = document.getElementById(fieldId);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.textContent = "🙈";
+            } else {
+                input.type = "password";
+                icon.textContent = "👁️";
+            }
+        }
+
+        // Form validation
+        document.querySelector("form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (!email || !password) {
+                alert("Please fill in all fields");
+                return;
+            }
+
+            // Simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address");
+                return;
+            }
+
+            // Redirect to dashboard after successful login
+            window.location.href = "dashboard.html";
+        });
+    </script>
+</body>
+</html>

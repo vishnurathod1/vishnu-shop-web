@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VSV Easy Shop — Export Data</title>
+  <!-- Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <!-- SheetJS for Excel export -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: #11182a;
+      --muted: #9aa4b2;
+      --text: #e6e9ef;
+      --brand: #6c8cff;
+      --brand-2: #15c39a;
+      --accent: #f59f00;
+      --danger: #ff6b6b;
+      --warning: #fbbf24;
+      --success: #10b981;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+    }
+    /* Light theme */
+    :root.light{
+      --bg:#f6f7fb; --card:#ffffff; --muted:#6b7280; --text:#0f172a; --brand:#4f46e5; --brand-2:#059669; --accent:#d97706; --danger:#dc2626; --shadow:0 8px 20px rgba(2,6,23,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto; background:var(--bg); color:var(--text); display:flex;
+    }
+
+    /* Layout */
+    .sidebar{
+      width:280px; background:linear-gradient(180deg, #0e172a 0%, #0b1220 100%);
+      border-right:1px solid rgba(255,255,255,.06); padding:20px; position:sticky; top:0; height:100vh; overflow:auto;
+    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; font-size:15px; letter-spacing:.2px;}
+    .brand .logo{display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:var(--shadow)}
+
+    .nav{margin-top:24px}
+    .nav h4{font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); margin:14px 12px}
+    .nav a{
+      display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; text-decoration:none; color:var(--text);
+      transition:.2s background;
+    }
+    .nav a:hover{background:rgba(255,255,255,.06)}
+    .nav a.active{background:linear-gradient(90deg, rgba(108,140,255,.18), transparent); border:1px solid rgba(108,140,255,.35)}
+    .nav .badge{margin-left:auto; font-size:12px; color:#fff; background:var(--danger); padding:2px 8px; border-radius:999px}
+
+    .main{
+      flex:1; display:flex; flex-direction:column; min-width:0;
+    }
+    .topbar{
+      position:sticky; top:0; z-index:10; background:rgba(17,24,42,.75); backdrop-filter: blur(10px); border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex; align-items:center; gap:12px; padding:14px 20px;
+    }
+    :root.light .topbar{background:rgba(255,255,255,.8)}
+
+    .search{
+      display:flex; align-items:center; gap:10px; background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:999px; padding:10px 14px; flex:1;
+    }
+    .search input{background:transparent; border:none; outline:none; color:var(--text); width:100%}
+
+    .top-actions{display:flex; align-items:center; gap:10px}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:var(--card); color:var(--text); cursor:pointer}
+    .btn:hover{filter:brightness(1.05)}
+    .btn.primary{background:var(--brand); border-color:var(--brand); color:white}
+    .btn.secondary{background:var(--brand-2); border-color:var(--brand-2); color:white}
+    .btn:disabled{opacity:0.6; cursor:not-allowed}
+
+    .content{
+      flex:1; padding:20px; overflow:auto;
+    }
+
+    /* Export Controls */
+    .export-section{
+      margin-bottom:32px;
+    }
+    .export-header{
+      display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;
+    }
+    .export-header h2{
+      margin:0; font-size:24px; font-weight:600;
+    }
+    .export-controls{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px; margin-bottom:20px;
+    }
+    .control-group{
+      background:var(--card); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow);
+    }
+    .control-group h3{
+      margin:0 0 16px 0; font-size:18px; font-weight:600;
+    }
+    .form-group{
+      margin-bottom:16px;
+    }
+    .form-group label{
+      display:block; margin-bottom:8px; font-weight:500; color:var(--muted);
+    }
+    select, input[type="date"]{
+      width:100%; background:var(--card); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:10px 12px; color:var(--text);
+    }
+    .checkbox-group{
+      display:flex; flex-direction:column; gap:12px;
+    }
+    .checkbox-item{
+      display:flex; align-items:center; gap:10px;
+    }
+    input[type="checkbox"]{
+      width:18px; height:18px; accent-color:var(--brand);
+    }
+
+    /* Preview Section */
+    .preview-section{
+      background:var(--card); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); margin-bottom:20px;
+    }
+    .preview-header{
+      display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;
+    }
+    .preview-content{
+      max-height:300px; overflow:auto; border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:16px;
+    }
+    .preview-table{
+      width:100%; border-collapse:collapse;
+    }
+    .preview-table th, .preview-table td{
+      padding:8px 12px; text-align:left; border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .preview-table th{
+      background:rgba(255,255,255,.03); font-weight:600;
+    }
+
+    /* Action Section */
+    .action-section{
+      text-align:center; padding:20px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+    }
+    .export-btn{
+      padding:14px 28px; font-size:16px; font-weight:600; background:var(--brand); color:white; border:none; border-radius:12px;
+      cursor:pointer; transition:all 0.2s; display:inline-flex; align-items:center; gap:10px;
+    }
+    .export-btn:hover{
+      transform:translateY(-2px); box-shadow:0 8px 25px rgba(108,140,255,.3);
+    }
+    .export-btn:disabled{
+      opacity:0.6; cursor:not-allowed; transform:none;
+    }
+
+    /* Loading */
+    .loading{
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .loading-spinner{
+      width:16px; height:16px; border:2px solid rgba(255,255,255,.3); border-top:2px solid white;
+      border-radius:50%; animation:spin 1s linear infinite;
+    }
+    @keyframes spin{
+      0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}
+    }
+
+    /* Mobile sidebar */
+    @media (max-width: 768px) {
+      .sidebar{
+        position:fixed; left:-280px; z-index:100; transition:left .3s;
+      }
+      .sidebar.open{
+        left:0;
+      }
+      .main{
+        margin-left:0;
+      }
+      body.nav-open::before{
+        content:''; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.5); z-index:99;
+      }
+      .export-controls{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="logo"><i class="fa-solid fa-chart-line"></i></div>
+      <span>VSV Analytics</span>
+    </div>
+    
+    <nav class="nav">
+      <h4>Reports</h4>
+      <a href="reports.html"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
+      <a href="sales.html"><i class="fa-solid fa-cart-shopping"></i> Sales</a>
+      <a href="dashboard-customers.html"><i class="fa-solid fa-users"></i> Customers</a>
+      <a href="#"><i class="fa-solid fa-box"></i> Inventory</a>
+      <a href="reports-settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+      
+      <h4>Tools</h4>
+      <a href="export-data.html" class="active"><i class="fa-solid fa-download"></i> Export Data</a>
+      <a href="alerts.html"><i class="fa-solid fa-bell"></i> Alerts <span class="badge">3</span></a>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main">
+    <div class="topbar">
+      <button id="navToggle" class="btn" style="display:none"><i class="fa-solid fa-bars"></i></button>
+      <div class="search">
+        <i class="fa-solid fa-search"></i>
+        <input type="text" placeholder="Search export options...">
+      </div>
+      <div class="top-actions">
+        <button id="themeToggle" class="btn"><i class="fa-solid fa-moon"></i></button>
+        <button class="btn"><i class="fa-solid fa-bell"></i></button>
+        <button class="btn"><i class="fa-solid fa-user"></i></button>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Export Controls -->
+      <section class="export-section">
+        <div class="export-header">
+          <h1>Export Data</h1>
+          <div class="export-filters">
+            <button class="btn" onclick="resetForm()">Reset</button>
+          </div>
+        </div>
+        
+        <div class="export-controls">
+          <!-- Format Selection -->
+          <div class="control-group">
+            <h3>Export Format</h3>
+            <div class="form-group">
+              <label>Select Format</label>
+              <select id="exportFormat">
+                <option value="csv">CSV (Comma Separated Values)</option>
+                <option value="excel">Excel (.xlsx)</option>
+                <option value="pdf">PDF Document</option>
+                <option value="json">JSON Data</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Data Type Selection -->
+          <div class="control-group">
+            <h3>Data Type</h3>
+            <div class="form-group">
+              <label>Select Data to Export</label>
+              <select id="dataType">
+                <option value="sales">Sales Data</option>
+                <option value="customers">Customer Analytics</option>
+                <option value="inventory">Inventory Report</option>
+                <option value="performance">Performance Metrics</option>
+                <option value="all">All Data (Complete Report)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Date Range -->
+          <div class="control-group">
+            <h3>Date Range</h3>
+            <div class="form-group">
+              <label>From Date</label>
+              <input type="date" id="fromDate">
+            </div>
+            <div class="form-group">
+              <label>To Date</label>
+              <input type="date" id="toDate">
+            </div>
+          </div>
+
+          <!-- Category Filter -->
+          <div class="control-group">
+            <h3>Category Filter</h3>
+            <div class="form-group">
+              <label>Select Categories</label>
+              <div class="checkbox-group">
+                <div class="checkbox-item">
+                  <input type="checkbox" id="cat-fashion" value="fashion" checked>
+                  <label for="cat-fashion">Fashion</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="cat-electronics" value="electronics" checked>
+                  <label for="cat-electronics">Electronics</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="cat-home" value="home" checked>
+                  <label for="cat-home">Home & Decor</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="cat-sports" value="sports" checked>
+                  <label for="cat-sports">Sports</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="cat-kids" value="kids" checked>
+                  <label for="cat-kids">Kids</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Preview Section -->
+      <section class="preview-section">
+        <div class="preview-header">
+          <h2>Data Preview</h2>
+          <button class="btn" onclick="refreshPreview()">
+            <i class="fa-solid fa-rotate"></i> Refresh Preview
+          </button>
+        </div>
+        <div class="preview-content" id="previewContent">
+          <p style="text-align:center; color:var(--muted); padding:40px 0;">
+            <i class="fa-solid fa-eye"></i><br>
+            Select export options to preview your data
+          </p>
+        </div>
+      </section>
+
+      <!-- Action Section -->
+      <section class="action-section">
+        <button class="export-btn" id="exportButton" onclick="exportData()">
+          <i class="fa-solid fa-download"></i>
+          Export Data
+        </button>
+        <p style="margin-top:12px; color:var(--muted); font-size:14px;">
+          Estimated export time: <span id="exportTime">2-5 seconds</span>
+        </p>
+      </section>
+
+      <div class="footer">© 2025 VSV Easy Shop • Export Data</div>
+    </div>
+  </main>
+
+  <script src="export-data.js"></script>
+</body>
+</html>

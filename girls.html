@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Girls Fashion (Ages 0-16) - ShopEasy</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        .girls-hero {
+            background: linear-gradient(rgba(255, 105, 180, 0.8), rgba(255, 20, 147, 0.8)),
+                url("assets/download (4).jpeg");
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .girls-hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+        .girls-hero p {
+            font-size: 1.2rem;
+            margin: 10px 0 0 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+        .size-guide-section {
+            background: #f8f9fa;
+            padding: 60px 0;
+            margin: 40px 0;
+        }
+        .size-guide-container {
+            display: grid;
+            gap: 40px;
+        }
+        .size-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .size-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .size-table th,
+        .size-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .size-table th {
+            background: #ff69b4;
+            color: white;
+            font-weight: bold;
+        }
+        .size-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .size-guide-tips {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        .size-guide-tips h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .size-guide-tips ul {
+            list-style: none;
+            padding: 0;
+        }
+        .size-guide-tips li {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .size-guide-tips li::before {
+            content: "•";
+            color: #ff69b4;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1>ShopEasy</h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search girls fashion..." />
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="fashion-category.html" class="nav-link">Fashion</a>
+                    <a href="womens.html" class="nav-link active">Womens</a>
+                    <a href="categories.html" class="nav-link">Categories</a>
+                </nav>
+                <div class="nav-icons">
+                    <a href="#" class="icon-link"><i class="fas fa-user"></i></a>
+                    <a href="#" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="#" class="icon-link"><i class="fas fa-heart"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Girls Hero Section -->
+    <section class="girls-hero">
+        <div>
+            <h1>Girls Fashion Collection 2025</h1>
+            <p>Adorable & Stylish Clothing for Girls Ages 0 -16</p>
+        </div>
+    </section>
+
+    <!-- Featured Girls Products -->
+    <section class="featured-products container">
+        <h2 class="section-title">Trending for Girls</h2>
+        <div class="products-grid">
+        <!-- Baby Essentials (0-2 years) -->
+            <div class="product-card">
+                <div class="product-badge">New</div>
+                <img src="assets/baby-dress.jpg" alt="Baby Floral Dress" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Baby Floral Dress Set (0-6 months)</h3>
+                    <p class="product-description">Soft cotton dress with matching bloomers, perfect for special occasions</p>
+                    <div class="product-price">
+                        <span class="current-price">₹699</span>
+                        <span class="original-price">₹999</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-badge">Sale</div>
+                <img src="assets/baby-romper.jpg" alt="Baby Romper" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Baby Girl Romper (6-12 months)</h3>
+                    <p class="product-description">Cute printed rompers with ruffle details and snap closure</p>
+                    <div class="product-price">
+                        <span class="current-price">₹549</span>
+                        <span class="original-price">₹849</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(123)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toddler Wear (2-4 years) -->
+           <div class="product-card">
+                <img src="assets/toddler-tutu.jpg" alt="Tutu Dress" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Toddler Tulle Tutu Dress (2-4 years)</h3>
+                    <p class="product-description">Sparkly tutu dress perfect for parties and photoshoots</p>
+                    <div class="product-price">
+                        <span class="current-price">₹799</span>
+                        <span class="original-price">₹1,199</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(234)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-badge">Hot</div>
+                <img src="assets/toddler-leggings.jpg" alt="Printed Leggings" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Toddler Printed Leggings Set (2-4 years)</h3>
+                    <p class="product-description">Stretchy leggings with matching tops in fun prints and colors</p>
+                    <div class="product-price">
+                        <span class="current-price">₹599</span>
+                        <span class="original-price">₹899</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(287)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kids Wear (5-8 years) -->
+            <div class="product-card">
+                <img src="assets/kids-frock.jpg" alt="Party Frock" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Girls Party Frock (5-8 years)</h3>
+                    <p class="product-description">Elegant party dress with lace details and bow belt</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,299</span>
+                        <span class="original-price">₹1,799</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(156)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-badge">New</div>
+                <img src="assets/kids-skirt.jpg" alt="Pleated Skirt" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Girls Pleated Skirt Set (5-8 years)</h3>
+                    <p class="product-description">Cute pleated skirt with matching top for school or casual wear</p>
+                    <div class="product-price">
+                        <span class="current-price">₹899</span>
+                        <span class="original-price">₹1,299</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span>(198)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pre-teen & Teen Wear (9-16 years) -->
+            <div class="product-card">
+                <img src="assets/preteen-dress.jpg" alt="Teen Dress" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Pre-teen A-line Dress (9-12 years)</h3>
+                    <p class="product-description">Stylish A-line dress perfect for parties and casual outings</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,499</span>
+                        <span class="original-price">₹2,199</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>(134)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-badge">Sale</div>
+                <img src="assets/teen-jacket.jpg" alt="Denim Jacket" class="product-image" />
+                <div class="product-info">
+                    <h3 class="product-title">Teen Denim Jacket (13-16 years)</h3>
+                    <p class="product-description">Trendy denim jacket with embroidery details for teen fashion</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1,799</span>
+                        <span class="original-price">₹2,499</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Size Guide Section -->
+    <section class="size-guide-section">
+        <div class="container">
+            <h2>Girls Size Guide</h2>
+            <div class="size-guide-container">
+                <div class="size-section">
+                    <h3>Baby Girls (0-24 months)</h3>
+                    <table class="size-table">
+                        <thead>
+                            <tr>
+                                <th>Size</th>
+                                <th>Age</th>
+                                <th>Height (cm)</th>
+                                <th>Weight (kg)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>NB</td>
+                                <td>0-1M</td>
+                                <td>50-56</td>
+                                <td>2.5-4</td>
+                            </tr>
+                            <tr>
+                                <td>0-3M</td>
+                                <td>0-3M</td>
+                                <td>56-62</td>
+                                <td>4-6</td>
+                            </tr>
+                            <tr>
+                                <td>3-6M</td>
+                                <td>3-6M</td>
+                                <td>62-68</td>
+                                <td>6-8</td>
+                            </tr>
+                            <tr>
+                                <td>6-12M</td>
+                                <td>6-12M</td>
+                                <td>68-76</td>
+                                <td>8-10</td>
+                            </tr>
+                            <tr>
+                                <td>12-18M</td>
+                                <td>12-18M</td>
+                                <td>76-82</td>
+                                <td>10-12</td>
+                            </tr>
+                            <tr>
+                                <td>18-24M</td>
+                                <td>18-24M</td>
+                                <td>82-86</td>
+                                <td>12-13</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="size-section">
+                    <h3>Little Girls (2-7 years)</h3>
+                    <table class="size-table">
+                        <thead>
+                            <tr>
+                                <th>Size</th>
+                                <th>Age</th>
+                                <th>Height (cm)</th>
+                                <th>Chest (cm)</th>
+                                <th>Waist (cm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2T</td>
+                                <td>2Y</td>
+                                <td>86-92</td>
+                                <td>52</td>
+                                <td>50</td>
+                            </tr>
+                            <tr>
+                                <td>3T</td>
+                                <td>3Y</td>
+                                <td>92-98</td>
+                                <td>54</td>
+                                <td>51</td>
+                            </tr>
+                            <tr>
+                                <td>4T</td>
+                                <td>4Y</td>
+                                <td>98-104</td>
+                                <td>56</td>
+                                <td>52</td>
+                            </tr>
+                            <tr>
+                                <td>5T</td>
+                                <td>5Y</td>
+                                <td>104-110</td>
+                                <td>58</td>
+                                <td>53</td>
+                            </tr>
+                            <tr>
+                                <td>6T</td>
+                                <td>6Y</td>
+                                <td>110-116</td>
+                                <td>60</td>
+                                <td>54</td>
+                            </tr>
+                            <tr>
+                                <td>7T</td>
+                                <td>7Y</td>
+                                <td>116-122</td>
+                                <td>62</td>
+                                <td>55</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="size-section">
+                    <h3>Big Girls (8-16 years)</h3>
+                    <table class="size-table">
+                        <thead>
+                            <tr>
+                                <th>Size</th>
+                                <th>Age</th>
+                                <th>Height (cm)</th>
+                                <th>Chest (cm)</th>
+                                <th>Waist (cm)</th>
+                                <th>Hip (cm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>8</td>
+                                <td>8Y</td>
+                                <td>122-128</td>
+                                <td>64</td>
+                                <td>56</td>
+                                <td>68</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>10Y</td>
+                                <td>128-134</td>
+                                <td>68</td>
+                                <td>58</td>
+                                <td>72</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>12Y</td>
+                                <td>134-140</td>
+                                <td>72</td>
+                                <td>60</td>
+                                <td>76</td>
+                            </tr>
+                            <tr>
+                                <td>14</td>
+                                <td>14Y</td>
+                                <td>140-146</td>
+                                <td>76</td>
+                                <td>62</td>
+                                <td>80</td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td>16Y</td>
+                                <td>146-152</td>
+                                <td>80</td>
+                                <td>64</td>
+                                <td>84</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="size-guide-tips">
+                    <h4>How to Measure Your Girl</h4>
+                    <ul>
+                        <li>Height: Measure from top of head to floor without shoes</li>
+                        <li>Chest: Measure around the fullest part of the chest</li>
+                        <li>Waist: Measure around natural waistline</li>
+                        <li>Hip: Measure around the fullest part of the hips</li>
+                        <li>Always measure over light clothing for accuracy</li>
+                        <li>If between sizes, choose the larger size for growing room</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ShopEasy</h3>
+                    <p>Your trusted online shopping destination</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
+                        <li><a href="shipping-info.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="fashion-category.html">Fashion</a></li>
+                        <li><a href="womens.html">Womens</a></li>
+                        <li><a href="home-decor.html">Home Decor</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-envelope"></i> vsv@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> vizag,andra, India</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEasy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

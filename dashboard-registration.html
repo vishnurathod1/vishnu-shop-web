@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VSV - Admin Dashboard Login</title>
+    <title>VSV - Admin Dashboard Registration</title>
     <link rel="stylesheet" href="vsv-styles.css" />
     <link rel="stylesheet" href="animated-bg.css" />
     <link rel="stylesheet" href="slideshow.css" />
@@ -35,15 +35,28 @@
         <div class="registration-form" style="background-color: #463d5e; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); padding: 30px;">
             <div class="logo">
                 <i><h1>VSV Shop Easy</h1></i>
-                <p>Admin Dashboard Login</p>
+                <p>Admin Dashboard Registration</p>
             </div>
 
-            <h2>Welcome Back, Admin</h2>
+            <h2>Welcome to VSV Admin</h2>
             <p style="text-align: center; color: #666; margin-bottom: 30px;">
-                Sign in to your admin account
+                Sign up for your admin account
             </p>
 
             <form action="dashboard.html" method="POST">
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <input
+                            type="text"
+                            id="fullname"
+                            name="fullname"
+                            placeholder="Enter your full name"
+                            required
+                        />
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <div class="input-with-icon">
                         <input
@@ -74,27 +87,27 @@
                     </div>
                 </div>
 
-                <div class="form-group checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="remember" />
-                        <span>Remember me</span>
-                    </label>
-                </div>
-
-                <div class="form-group checkbox-group">
-                    <label class="checkbox-label">
-                        <a
-                            href="vsv-forgot-password.html"
-                            style="color: #667eea; text-decoration: none"
-                            >Forgot password?</a
+                <div class="form-group">
+                    <div class="input-with-icon password-container">
+                        <input
+                            type="password"
+                            id="confirm-password"
+                            name="confirm-password"
+                            placeholder="Confirm your password"
+                            required
+                        />
+                        <span
+                            class="toggle-password"
+                            onclick="togglePassword('confirm-password', this)"
+                            >👁️</span
                         >
-                    </label>
+                    </div>
                 </div>
 
-                <button type="submit" class="register-btn">Sign In</button>
+                <button type="submit" class="register-btn">Create Account</button>
 
                 <div class="login-link">
-                    Don't have an admin account? <a href="vsv-registration.html">Create Account</a>
+                    Already have an admin account? <a href="dashboard-login.html">Sign In</a>
                 </div>
 
                 <div class="divider">
@@ -124,24 +137,24 @@
                 <div class="slideshow-container">
                     <div class="mySlides fade">
                         <img
-                            src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756733699/Perfect_Designer_-_Tech_Innovation_gjiqvv.jpg"
-                            alt="VSV Admin Login Banner 1"
+                            src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756734287/24310eb2-5b06-4758-b09c-f8a0e33ca187_fkekfv.jpg"
+                            alt="VSV Admin Registration Banner 1"
                             class="featured-banner"
                         />
                     </div>
 
                     <div class="mySlides fade">
                         <img
-                            src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756733716/An_isometric_3D_depiction_of_a_robot_stepping_out_rgiabs.jpg"
-                            alt="VSV Admin Login Banner 2"
+                            src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756734287/technology_1_vjqwxc.jpg"
+                            alt="VSV Admin Registration Banner 2"
                             class="featured-banner"
                         />
                     </div>
 
                     <div class="mySlides fade">
                         <img
-                            src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756733719/Data_science_technology_and_digital_marketing__Financial_business_KPI_System_data_analytics_graph_dashboard_vvevaz.jpg"
-                            alt="VSV Admin Login Banner 3"
+                            src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756734287/Ready_to_Improve_Performance_Management__iwgnep.jpg"
+                            alt="VSV Admin Registration Banner 3"
                             class="featured-banner"
                         />
                     </div>
@@ -158,13 +171,13 @@
                     <span class="dot" onclick="currentSlide(3)"></span>
                 </div>
 
-                <h2>Welcome Back to VSV Admin</h2>
+                <h2>Join VSV Admin</h2>
                 <p>
-                    Sign in to access your dashboard and manage your store efficiently.
+                    Sign up to access your dashboard and manage your store efficiently.
                     Monitor sales, inventory, customers, and more.
                 </p>
                 <ul>
-                    <li>Secure Admin Login</li>
+                    <li>Secure Admin Registration</li>
                     <li>Manage Products & Orders</li>
                     <li>View Reports & Analytics</li>
                     <li>Exclusive Admin Controls</li>
@@ -191,10 +204,12 @@
         document.querySelector("form").addEventListener("submit", function (e) {
             e.preventDefault();
 
+            const fullname = document.getElementById("fullname").value;
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
 
-            if (!email || !password) {
+            if (!fullname || !email || !password || !confirmPassword) {
                 alert("Please fill in all fields");
                 return;
             }
@@ -206,8 +221,14 @@
                 return;
             }
 
-            // Redirect to dashboard after successful login
-            window.location.href = "dashboard.html";
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return;
+            }
+
+            // Redirect to dashboard after successful registration
+            window.location.href = "dashboard-login.html";
         });
     </script>
 </body>

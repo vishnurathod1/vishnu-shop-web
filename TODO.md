@@ -1,34 +1,22 @@
-# Inventory Page Update Plan
+# TODO for Promotions Management Page
 
-## Tasks to Complete:
+- [x] Implement UI layout and styles for promotions management.
+- [x] Implement modals for adding and editing promotions.
+- [x] Implement PromoManager class with methods:
+  - load, save, add, edit, delete promotions.
+  - filter and sort promotions.
+  - render promotions and KPIs.
+- [x] Add event listeners for search, filters, add and edit forms, theme toggle, and nav toggle.
+- [ ] Test adding a new promotion.
+- [ ] Test editing an existing promotion.
+- [ ] Test deleting a promotion.
+- [ ] Test filtering and sorting promotions.
+- [ ] Test search functionality.
+- [ ] Test theme toggle and responsive layout.
+- [ ] Verify localStorage persistence of promotions.
+- [ ] Verify UI consistency and responsiveness on different screen sizes.
 
-1. [ ] Update `inventory-updated.html` to match customers page structure
-   - [ ] Add sidebar navigation
-   - [ ] Add topbar with search and theme toggle
-   - [ ] Update KPI cards structure
-   - [ ] Update table structure and styling
-   - [ ] Add modals for add/edit functionality
-   - [ ] Remove inline JavaScript
-
-2. [ ] Update `inventory-styles.css` to match customers page styling
-   - [ ] Update CSS variables for dark theme
-   - [ ] Update table styling
-   - [ ] Update form styling
-   - [ ] Update button styling
-
-3. [ ] Create `dashboard-inventory.js` with class-based management
-   - [ ] Implement localStorage persistence
-   - [ ] Add search functionality
-   - [ ] Add filter functionality
-   - [ ] Add sort functionality
-   - [ ] Implement modal form handling
-
-4. [ ] Test functionality
-   - [ ] Test theme toggle
-   - [ ] Test search, filter, sort
-   - [ ] Test add/edit/delete operations
-   - [ ] Verify localStorage persistence
-
-## Progress:
-- Started: 2025-01-23
-- Status: In progress
+# Next Steps
+- Open promo.html in a browser to manually test all functionalities.
+- Fix any bugs or UI issues found during testing.
+- Optionally, add automated tests if required.

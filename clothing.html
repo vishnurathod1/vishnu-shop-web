@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Clothing Collection - ShopEasy</title>
     <link rel="stylesheet" href="style.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
                <link rel="stylesheet" href="footer-styles.css">
 
   <script src="add-to-cart.js"></script>
  <style>
         .clothing-hero {
-            background: linear-gradient(rgba(255, 87, 34, 0.8), rgba(233, 30, 99, 0.8)),
-                url("https://res.cloudinary.com/ds3wuvkwo/image/upload/v1754806314/download_16_ngla6e.jpg");
+            background:
+                url("https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756716951/7b931623-1083-44ae-971a-c5a3b90999c9_xjzkjc.jpg");
             background-size: cover;
             background-position: center;
-            height: 500px;
+            height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -23,15 +24,29 @@
             color: white;
         }
         
-          
-
         .clothing-hero h1 {
             font-size: 3.5rem;
             margin: 0;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
         }
+        .clothing-banner {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.clothing-banner h1 {
+  font-family: 'Montserrat', sans-serif; /* Clean modern font */
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff6a00, #3b2108); /* gradient text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    letter-spacing: 1.5px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.15);
+}
+
         .category-section {
-            padding: 60px 0;
+            padding: 0px 0;
             margin: 40px 0;
         }
         .category-header {
@@ -40,7 +55,7 @@
         }
         .category-title {
             font-size: 2.5rem;
-            color: #333;
+            color: #ec6e33;
             margin-bottom: 10px;
         }
         .category-subtitle {
@@ -77,10 +92,10 @@
         .product-title {
             font-size: 1.3rem;
             margin: 0 0 10px 0;
-            color: #333;
+            color: #f09b2c;
         }
         .product-description {
-            color: #666;
+            color: #868582;
             margin: 0 0 15px 0;
             font-size: 0.9rem;
         }
@@ -125,14 +140,14 @@
             color: white;
         }
         .add-to-cart-btn:hover {
-            background: #f57c00;
+            background: #8d5915;
         }
         .buy-now-btn {
-            background: #4caf50;
+            background: #a1521c;
             color: white;
         }
         .buy-now-btn:hover {
-            background: #388e3c;
+            background: #e4d616;
         }
         .product-badge {
             position: absolute;
@@ -250,11 +265,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <!-- Hero Section -->
     <section class="clothing-hero">
-        <h1>Welcome to Complete Clothing Collection 2025</h1>
-       
+        
+     
     </section>
 
     <!-- Category 1: Shirts -->
+     <section class="clothing-banner">
+  <h1>Welcome to Complete Clothing Collection 2025</h1>
+</section>
     <section class="category-section">
         <div class="category-header">
             <h2 class="category-title">Premium Shirts</h2>
@@ -599,7 +617,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="products-grid">
             <div class="product-card" data-product-id="dress-1" data-price="2499" data-product-name="Maxi Dress" data-category="dresses">
                 <div class="product-badge">New</div>
-                <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754730141/Maxi_Dress_h9ajbg.webp" alt="Maxi Dress" class="product-image" />
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756717310/_Spring_garden_frock_with_pastel_floral_prints_fcbvdj.jpg" alt="Maxi Dress" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Maxi Dress</h3>
                     <p class="product-description">Flowing maxi dress in floral print</p>
@@ -618,7 +636,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="product-card" data-product-id="saree-1" data-price="2999" data-product-name="Classic Saree" data-category="clothing">
-                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1755791230/download_36_lslsfe.jpg" alt="Classic Saree" class="product-image" />
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756717176/Drape_yourself_in_the_epitome_of_elegance_with_our_kcslsg.jpg" alt="Classic Saree" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Classic Saree</h3>
                     <p class="product-description">Comfortable and Classic traditional wear</p>
@@ -639,7 +657,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <div class="product-card" data-product-id="kurthi-1" data-price="999" data-product-name="Kurthi Set" data-category="clothing">
                 <div class="product-badge">Sale</div>
-                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1755791232/download_37_xoxa4h.jpg" alt="Kurthi Set" class="product-image" />
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756714159/2c1c8fda-e634-4b63-baaf-2ab9b806b677_qxuz5w.jpg" alt="Kurthi Set" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Kurthi Set</h3>
                     <p class="product-description">Glitter and unique design ethnic wear</p>

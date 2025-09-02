@@ -10,11 +10,11 @@
  <script src="add-to-cart.js"></script>
 <style>
         .luggage-hero {
-            background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)),
-                url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300');
+            background:
+                url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756725520/Premium_Vector___Travel_elements_vector_concept_d4r3tk.jpg');
             background-size: cover;
             background-position: center;
-            height: 500px;
+            height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -37,6 +37,22 @@
             margin: 60px 0;
             padding: 0 20px;
         }
+        .travel-banner {
+  text-align: center;
+  margin: 60px 0;
+}
+.travel-banner h1 {
+      font-family: 'Playfair Display', serif; /* Elegant font */
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #070249, #f00c17); /* Purple to Blue gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    letter-spacing: 1.5px;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.15);
+        }
+        
+
         
         .category-title {
             text-align: center;
@@ -54,7 +70,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            background: linear-gradient(45deg, #1e3c72, #f10a29);
         }
         
         .products-grid {
@@ -164,12 +180,12 @@
         }
         
         .add-to-cart-btn {
-            background: linear-gradient(45deg, #3498DB, #2980B9);
+            background: linear-gradient(45deg, #3498DB, #b92935);
             color: white;
         }
         
         .buy-now-btn {
-            background: linear-gradient(45deg, #E74C3C, #C0392B);
+            background: linear-gradient(45deg, #E74C3C, #b789f3);
             color: white;
         }
         
@@ -256,12 +272,15 @@ document.addEventListener('DOMContentLoaded', function() {
     </header>
     <!-- Luggage Hero Section -->
     <section class="luggage-hero">
-        <h1>Welcome to Travel in Style with Luggage Faves 2025</h1>
     </section>
 
     <!-- Categories Section -->
     
     <!-- Carry-On Luggage -->
+     <section class="travel-banner">
+  <h1>Welcome to Travel in Style with Luggage Faves 2025</h1>
+</section>
+
     <section class="category-section" id="carry-on">
         <h2 class="category-title">Carry-On Luggage</h2>
         <div class="products-grid">

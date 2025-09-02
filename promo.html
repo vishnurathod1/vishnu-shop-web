@@ -453,11 +453,48 @@
     </div>
   </div>
 
+  <!-- Edit Promotion Modal -->
+  <div class="modal" id="editPromoModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Edit Promotion</h3>
+        <button class="modal-close" onclick="closeEditPromoModal()">&times;</button>
+      </div>
+      <form id="editPromoForm">
+        <div class="form-group">
+          <label class="form-label">Promotion Title</label>
+          <input type="text" class="form-input" name="title" id="editTitle" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Discount (%)</label>
+          <input type="number" class="form-input" name="discount" id="editDiscount" min="0" max="100" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Start Date</label>
+          <input type="date" class="form-input" name="startDate" id="editStartDate" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">End Date</label>
+          <input type="date" class="form-input" name="endDate" id="editEndDate" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-input" name="description" id="editDescription" rows="4" required></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn" onclick="closeEditPromoModal()">Cancel</button>
+          <button type="submit" class="btn primary">Update Promotion</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
     // Promotion Management System
     class PromoManager {
       constructor() {
         this.promos = this.loadPromos();
+        this.currentEditingId = null;
         this.init();
       }
 
@@ -564,6 +601,15 @@
           sidebar.classList.toggle('open');
           document.body.classList.toggle('nav-open');
         });
+
+        // Edit promo form
+        const editForm = document.getElementById('editPromoForm');
+        editForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.updatePromo(new FormData(e.target));
+          this.closeEditPromoModal();
+          e.target.reset();
+        });
       }
 
       addPromo(formData) {
@@ -595,8 +641,39 @@
       editPromo(id) {
         const promo = this.promos.find(p => p.id === id);
         if (promo) {
-          // For now, just alert. In a real app, open edit modal
-          alert(`Edit promo: ${promo.title}`);
+          this.currentEditingId = id;
+          this.openEditPromoModal(promo);
+        }
+      }
+
+      openEditPromoModal(promo) {
+        document.getElementById('editTitle').value = promo.title;
+        document.getElementById('editDiscount').value = promo.discount;
+        document.getElementById('editStartDate').value = promo.startDate;
+        document.getElementById('editEndDate').value = promo.endDate;
+        document.getElementById('editDescription').value = promo.description;
+        document.getElementById('editPromoModal').style.display = 'block';
+      }
+
+      closeEditPromoModal() {
+        document.getElementById('editPromoModal').style.display = 'none';
+        this.currentEditingId = null;
+      }
+
+      updatePromo(formData) {
+        const promoIndex = this.promos.findIndex(p => p.id === this.currentEditingId);
+        if (promoIndex !== -1) {
+          this.promos[promoIndex] = {
+            ...this.promos[promoIndex],
+            title: formData.get('title'),
+            description: formData.get('description'),
+            discount: parseInt(formData.get('discount')),
+            startDate: formData.get('startDate'),
+            endDate: formData.get('endDate')
+          };
+          this.savePromos();
+          this.renderPromos();
+          this.updateKPIs();
         }
       }
 
@@ -698,6 +775,10 @@
 
     function openEditModal(title) {
       alert(`Edit modal for: ${title}`);
+    }
+
+    function closeEditPromoModal() {
+      promoManager.closeEditPromoModal();
     }
 
     function confirmDelete(title) {

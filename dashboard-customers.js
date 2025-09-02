@@ -1,4 +1,4 @@
- // Dashboard Customers Management JavaScript
+// Dashboard Customers Management JavaScript
 class DashboardCustomersManager {
     constructor() {
         this.customers = [];
@@ -54,7 +54,7 @@ class DashboardCustomersManager {
             {
                 id: 2,
                 name: "Neha Sharma",
-                email: "neha@email.com",
+                email: "极速赛车开奖直播历史记录neha@email.com",
                 phone: "8605180623",
                 orders: 3,
                 totalSpent: 4500,

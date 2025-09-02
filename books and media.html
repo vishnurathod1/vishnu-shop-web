@@ -10,11 +10,11 @@
  <script src="add-to-cart.js"></script>
 <style>
         .books-hero {
-            background: linear-gradient(rgba(135, 206, 250, 0.8), rgba(70, 130, 180, 0.8)),
-                url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300');
+            background: 
+                url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756725220/8b5a04db-08bb-4c5f-8192-b5a33cfd3fee_cseol3.jpg');
             background-size: cover;
             background-position: center;
-            height: 500px;
+            height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -26,6 +26,20 @@
             margin: 0;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
         }
+        .books-banner {
+  text-align: center;
+  margin: 60px 0;
+}
+.books-banner h1 {
+      font-family: 'Playfair Display', serif; /* Elegant font */
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #e69224, #5c1337); /* Purple to Blue gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    letter-spacing: 1.5px;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.15);
+        }
         .category-section {
             margin: 60px 0;
             padding: 0 20px;
@@ -33,7 +47,7 @@
         .category-title {
             text-align: center;
             font-size: 2.5rem;
-            color: #4682B4;
+            color: #e28821;
             margin-bottom: 40px;
             position: relative;
         }
@@ -45,7 +59,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background: linear-gradient(45deg, #4682B4, #5F9EA0);
+            background: linear-gradient(45deg, #e75512, #5F9EA0);
         }
         .products-grid {
             display: grid;
@@ -81,7 +95,7 @@
         .product-title {
             font-size: 1.3rem;
             font-weight: bold;
-            color: #1E90FF;
+            color: #ec6060;
             margin-bottom: 8px;
         }
         .product-description {
@@ -96,7 +110,7 @@
         .current-price {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #4169E1;
+            color: #f1ab14;
         }
         .original-price {
             font-size: 1.1rem;
@@ -106,7 +120,7 @@
         }
         .product-rating {
             margin-bottom: 15px;
-            color: #6495ED;
+            color: #f15719;
         }
         .product-rating span {
             color: #7F8C8D;
@@ -127,11 +141,11 @@
             font-size: 0.9rem;
         }
         .add-to-cart-btn {
-            background: linear-gradient(45deg, #1E90FF, #4169E1);
+            background: linear-gradient(45deg, #e76123, #e4335f);
             color: white;
         }
         .buy-now-btn {
-            background: linear-gradient(45deg, #0000CD, #00008B);
+            background: linear-gradient(45deg, #e9456e, #f15d30);
             color: white;
         }
         .add-to-cart-btn:hover, .buy-now-btn:hover {
@@ -203,10 +217,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <!-- Books Hero Section -->
     <section class="books-hero">
-        <h1>Welcome to Books Collection 2025</h1>
+        
     </section>
 
     <!-- Categories Section -->
+<section class="books-banner">
+  <h1>Welcome to Books Collection 2025</h1>
+</section>
     <section class="category-section" id="fiction">
         <h2 class="category-title">Fiction</h2>
         <div class="products-grid">

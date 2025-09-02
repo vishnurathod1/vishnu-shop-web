@@ -11,11 +11,11 @@
 <style>
         /* Sports Theme Styles */
         .sports-hero {
-            background: linear-gradient(rgba(0, 123, 255, 0.8), rgba(0, 86, 179, 0.8)),
+            background: 
                 url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
-            height: 500px;
+            height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -52,6 +52,23 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
         }
+        .sports-banner {
+  text-align: center;
+  margin: 60px 0;
+}
+
+.sports-banner h1 {
+  font-family: 'Playfair Display', serif; /* Elegant font */
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #680b5b, #e63dc9); /* Sporty blue gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+    letter-spacing: 1.5px;
+
+}
+
         
         .category-section {
             margin: 60px 0;
@@ -61,7 +78,7 @@
         .category-title {
             text-align: center;
             font-size: 2.5rem;
-            color: #007bff;
+            color: #bb7146;
             margin-bottom: 40px;
             position: relative;
         }
@@ -117,7 +134,7 @@
         .product-title {
             font-size: 1.3rem;
             font-weight: bold;
-            color: #0056b3;
+            color: #f5843a;
             margin-bottom: 8px;
         }
         
@@ -298,12 +315,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <!-- Sports Hero Section -->
     <section class="sports-hero">
-        <h1>Welcome to Sports Collection 2025</h1>
         
     </section>
 
     <!-- Cricket Section -->
+     <section class="home-decor-banner">
+
+          <section class="sports-banner">
+  <h1>Welcome to Sports Collection 2025</h1>
+</section>
+
+
     <section class="category-section" id="cricket">
+
         <h2 class="category-title">Cricket</h2>
         <div class="products-grid">
             <div class="product-card">

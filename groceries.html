@@ -11,11 +11,11 @@
 <script src="add-to-cart.js"></script>
 <style>
         .groceries-hero {
-            background: linear-gradient(rgba(144, 238, 144, 0.8), rgba(34, 139, 34, 0.8)),
-                url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=300');
+            background: 
+                url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756718723/e42c8f84-ba6f-40cb-9943-9326fcbe7c36_cz00uc.jpg');
             background-size: cover;
             background-position: center;
-            height: 500px;
+            height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -31,6 +31,20 @@
             margin: 60px 0;
             padding: 0 20px;
         }
+        .groceries-banner {
+  text-align: center;
+  margin: 60px 0;
+}
+.groceries-banner h1 {
+    font-family: 'Playfair Display', serif; /* Elegant font */
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #f0708b, #25c704); /* Purple to Blue gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    letter-spacing: 1.5px;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.15);
+}
         .category-title {
             text-align: center;
             font-size: 2.5rem;
@@ -148,11 +162,11 @@
             font-size: 0.9rem;
         }
         .add-to-cart-btn {
-            background: linear-gradient(45deg, #32CD32, #228B22);
+            background: linear-gradient(45deg, #d1304b, #228B22);
             color: white;
         }
         .buy-now-btn {
-            background: linear-gradient(45deg, #006400, #228B22);
+            background: linear-gradient(45deg, #006400, #cf2c55);
             color: white;
         }
         .add-to-cart-btn:hover, .buy-now-btn:hover {
@@ -223,10 +237,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <!-- Groceries Hero Section -->
     <section class="groceries-hero">
-        <h1>Welcome to Groceries Collection 2025</h1>
     </section>
 
     <!-- Categories Section -->
+     <section class="groceries-banner">
+  <h1>Welcome to Groceries Collection 2025</h1>
+</section>
+
     <section class="category-section" id="fruits">
         <h2 class="category-title">Fruits</h2>
         <div class="products-grid">

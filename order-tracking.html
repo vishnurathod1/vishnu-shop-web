@@ -247,36 +247,160 @@
             background: #5a6fd8;
         }
 
+        /* Order Tracking Hero Styles */
+        .tracking-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .tracking-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tracking-hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Notification Preferences Styles */
+        .notification-preferences {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .notification-preferences h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .preferences-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .preference-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preference-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #667eea;
+        }
+
+        .preference-item label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .preference-item label i {
+            color: #667eea;
+            width: 16px;
+        }
+
+        .save-preferences-btn {
+            align-self: flex-start;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .save-preferences-btn:hover {
+            background: #218838;
+        }
+
         @media (max-width: 768px) {
             .order-info {
                 grid-template-columns: 1fr;
             }
-            
+
             .lookup-form {
                 flex-direction: column;
+            }
+
+            .tracking-hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .preferences-form {
+                gap: 12px;
+            }
+
+            .preference-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="nav-container">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
                 <div class="logo">
                     <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
                 </div>
-                <div class="nav-links">
-                    <a href="products.html">Products</a>
-                    <a href="categories.html">Categories</a>
-                    <a href="deals.html">Deals</a>
-                    <a href="cart.html" class="cart-link">
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products, categories..." id="homeSearch">
+                    <button class="search-btn" id="searchBtn" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="new-arrivals.html" class="nav-link">New Arrivals</a>
+                    <a href="products.html" class="nav-link">Products</a>
+                    <a href="categories.html" class="nav-link">Categories</a>
+                    <a href="deals.html" class="nav-link">Deals</a>
+                </nav>
+
+                <div class="nav-icons">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart-updated.html" class="icon-link">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span>
                     </a>
+                    <a href="vsv-login.html" class="icon-link" id="userIcon">
+                        <button class="cta-button">Logout</button>
+                    </a>
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
+
+    <!-- Order Tracking Hero Section -->
+    <section class="tracking-hero" style="background: url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756825009/Photo_3d_rendering_realistic_location_ma_etsq9w.jpg') no-repeat center center/cover;">
+        <div class="container">
+            <div class="tracking-hero-content">
+                <h1>Track Your Order</h1>
+                <p>Stay updated on your package location and delivery status</p>
+            </div>
+        </div>
+    </section>
 
     <div class="tracking-container">
         <div class="tracking-header">
@@ -346,6 +470,29 @@
                 <h3>Payment Summary</h3>
                 <div id="paymentSummary"></div>
             </div>
+
+            <div class="notification-preferences">
+                <h3>Notification Preferences</h3>
+                <div class="preferences-form">
+                    <div class="preference-item">
+                        <input type="checkbox" id="emailNotifications" checked>
+                        <label for="emailNotifications">
+                            <i class="fas fa-envelope"></i>
+                            Email notifications for order updates
+                        </label>
+                    </div>
+                    <div class="preference-item">
+                        <input type="checkbox" id="smsNotifications">
+                        <label for="smsNotifications">
+                            <i class="fas fa-sms"></i>
+                            SMS notifications for delivery updates
+                        </label>
+                    </div>
+                    <button class="save-preferences-btn" onclick="saveNotificationPreferences()">
+                        <i class="fas fa-save"></i> Save Preferences
+                    </button>
+                </div>
+            </div>
         </div>
 
         <div class="no-orders" id="noOrders" style="display: none;">
@@ -378,14 +525,14 @@
                 items: [
                     {
                         name: 'Premium Cotton T-Shirt',
-                        image: 'https://via.placeholder.com/80x80/667eea/ffffff?text=T-Shirt',
+                        image: 'https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756825543/7f2a6f29-268d-4fdb-a744-f2077c858a1e_fsodg3.jpg',
                         price: 899,
                         quantity: 2,
                         size: 'L'
                     },
                     {
                         name: 'Slim Fit Jeans',
-                        image: 'https://via.placeholder.com/80x80/28a745/ffffff?text=Jeans',
+                        image: 'https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756809880/3e684c52-ebcf-470d-9919-10922530b31f_ndae35.jpg',
                         price: 2499,
                         quantity: 1,
                         size: '32'
@@ -452,7 +599,7 @@
                 items: [
                     {
                         name: 'Wireless Headphones',
-                        image: 'https://via.placeholder.com/80x80/ff6b6b/ffffff?text=Headphones',
+                        image: 'https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756809880/Noise_Cancelling_Wireless_Headphones_Bluetooth_4_2_rckca4.jpg',
                         price: 3999,
                         quantity: 1
                     }
@@ -634,5 +781,56 @@
             }
         });
     </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VSV Shop Easy</h3>
+                    <p>Your trusted online shopping destination</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-info.html">Shipping Info</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="customer-account-enhanced (1).html">My Account</a></li>
+                        <li><a href="order-tracking.html">Order Tracking</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="customer-service.html">Help Center</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570624</p>
+                    <p><i class="fas fa-envelope"></i> vsv@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> vizag, andra, India</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="universal-search.js"></script>
 </body>
 </html>

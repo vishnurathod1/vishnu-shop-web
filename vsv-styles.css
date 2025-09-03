@@ -43,7 +43,7 @@ body {
 .logo h1 {
     font-size: 48px;
     font-weight: bold;
-    color: #cf58ab;
+    color:  #cf58ab;
     margin-bottom: 5px;
 }
 
@@ -200,7 +200,7 @@ body {
 .register-btn {
     width: 100%;
     padding: 18px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #07196b 0%, #764ba2 100%);
     color: white;
     border: none;
     border-radius: 10px;
@@ -244,7 +244,7 @@ body {
 /* Image Section Styles */
 .image-section {
     flex: 1;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #192557 0%, #764ba2 100%);
     display: flex;
     align-items: flex-start;
     justify-content: center;

@@ -3,56 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Returns & Refunds - Your E-Commerce Store</title>
-<link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">     <link rel="stylesheet" href="vsv-styles.css">
-    <link rel="stylesheet" href="animated-bg.css">
-        <link rel="stylesheet" href="footer-styles.css">
-  <script src="add-to-cart.js"></script>
+    <title>Returns & Refunds - VSV ShopEasy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="footer-styles.css">
+    <script src="add-to-cart.js"></script>
+    <script src="universal-search.js"></script>
+
+    <!-- Favicon Links -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#667eea">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="theme-color" content="#667eea">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="homepage.html" class="nav-logo">Your Store</a>
-            <ul class="nav-menu">
-                <li><a href="homepage.html">Home</a></li>
-                <li><a href="fashion-category.html">Fashion</a></li>
-                <li><a href="beauty.html">Beauty</a></li>
-                <li><a href="home-decor.html">Home Decor</a></li>
-                <li><a href="girls.html">Girls</a></li>
-                <li><a href="customer-service.html">Customer Service</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
+                </div>
 
-    <!-- Returns Header -->
-    <header class="page-header">
-        <h1>Returns & Refunds</h1>
-        <p>Easy returns for your peace of mind</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products, categories..." id="homeSearch">
+                    <button class="search-btn" id="searchBtn" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <nav class="nav-menu">
+                    <a href="homepage.html" class="nav-link">Home</a>
+                    <a href="new-arrivals.html" class="nav-link">New Arrivals</a>
+                    <a href="products.html" class="nav-link">Products</a>
+                    <a href="categories.html" class="nav-link">Categories</a>
+                    <a href="deals.html" class="nav-link">Deals</a>
+                </nav>
+
+                <div class="nav-icons">
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart-updated.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="vsv-login.html" class="icon-link" id="userIcon">
+                        <button class="cta-button">Logout</button>
+                    </a>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="returns-container">
-        <section class="returns-policy">
+    <!-- Returns Hero Section -->
+    <section class="returns-hero" style="background: url('https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756824583/Online_shopping__oo2fws.jpg') no-repeat center center/cover;">
+        <div class="container" style="color: rgb(12, 12, 12);">
+            <div class="returns-hero-content">
+                <h1>Returns & Refunds</h1>
+                <p>Easy returns for your peace of mind</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Return Policy Section -->
+    <section class="return-policy">
+        <div class="container">
             <h2>Our Return Policy</h2>
             <div class="policy-grid">
                 <div class="policy-card">
+                    <i class="fas fa-calendar-alt"></i>
                     <h3>30-Day Return Window</h3>
                     <p>You have 30 days from the date of delivery to return items for a full refund.</p>
                 </div>
                 <div class="policy-card">
+                    <i class="fas fa-truck"></i>
                     <h3>Free Returns</h3>
                     <p>We provide free return shipping on all eligible items within the return window.</p>
                 </div>
                 <div class="policy-card">
+                    <i class="fas fa-tag"></i>
                     <h3>Original Condition</h3>
                     <p>Items must be returned unworn, unwashed, and with original tags attached.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="return-process">
+    <!-- Return Process Section -->
+    <section class="return-process">
+        <div class="container">
             <h2>How to Return</h2>
             <div class="process-steps">
                 <div class="step">
@@ -76,56 +121,343 @@
                     <p>Receive your refund within 5-7 business days after we process your return</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="return-exclusions">
+    <!-- Return Exclusions Section -->
+    <section class="return-exclusions">
+        <div class="container">
             <h2>Non-Returnable Items</h2>
-            <ul>
-                <li>Final sale items</li>
-                <li>Personal care products (opened)</li>
-                <li>Intimate apparel</li>
-                <li>Gift cards</li>
-                <li>Items marked as non-returnable</li>
-            </ul>
-        </section>
-
-        <section class="return-actions">
-            <h2>Ready to Return?</h2>
-            <div class="action-buttons">
-                <button class="btn-primary" onclick="startReturn()">Start Return</button>
-                <button class="btn-secondary" onclick="checkReturnStatus()">Check Return Status</button>
+            <div class="exclusions-grid">
+                <div class="exclusion-item">
+                    <i class="fas fa-times-circle"></i>
+                    <h3>Final Sale Items</h3>
+                    <p>Items marked as final sale cannot be returned</p>
+                </div>
+                <div class="exclusion-item">
+                    <i class="fas fa-times-circle"></i>
+                    <h3>Personal Care Products</h3>
+                    <p>Opened personal care and beauty products</p>
+                </div>
+                <div class="exclusion-item">
+                    <i class="fas fa-times-circle"></i>
+                    <h3>Intimate Apparel</h3>
+                    <p>Underwear, swimwear, and intimate items</p>
+                </div>
+                <div class="exclusion-item">
+                    <i class="fas fa-times-circle"></i>
+                    <h3>Gift Cards</h3>
+                    <p>Gift cards and digital products</p>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="contact-support">
-            <h2>Need Help?</h2>
-            <p>Contact our customer service team for assistance with returns</p>
-            <a href="customer-service.html" class="btn-secondary">Contact Support</a>
-        </section>
-    </main>
+    <!-- Return Request Form -->
+    <section class="return-form-section">
+        <div class="container">
+            <h2>Start Your Return</h2>
+            <div class="form-container">
+                <form id="returnForm" class="return-form">
+                    <div class="form-group">
+                        <label for="orderNumber">Order Number</label>
+                        <input type="text" id="orderNumber" name="orderNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Return Reason</label>
+                        <select id="reason" name="reason" required>
+                            <option value="">Select a reason</option>
+                            <option value="wrong-size">Wrong Size</option>
+                            <option value="wrong-color">Wrong Color</option>
+                            <option value="defective">Defective Item</option>
+                            <option value="not-as-described">Not as Described</option>
+                            <option value="changed-mind">Changed Mind</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comments">Additional Comments</label>
+                        <textarea id="comments" name="comments" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Submit Return Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Return Tracking Section -->
+    <section class="return-tracking">
+        <div class="container">
+            <h2>Track Your Return</h2>
+            <div class="tracking-form">
+                <input type="text" placeholder="Enter return tracking number" id="trackingNumber">
+                <button class="btn-primary" onclick="trackReturn()">Track Return</button>
+            </div>
+            <div id="trackingResult" class="tracking-result" style="display: none;">
+                <h3>Return Status</h3>
+                <p id="statusText"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>Need Help with Returns?</h2>
+            <div class="contact-options">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p>+91 6304570624</p>
+                    <p>Mon-Fri: 9AM-6PM</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Support</h3>
+                    <p>returns@shopeasy.com</p>
+                    <p>Response within 24 hours</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-comments"></i>
+                    <h3>Live Chat</h3>
+                    <p>Available 24/7</p>
+                    <p>Instant assistance</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="homepage.html">Home</a>
-            <a href="customer-service.html">Customer Service</a>
-            <a href="returns.html">Returns</a>
-            <a href="shipping-info.html">Shipping Info</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="terms-and-conditions.html">Terms & Conditions</a>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VSV Shop Easy</h3>
+                    <p>Your trusted online shopping destination</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping-info.html">Shipping Info</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="customer-account-enhanced (1).html">My Account</a></li>
+                        <li><a href="order-tracking.html">Order Tracking</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="customer-service.html">Help Center</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 6304570624</p>
+                    <p><i class="fas fa-envelope"></i> vsv@shopeasy.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> vizag, andra, India</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
+            </div>
         </div>
     </footer>
 
-    <script>
-        function startReturn() {
-            alert('Return process started! Please check your email for return instructions.');
-            // In real implementation, this would redirect to return portal
+    <style>
+        /* Returns Page Styles */
+        .returns-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
         }
 
-        function checkReturnStatus() {
-            alert('Please check your email for return status updates or contact customer service.');
-            // In real implementation, this would open return tracking
+        .returns-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
-    </script>
+
+        .returns-hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .return-policy, .return-process, .return-exclusions, .return-form-section, .return-tracking, .contact-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .return-policy, .return-exclusions, .return-form-section, .return-tracking {
+            background: white;
+        }
+
+        .container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .policy-grid, .process-steps, .exclusions-grid, .contact-options {
+            display: grid;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .policy-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .process-steps {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .exclusions-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .contact-options {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .policy-card, .step, .exclusion-item, .contact-item {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .policy-card i, .exclusion-item i, .contact-item i {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .policy-card h3, .step h3, .exclusion-item h3, .contact-item h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .policy-card p, .step p, .exclusion-item p, .contact-item p {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .return-form-section {
+            background: #f8f9fa;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .tracking-form {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .tracking-form input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+        }
+
+        @media (max-width: 768px) {
+            .returns-hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .policy-grid, .process-steps, .exclusions-grid, .contact-options {
+                grid-template-columns: 1fr;
+            }
+
+            .tracking-form {
+                flex-direction: column;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+
+    <script src="universal-search.js"></script>
+    <script src="returns.js"></script>
 </body>
 </html>

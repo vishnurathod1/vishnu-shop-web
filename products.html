@@ -3,56 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>All Products - VSVShopEasy</title>
+    <title>Products - VSV ShopEasy</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="footer-styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="universal-search.js"></script>
+    <script src="products-updated.js" defer></script>
+      <script src="add-to-cart.js"></script>
+      <script src ="cart-manager.js"></script>
 
-   <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="footer-styles.css">
-
-    <!-- JS -->
-    <script src="add-to-cart.js"></script>
-
-    <!-- Favicon Links -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
-    <link rel="manifest" href="assets/site.webmanifest" />
-
-    <style>
-        /* Background Colors */
-        body {
-            background-color: #e673b2 30%,#643750 70%; /* Light gray background */
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .header {
-            background-color: #2c3e50; /* Dark header */
-            color: rgb(241, 231, 236);
-            padding: 10px 0;
-        }
-        .nav-menu a {
-            color: rgb(243, 238, 241);
-            text-decoration: none;
-            padding: 0 15px;
-        }
-        .nav-menu a.active {
-            color: #ffdd57; /* Highlighted menu item */
-        }
-        .products-section {
-            background-color: #fdf8fc; /* White background for products */
-            padding: 20px 0;
-        }
-        .footer {
-            background-color: #34495e; /* Dark footer */
-            color: white;
-            padding: 20px 0;
-        }
-        .footer a {
-            color: #ffdd57;
-            text-decoration: none;
-        }
-    </style>
 </head>
 <body>
     <!-- Header -->
@@ -60,10 +19,16 @@
         <div class="container">
             <div class="nav-wrapper">
                 <div class="logo">
-                    <a href="homepage.html" style="text-decoration: none; color: inherit;">
-                        <h1>VSV Shop Easy</h1>
-                    </a>
+                    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
                 </div>
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products, categories..." id="homeSearch">
+                    <button class="search-btn" id="searchBtn" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
                 <nav class="nav-menu">
                     <a href="homepage.html" class="nav-link">Home</a>
                     <a href="new-arrivals.html" class="nav-link">New Arrivals</a>
@@ -71,80 +36,64 @@
                     <a href="categories.html" class="nav-link">Categories</a>
                     <a href="deals.html" class="nav-link">Deals</a>
                 </nav>
+
                 <div class="nav-icons">
-                    <a href="customer-account-enhanced (1).html" class="icon-link"><i class="fas fa-user"></i></a>
-                    <a href="cart-updated.html" class="icon-link"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
-                    <a href="vsv-login.html" class="icon-link">
-            <button class="cta-button"> Logout</button></a>
+                    <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
+                        <i class="fas fa-user"></i>
+                        <span class="user-status"></span>
+                    </a>
+                    <a href="cart-updated.html" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="vsv-login.html" class="icon-link" id="userIcon">
+                        <button class="cta-button">Logout</button>
+                    </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>All Products</h1>
-            <p>Discover amazing products at unbeatable prices</p>
-        </div>
-    </section>
+    <!-- Products Page Content -->
+    <section class="products-page container">
+        <h2 class="section-title">Products</h2>
 
-    <!-- Filters Section -->
-    <section class="filters-section">
-        <div class="container">
-            <div class="filters-wrapper">
-                <div class="filter-group">
-                    <label for="categoryFilter">Category:</label>
-                    <select id="categoryFilter" onchange="filterProducts()">
-                        <option value="all">All Categories</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="home">Home & Living</option>
-                        <option value="beauty">Beauty</option>
-                        <option value="books">Books</option>
-                        <option value="sports">Sports</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="priceFilter">Price Range:</label>
-                    <select id="priceFilter" onchange="filterProducts()">
-                        <option value="all">All Prices</option>
-                        <option value="0-1000">Under ₹1,000</option>
-                        <option value="1000-5000">₹1,000 - ₹5,000</option>
-                        <option value="5000-10000">₹5,000 - ₹10,000</option>
-                        <option value="10000+">₹10,000+</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="sortFilter">Sort By:</label>
-                    <select id="sortFilter" onchange="sortProducts()">
-                        <option value="featured">Featured</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="newest">Newest First</option>
-                        <option value="rating">Highest Rated</option>
-                    </select>
-                </div>
-            </div>
+        <!-- Filters -->
+        <div class="filters">
+            <input type="text" id="productSearch" placeholder="Search products..." />
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="fashion">Fashion</option>
+                <option value="home">Home & Living</option>
+                <option value="beauty">Beauty</option>
+                <option value="books">Books</option>
+                <option value="sports">Sports</option>
+            </select>
+            <select id="priceFilter">
+                <option value="all">All Prices</option>
+                <option value="0-1000">Under ₹1000</option>
+                <option value="1000-5000">₹1000 - ₹5000</option>
+                <option value="5000-10000">₹5000 - ₹10000</option>
+                <option value="10000+">Above ₹10000</option>
+            </select>
+            <select id="sortFilter">
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="newest">Newest</option>
+                <option value="rating">Rating</option>
+            </select>
         </div>
-    </section>
 
-    <!-- Products Grid -->
-    <section class="products-section">
-        <div class="container">
-            <div class="products-header">
-                <h2>Showing <span id="productCount">24</span> Products</h2>
-                <div class="view-options">
-                    <button class="view-btn active" onclick="changeView('grid')"><i class="fas fa-th"></i> Grid</button>
-                    <button class="view-btn" onclick="changeView('list')"><i class="fas fa-list"></i> List</button>
-                </div>
-            </div>
-            <div class="products-grid" id="productsContainer"></div>
-            <div class="pagination">
-                <button class="page-btn" onclick="previousPage()">Previous</button>
-                <span class="page-info">Page <span id="currentPage">1</span> of <span id="totalPages">5</span></span>
-                <button class="page-btn" onclick="nextPage()">Next</button>
-            </div>
+        <!-- Products Container -->
+        <div id="productsContainer" class="products-grid"></div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button id="prevPage">Previous</button>
+            <span>Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+            <button id="nextPage">Next</button>
         </div>
     </section>
 
@@ -182,50 +131,280 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact Info</h4>
-                    <p><i class="fas fa-phone"></i> +91 6304570623</p>
+                    <p><i class="fas fa-phone"></i> +91 6304570624</p>
                     <p><i class="fas fa-envelope"></i> vsv@shopeasy.com</p>
                     <p><i class="fas fa-map-marker-alt"></i> Vizag, Andhra, India</p>
                 </div>
-            </div>
+            </div> 
             <div class="footer-bottom">
-        <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
+                <p>&copy; 2025 VSV ShopEasy. All rights reserved. | Designed with ❤️ for our customers</p>
             </div>
         </div>
     </footer>
 
-    <script src="products.js"></script>
     <script>
-    // Product search from homepage
-    document.addEventListener('DOMContentLoaded', function() {
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-        const searchTerm = getQueryParam('search');
-        if (searchTerm) {
-            // Wait for products to be rendered by products.js
-            const interval = setInterval(() => {
-                const products = document.querySelectorAll('.product-card, .product-list-item');
-                if (products.length > 0) {
-                    let found = false;
-                    products.forEach(card => {
-                        const title = card.querySelector('.product-title')?.textContent.toLowerCase();
-                        if (title && title.includes(searchTerm.trim().toLowerCase())) {
-                            card.style.display = 'block';
-                            found = true;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                    if (!found) {
-                        products.forEach(card => card.style.display = 'block');
-                    }
-                    clearInterval(interval);
+        // Pagination buttons functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const prevBtn = document.getElementById('prevPage');
+            const nextBtn = document.getElementById('nextPage');
+            const productsManager = window.productsManagerInstance;
+
+            prevBtn.addEventListener('click', () => {
+                if (productsManager && productsManager.currentPage > 1) {
+                    productsManager.currentPage--;
+                    productsManager.renderProducts();
+                    productsManager.updatePagination();
                 }
-            }, 100);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (productsManager) {
+                    const totalPages = Math.ceil(productsManager.filteredProducts.length / productsManager.productsPerPage);
+                    if (productsManager.currentPage < totalPages) {
+                        productsManager.currentPage++;
+                        productsManager.renderProducts();
+                        productsManager.updatePagination();
+                    }
+                }
+            });
+        });
+        // Shopping Cart System - Add to Cart Functionality
+// This file provides comprehensive cart functionality for all pages
+
+class ShoppingCart {
+    constructor() {
+        this.cart = this.loadCart();
+        this.updateCartDisplay();
+    }
+
+    // Load cart from localStorage
+    loadCart() {
+        const savedCart = localStorage.getItem('shoppingCart');
+        return savedCart ? JSON.parse(savedCart) : [];
+    }
+
+    // Save cart to localStorage
+    saveCart() {
+        localStorage.setItem('shoppingCart', JSON.stringify(this.cart));
+    }
+
+    // Add item to cart
+    addToCart(product) {
+        const existingItem = this.cart.find(item => item.id === product.id);
+        
+        if (existingItem) {
+            existingItem.quantity += product.quantity || 1;
+        } else {
+            this.cart.push({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                quantity: product.quantity || 1,
+                category: product.category || 'general'
+            });
         }
+        
+        this.saveCart();
+        this.updateCartDisplay();
+        this.showNotification(`${product.name} added to cart!`);
+    }
+
+    // Remove item from cart
+    removeFromCart(productId) {
+        this.cart = this.cart.filter(item => item.id !== productId);
+        this.saveCart();
+        this.updateCartDisplay();
+    }
+
+    // Update item quantity
+    updateQuantity(productId, newQuantity) {
+        const item = this.cart.find(item => item.id === productId);
+        if (item) {
+            item.quantity = Math.max(0, newQuantity);
+            if (item.quantity === 0) {
+                this.removeFromCart(productId);
+            } else {
+                this.saveCart();
+                this.updateCartDisplay();
+            }
+        }
+    }
+
+    // Get total items in cart
+    getTotalItems() {
+        return this.cart.reduce((total, item) => total + item.quantity, 0);
+    }
+
+    // Get total price
+    getTotalPrice() {
+        return this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    }
+
+    // Clear entire cart
+    clearCart() {
+        this.cart = [];
+        this.saveCart();
+        this.updateCartDisplay();
+    }
+
+    // Update cart display across all pages
+    updateCartDisplay() {
+        const cartCountElements = document.querySelectorAll('.cart-count');
+        cartCountElements.forEach(element => {
+            element.textContent = this.getTotalItems();
+        });
+
+        // Update cart preview if exists
+        this.updateCartPreview();
+    }
+
+    // Update cart preview (for dropdown or sidebar)
+    updateCartPreview() {
+        const cartPreview = document.getElementById('cart-preview');
+        if (cartPreview) {
+            cartPreview.innerHTML = '';
+            
+            if (this.cart.length === 0) {
+                cartPreview.innerHTML = '<p>Your cart is empty</p>';
+                return;
+            }
+
+            this.cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-preview-item';
+                itemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover;">
+                    <div>
+                        <h4>${item.name}</h4>
+                        <p>₹${item.price} x ${item.quantity}</p>
+                    </div>
+                    <button onclick="cart.removeFromCart('${item.id}')" style="background: none; border: none; color: red;">×</button>
+                `;
+                cartPreview.appendChild(itemDiv);
+            });
+
+            const totalDiv = document.createElement('div');
+            totalDiv.className = 'cart-preview-total';
+            totalDiv.innerHTML = `
+                <strong>Total: ₹${this.getTotalPrice()}</strong>
+                <button onclick="window.location.href='cart.html'" class="view-cart-btn">View Cart</button>
+            `;
+            cartPreview.appendChild(totalDiv);
+        }
+    }
+
+    // Show notification
+    showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'cart-notification';
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #32CD32;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 2000);
+    }
+
+    // Initialize cart buttons on page load
+    initializeCartButtons() {
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productCard = e.target.closest('.product-card');
+                const product = {
+                    id: productCard.dataset.productId || Math.random().toString(36).substr(2, 9),
+                    name: productCard.querySelector('.product-title').textContent,
+                    price: parseFloat(productCard.querySelector('.current-price').textContent.replace('₹', '')),
+                    image: productCard.querySelector('.product-image').src,
+                    category: productCard.dataset.category || 'general'
+                };
+                
+                this.addToCart(product);
+            });
+        });
+    }
+}
+
+// Initialize cart
+const cart = new ShoppingCart();
+
+// Global functions for HTML onclick handlers
+function addToCart(productId, name, price, image, category) {
+    cart.addToCart({
+        id: productId,
+        name: name,
+        price: price,
+        image: image,
+        category: category
     });
+}
+
+function removeFromCart(productId) {
+    cart.removeFromCart(productId);
+}
+
+function updateQuantity(productId, quantity) {
+    cart.updateQuantity(productId, parseInt(quantity));
+}
+
+function clearCart() {
+    cart.clearCart();
+}
+
+// Initialize cart when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    cart.initializeCartButtons();
+    
+    // Add CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        .cart-preview-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-preview-total {
+            padding: 10px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        .view-cart-btn {
+            background: #228B22;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+    `;
+    document.head.appendChild(style);
+});
+
     </script>
 </body>
 </html>
-

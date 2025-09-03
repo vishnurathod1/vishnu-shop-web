@@ -1,133 +1,121 @@
-/* Slideshow Container */
-.slideshow-container {
-    position: relative;
-    max-width: 100%;
-    margin: auto;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    height: 350px; /* Fixed height to fit images */
+.slideshow-background.full-hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
 }
 
-.mySlides img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensure image covers the slide area */
+.slideshow-background.full-hero-background .mySlides {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
 }
 
-/* Hide the images by default */
-.mySlides {
-    display: none;
-    width: 100%;
-    height: 350px; /* Decreased height from 600px to 350px */
-    object-fit: cover;
-    border-radius: 15px;
+.slideshow-background.full-hero-background .mySlides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Show the first image */
-.mySlides:first-child {
-    display: block;
+.slideshow-background.full-hero-background .prev,
+.slideshow-background.full-hero-background .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 12px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  user-select: none;
+  background-color: rgba(0,0,0,0.4);
+  transition: background-color 0.2s ease;
+  z-index: 10;
 }
 
-/* Next & previous buttons */
-.prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    margin-top: -22px;
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 50%;
-    user-select: none;
-    background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
+.slideshow-background.full-hero-background .prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
 }
 
-/* Position the "next button" to the right */
-.next {
-    right: 20px;
+.slideshow-background.full-hero-background .next {
+  right: 0;
+  border-radius: 0 3px 3px 0;
 }
 
-.prev {
-    left: 20px;
+.slideshow-background.full-hero-background .prev:hover,
+.slideshow-background.full-hero-background .next:hover {
+  background-color: rgba(0,0,0,0.7);
 }
 
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Caption text */
-.text {
-    color: #f2f2f2;
-    font-size: 15px;
-    padding: 8px 12px;
-    position: absolute;
-    bottom: 8px;
-    width: 100%;
-    text-align: center;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
-}
-
-/* The dots/bullets/indicators */
 .dot-container {
-    text-align: center;
-    margin-top: 10px;
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
 }
 
 .dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 5px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+  margin: 0 4px;
+  background-color: rgba(255,255,255,0.6);
+  border-radius: 20%;
+  display: inline-block;
+  transition: background-color 0.3s ease;
 }
 
-.active, .dot:hover {
-    background-color: #717171;
+.dot.active,
+.dot:hover {
+  background-color: white;
 }
 
-/* Fading animation */
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
+.hero {
+  position: relative;
+  height: 520px; /* Decreased height as requested */
+  overflow: hidden;
+  color: #fcf9fb; /* Purple text color */
 }
 
-@keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
+.hero-content {
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  padding: 60px 20px 20px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  pointer-events: none; /* Prevent accidental clicks on text */
 }
 
-/* Responsive design */
-@media screen and (max-width: 768px) {
-    .mySlides {
-        height: 250px;
-    }
-    
-    .prev, .next {
-        padding: 12px;
-        font-size: 16px;
-    }
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
-@media screen and (max-width: 480px) {
-    .mySlides {
-        height: 200px;
-    }
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.hero-content .cta-button {
+  pointer-events: auto; /* Enable clicking on button */
+  background-color: #e60000;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-content .cta-button:hover {
+  background-color: #b30000;
 }

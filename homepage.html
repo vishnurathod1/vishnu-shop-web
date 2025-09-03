@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShopEasy - Online Shopping Store</title>
   <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="slideshow.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
            <link rel="stylesheet" href="footer-styles.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -15,8 +16,9 @@
     <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#667eea">
     <meta name="msapplication-TileColor" content="#667eea">
     <meta name="theme-color" content="#667eea">
-      <script src="add-to-cart.js"></script>
-            <script src="universal-search.js"></script>
+       <script src="universal-search.js"></script>
+             <script src="add-to-cart.js"></script>
+
                
 </head>
 <body>
@@ -25,7 +27,7 @@
         <div class="container">
             <div class="nav-wrapper">
                 <div class="logo">
-                    <h1>VSV ShopEasy</h1>
+                    <h1>VSV Shop Easy</h1>
                 </div>
                 
                 <div class="search-bar">
@@ -64,9 +66,40 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="slideshow-background full-hero-background">
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756729339/7cebcf86-6f86-41e8-888c-8b4568ebeebc_zvlp4e.jpg" alt="Banner 1">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756814031/Fotos_de_Clothing_-_Descarga_fotos_gratis_de_gran_calidad___Freepik_iggwdw.jpg" alt="Banner 2">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756814035/Premium_Photo___Realistic_Blur_Background_of_Store_s3xx0z.jpg" alt="Banner 3">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756814508/Photo_of_happy_beautiful_family_shopping_together___Premium_AI-generated_image_mcjhpg.jpg" alt="Banner 4">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756813437/5e5fb3ac-105a-49e1-9b05-72ccb6375016_glhpml.jpg" alt="Banner 5">
+            </div>
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- The dots/circles -->
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+
         <div class="hero-content">
             <section class="summer-sale">
-  <h1>🔥 Dussara Sale 2025 🔥</h1>
+<h1>✨ Dussara Sale 2025 ✨</h1>
   <p>Up to <strong>70% OFF</strong> on selected items!</p>
   </section>
             <a href="products.html">
@@ -166,7 +199,7 @@
             <div class="products-grid">
                 <div class="product-card" data-product-id="shirt-home-1" data-price="1299" data-product-name="Classic White Shirt" data-category="clothing">
                     <div class="product-badge">New</div>
-                    <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754726868/259MS_PWhite_wwjvrw.webp" alt="Classic White Shirt" class="product-image">
+                    <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756809882/This_white_cotton_shirt_is_breathable_tailored_jyij2l.jpg" alt="Classic White Shirt" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Classic White Shirt</h3>
                         <p class="product-description">Premium cotton formal shirt with modern fit</p>
@@ -189,7 +222,7 @@
 
                 <div class="product-card" data-product-id="jeans-home-1" data-price="1999" data-product-name="Slim Fit Jeans" data-category="clothing">
                     <div class="product-badge">Hot</div>
-                    <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754729172/Slim_Fit_Jeans_vpbxoj.webp" alt="Slim Fit Jeans" class="product-image">
+                    <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756809880/aff78c38-0e73-440d-931f-57e983ceed69_j03duk.jpg" alt="Slim Fit Jeans" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Slim Fit Jeans</h3>
                         <p class="product-description">Modern slim fit jeans in stretch denim</p>
@@ -234,7 +267,7 @@
 
                 <div class="product-card" data-product-id="dress-home-1" data-price="2499" data-product-name="Maxi Dress" data-category="clothing">
                     <div class="product-badge">Sale</div>
-                    <img src="https://res.cloudinary.com/ddxbevmiz/image/upload/v1754730141/Maxi_Dress_h9ajbg.webp" alt="Maxi Dress" class="product-image">
+                    <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756809880/Paleisstijl_bloemenprint_vintage_lange_jurk_vrouw_ayubge.jpg" alt="Maxi Dress" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Maxi Dress</h3>
                         <p class="product-description">Flowing maxi dress in floral print</p>
@@ -257,7 +290,7 @@
 
                 <div class="product-card" data-product-id="headphones-1" data-price="2999" data-product-name="Wireless Headphones" data-category="electronics">
                     <div class="product-badge">New</div>
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300" alt="Wireless Headphones" class="product-image">
+                    <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756809880/Women_s_accessory_AI_yccffv.jpg" alt="Wireless Headphones" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Wireless Headphones</h3>
                         <p class="product-description">Premium sound quality with noise cancellation</p>
@@ -302,7 +335,7 @@
                 </div>
 
                 <div class="product-card" data-product-id="shoes-1" data-price="3499" data-product-name="Running Shoes" data-category="footwear">
-                    <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=300" alt="Running Shoes" class="product-image">
+                    <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756809147/2024_Women_s_Nike_Air_Winflo_11_Low_Top_Running_bhme4h.jpg" alt="Running Shoes" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Running Shoes</h3>
                         <p class="product-description">Comfortable and durable for daily runs</p>
@@ -325,7 +358,7 @@
 
                 <div class="product-card" data-product-id="laptop-1" data-price="59999" data-product-name="Gaming Laptop" data-category="electronics">
                     <div class="product-badge">Hot</div>
-                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=300" alt="Laptop" class="product-image">
+                    <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756809879/gaminglaptop_laptop_xr7zze.jpg" alt="Laptop" class="product-image">
                     <div class="product-info">
                         <h3 class="product-title">Gaming Laptop</h3>
                         <p class="product-description">High performance for gaming and work</p>
@@ -402,6 +435,7 @@
     </footer>
 
     <script src="universal-search.js"></script>
+    <script src="slideshow.js"></script>
     <script>
         // Simple cart functionality
         let cartCount = 0;
